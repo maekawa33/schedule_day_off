@@ -41,11 +41,11 @@ module ScheduleDayOff
       g.jbuilder       false
     end
 
-    config.i18n.default_local = :ja
-
+    config.i18n.default_locale = :ja
+    
     # 言語ファイル階層ごとに設定するための記述
-    config.i18n.load_path  += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
-
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    
     config.time_zone = 'Tokyo'
   end
 end
