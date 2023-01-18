@@ -27,6 +27,10 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# UI/UX
+gem 'rails-i18n'
+gem 'enum_help'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -51,6 +55,13 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  # Test
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'webdrivers'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -62,5 +73,12 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # Lint
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require:false
+  gem 'rubocop-rspec'
+  gem 'bullet'
+  gem 'solargraph'
 end
 
