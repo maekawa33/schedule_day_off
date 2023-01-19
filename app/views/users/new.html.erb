@@ -3,9 +3,6 @@
         <div class="grid card bg-base-300 rounded-box place-items-center">
             <p>会員登録</p>
             <%= link_to "メールアドレスで登録", register_mail_users_path ,{class: "btn w-80 my-4"} %>
-            <%= link_to auth_at_provider_path(provider: :twitter), {class: "btn w-80 mb-4"} do %>
-                <p>Twitterでログイン</p>
-            <% end %>
         </div>
         <div class="divider"></div> 
         <div class="grid card bg-base-300 rounded-box place-items-center">
