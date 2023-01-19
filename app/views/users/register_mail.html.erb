@@ -2,6 +2,11 @@
 <p class="m-auto text-3xl">メールアドレス登録</p>
 <%= form_with(model: @user,class: "flex flex-col gap-2")  do |form| %>
     <div>
+        <%= form.label :name, class: "label" %>
+        <%= form.text_field :name, class: "input input-bordered w-full max-w-xs"%>
+    </div>
+
+    <div>
         <%= form.label :email, class: "label" %>
         <%= form.email_field :email, class: "input input-bordered w-full max-w-xs"%>
     </div>
