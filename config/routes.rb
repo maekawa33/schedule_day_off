@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  get 'user_sessions/new'
-  get 'user_sessions/login_mail'
-  resources :users, only: %i[new register_mail show edit]
+  get 'login', to: 'user_sessions#new'
+  get 'login_mail', to: 'user_sessions#login_mail'
+  post 'login', to: 'user_sessions#create'
+  get 'logout', to: 'user_sessions#destroy'
+
+  resources :users, only: %i[new create show] do
+    collection do
+      get :register_mail
+    end
+  end
 end
