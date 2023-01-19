@@ -1,0 +1,14 @@
+<header class="mb-10">
+    <div class="navbar bg-primary text-white">
+        <div class="flex-1">
+            <a class="btn btn-ghost normal-case text-xl">休日スケジュール</a>
+        </div>
+        <div class="flex-none">
+            <ul class="menu menu-horizontal px-1">
+            <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
+            <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+            <li><%= link_to "スケジュール作成", '#', {class: "btn"}%></li>
+            </ul>
+        </div>
+    </div>
+</header>
