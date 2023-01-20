@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'schedules/new'
-  get 'schedules/create'
   get 'top', to: 'static_pages#top'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
@@ -15,4 +13,5 @@ Rails.application.routes.draw do
       get :register_mail
     end
   end
+  resources :schedules, only: %i[new create]
 end
