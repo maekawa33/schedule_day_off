@@ -1,6 +1,8 @@
 class Schedule < ApplicationRecord
   belongs_to :user
 
+  has_many :events, dependent: :destroy
+  
   validates :schedule_title, presence: true
   validates :assumed_number_people, presence: true
   validate :three_main_events_validate
