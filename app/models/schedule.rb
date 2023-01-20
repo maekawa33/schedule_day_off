@@ -8,12 +8,10 @@ class Schedule < ApplicationRecord
     three_main_events = 3
     main_event_count = 0
     events.each do |a|
-      if a.three_main_events == true
-        main_event_count += 1
-      end
+      main_event_count += 1 if a.three_main_events == true
     end
-    if main_event_count != three_main_events
-      errors.add(:events, "main_events fail")
-    end
-  end  
+    return unless main_event_count != three_main_events
+
+    errors.add(:events, 'main_events fail')
+  end
 end
