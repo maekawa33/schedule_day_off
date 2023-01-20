@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_20_050131) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_20_055511) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "schedule_id", null: false
+    t.time "start_time"
+    t.time "end_time"
+    t.string "event_title"
+    t.string "image"
+    t.integer "price"
+    t.string "store"
+    t.string "comment"
+    t.boolean "three_main_events"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["schedule_id"], name: "index_events_on_schedule_id"
+  end
 
   create_table "schedules", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -35,5 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_050131) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "events", "schedules"
   add_foreign_key "schedules", "users"
 end
