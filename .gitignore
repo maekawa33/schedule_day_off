@@ -43,6 +43,7 @@ config/environments/*.local.yml
 
 /public/packs
 /public/packs-test
+/public/uploads
 
 /yarn-error.log
 yarn-debug.log*

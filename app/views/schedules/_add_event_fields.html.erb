@@ -1,0 +1,10 @@
+<%= link_to_add_association '追加',
+                            f,
+                            :events,
+                            partial: 'events/event_fields',
+                            data: {
+                                association_insertion_node: '#under-event-form',
+                                association_insertion_method: 'after'
+                            },
+                            form_name: 'kf'
+%>

@@ -1,0 +1,5 @@
+<div data-controller="form", class="container mx-auto mt-20 p-10 border-2 border-indigo-500/100 rounded-lg">
+    <%=form_with model: @schedule, local: true do |f|%>
+        <% render 'form', f: f %>
+    <%end%>
+</div>

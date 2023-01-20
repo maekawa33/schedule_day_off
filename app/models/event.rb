@@ -1,7 +1,9 @@
 class Event < ApplicationRecord
   belongs_to :schedule
 
+  mount_uploader :image, ImageUploader
+
   validates :start_time, presence: true
   validates :end_time, presence: true
-  validates :name, presence: true
+  validates :event_title, presence: true
 end

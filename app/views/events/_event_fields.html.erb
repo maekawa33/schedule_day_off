@@ -1,0 +1,48 @@
+
+<div class="nested-fields bg-indigo-500 mb-10 grid grid-cols-8 grid-rows-8 gap4 p-5"> 
+    <div class="field row-start-1 col-start-1">
+        <%= kf.check_box :three_main_events, { class: "checkbox bg-white"}, true, false%>
+    </div>
+
+    <div class="field row-start-1 col-start-2">
+        <%=kf.time_select :start_time, prompt: true, ignore_date: true, minute_step: 15%>
+    </div>
+
+    <div class="field row-start-1 col-start-3">
+        <%=kf.time_select :end_time,  prompt: true, ignore_date: true, minute_step: 15%>
+    </div>
+
+    <div class="field form-control row-start-1 col-start-5 col-span-3">
+        <label class="input-group">
+            <span>event_tile</span>
+            <%=kf.text_field :event_title, placeholder: "name", class: "input input-bordered"%>
+        </label>
+    </div>
+
+    <div class="field form-control form-control row-start-2 col-start-5 col-span-4">
+        <label class="input-group">
+            <span >comment</span>
+            <%=kf.text_area :comment, placeholder: "info@site.com", class: "textarea"%>
+        </label>
+    </div>
+
+    <%= kf.file_field :image, class: "file-input w-full max-w-xs row-start-3 col-start-1 col-span-2"%>
+
+    <div class="field form-control row-start-3 col-start-3 col-span-2">
+        <label class="input-group">
+            <span>store</span>
+            <%=kf.text_field :store, placeholder: "URL", class: "input input-bordered"%>
+        </label>
+    </div>
+
+    <div class="field form-control row-start-3 col-start-6 col-span-2 ">
+        <label class="input-group">
+            <span>Price</span>
+            <%=kf.number_field :price, placeholder: "000円", class: "input input-bordered"%>
+        </label>
+    </div>
+
+    <div class="btn field orm-control row-start-4 col-start-6 col-span-2">
+        <%= link_to_remove_association "イベントを削除", kf%>
+    </div>
+</div>
