@@ -13,5 +13,5 @@ Rails.application.routes.draw do
       get :register_mail
     end
   end
-  resources :schedules, only: %i[new create]
+  resources :schedules, only: %i[new create index]
 end

@@ -1,0 +1,24 @@
+<%= link_to '#' do %>
+    <div class="card border border-primary flex-none w-80 bg-base-100 shadow-xl hover:duration-300 hover:scale-105">
+        <div class="card-body items-center text-center">
+            <div class="flex">
+                <div class="avatar">
+                    <div class="w-10 rounded-full">
+                        <img src="https://placeimg.com/192/192/people" />
+                    </div>
+                </div>
+                <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>  
+            </div>
+            <h1 class="card-title text-3xl font-bold mt-2"><%= schedule.schedule_title%></h1> 
+            <figure class="px-6 ">
+                <img src="https://placeimg.com/400/225/arch" alt="Shoes" class="rounded-xl" />
+            </figure>
+            <% schedule.events.each do |a|%>
+                <div class="flex w-60 bg-primary text-white p-2">
+                    <p><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></p> 
+                    <p><%= a.event_title%></p>  
+                </div>
+            <% end %>
+        </div>
+    </div>
+<% end %>
