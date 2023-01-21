@@ -12,6 +12,11 @@
     </div>
 
     <div>
+        <%= form.label :avatar, class: "label" %>
+        <%= form.file_field :avatar, class: "input max-w-xs"%>
+    </div>
+
+    <div>
         <%= form.label :password, class: "label" %>
         <%= form.password_field :password, class: "input input-bordered w-full max-w-xs" %>
     </div>
