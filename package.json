@@ -9,6 +9,10 @@
     "daisyui": "^2.47.0",
     "esbuild": "^0.17.2",
     "postcss": "^8.4.21",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.0",
+    "swiper": "^8.4.6",
     "tailwindcss": "^3.2.4"
   },
   "scripts": {
