@@ -10,9 +10,17 @@
                 <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>  
             </div>
             <h1 class="card-title text-3xl font-bold mt-2"><%= schedule.schedule_title%></h1> 
-            <figure class="px-6 ">
-                <img src="https://placeimg.com/400/225/arch" alt="Shoes" class="rounded-xl" />
-            </figure>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <% schedule.events.each do |a| %>
+                        <% unless a.image.file.nil? %>
+                                <div class="swiper-slide">
+                                    <%= image_tag a.image.url %>
+                                </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
             <% schedule.events.each do |a|%>
                 <div class="flex w-60 bg-primary text-white p-2">
                     <p><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></p> 
