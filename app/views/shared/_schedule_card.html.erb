@@ -21,11 +21,13 @@
                     <% end %>
                 </div>
             </div>
-            <% schedule.events.each do |a|%>
-                <div class="flex w-60 bg-primary text-white p-2">
-                    <p><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></p> 
-                    <p><%= a.event_title%></p>  
-                </div>
+            <% schedule.events.each do |a|%>     
+                <% if a.three_main_events %>
+                    <div class="flex w-60 bg-primary text-white p-2">
+                        <p><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></p> 
+                        <p><%= a.event_title%></p>  
+                    </div>
+                <% end %>
             <% end %>
         </div>
     </div>
