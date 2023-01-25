@@ -15,7 +15,7 @@
                 <% schedule.events.each do |a| %>
                     <% unless a.image.file.nil? %>
                             <div class="swiper-slide">
-                                <%= image_tag a.image.url %>
+                                <%= image_tag a.image.url(:schedule_index) %>
                             </div>
                     <% end %>
                 <% end %>
