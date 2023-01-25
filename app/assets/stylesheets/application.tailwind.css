@@ -3,7 +3,12 @@
 @import "tailwindcss/utilities";
 
 @import 'swiper/swiper-bundle.css';
-.swiper {
+.index-swiper {
     width: 200px;
     height: 200px;
+  }
+
+  .show-swiper {
+    width: 400px;
+    height: 400px;
   }
