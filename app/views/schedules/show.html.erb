@@ -23,9 +23,16 @@
             </div>
         </div>
 
+        <% total_price = 0 %>
+        <% @schedule.events.each do |a| %>
+            <% if a.price %>
+                <% total_price += a.price %>
+            <% end %>
+        <% end %>
+
         <div class="flex justify-content-end my-2">
-            <p class="ml-60">金額 円</p>
-            <p class="ml-2">人数　1人</p>
+            <p class="ml-60">金額 <%= total_price%>円</p>
+            <p class="ml-2">人数 <%= @schedule.assumed_number_people %>人</p>
         </div>
 
         <% @schedule.events.each do |a|%>

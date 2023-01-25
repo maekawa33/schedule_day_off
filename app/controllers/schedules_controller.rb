@@ -6,6 +6,7 @@ class SchedulesController < ApplicationController
   def show
     @schedule = Schedule.find(params[:id])
     @user = @schedule.user
+ 
   end
 
   def new
