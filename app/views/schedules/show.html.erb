@@ -1,0 +1,47 @@
+<div class="card mx-80 bg-base-100 shadow-xl border border-primary">
+    <div class="card-body items-center text-center">
+        <%= link_to user_path(@user) do %>
+            <div class="flex">
+                <div class="avatar">
+                    <div class="w-10 rounded-full">
+                        <%= image_tag @schedule.user.avatar.url %>
+                    </div>
+                </div>
+                <h3 class="pt-2 pl-2"><%= @schedule.user.name %></h3>  
+            </div>
+        <% end %>
+        <h1 class="card-title text-3xl font-bold mt-2"><%= @schedule.schedule_title%></h1> 
+        <div class="swiper show-swiper">
+            <div class="swiper-wrapper">
+                <% @schedule.events.each do |a| %>
+                    <% unless a.image.file.nil? %>
+                            <div class="swiper-slide">
+                                <%= image_tag a.image.url(:schedule_show) %>
+                            </div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+
+        <% total_price = 0 %>
+        <% @schedule.events.each do |a| %>
+            <% if a.price %>
+                <% total_price += a.price %>
+            <% end %>
+        <% end %>
+
+        <div class="flex justify-content-end my-2">
+            <p class="ml-60">金額 <%= total_price%>円</p>
+            <p class="ml-2">人数 <%= @schedule.assumed_number_people %>人</p>
+        </div>
+
+        <% @schedule.events.each do |a|%>
+            <%= link_to '#' do %>
+                <div class="flex w-96 bg-primary text-white p-2">
+                    <p><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></p> 
+                    <p><%= a.event_title%></p>  
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>

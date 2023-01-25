@@ -2,7 +2,12 @@ class SchedulesController < ApplicationController
   def index
     @schedules = Schedule.all
   end
-  
+
+  def show
+    @schedule = Schedule.find(params[:id])
+    @user = @schedule.user
+  end
+
   def new
     @schedule = current_user.schedules.new
     @schedule.events.new
