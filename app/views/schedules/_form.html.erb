@@ -4,10 +4,16 @@
     <%=f.number_field :assumed_number_people%>
 </div>
 <p>メインのイベントを3つ選んでください</p>
+<%=f.label :get_up_time%>
+<%=f.time_select :get_up_time, prompt: true, ignore_date: true, minute_step: 15%>
 <div class="details">
     <%= f.fields_for :events do |kf|%>
-        <%render 'events/get_up', kf: kf%>
-    <% end %>
+        <%render 'events/event_fields', kf: kf%>
+    <% end %>  
+
+    <%= f.fields_for :events do |kf|%>
+        <%render 'events/event_fields', kf: kf%>
+    <% end %>  
 
     <div id="under-event-form"> 
         <%= f.fields_for :events do |kf|%>
@@ -18,10 +24,9 @@
     <div class="btn btn-primary">
         <%= render 'add_event_fields', f: f%>
     </div>
-
-    <%= f.fields_for :events do |kf|%>
-        <%render 'events/sleep', kf: kf%>
-    <% end %>
-    
+</div>
+<div>
+<%=f.label :sleep_time%>
+<%=f.time_select :sleep_time, prompt: true, ignore_date: true, minute_step: 15%>
 </div>
 <%=f.submit "作成", class: "btn btn-primary"%>
