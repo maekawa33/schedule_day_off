@@ -1,2 +1,17 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container m-auto">
+    <div class="flex m-10">
+        <div class="avatar">
+            <div class="w-10 rounded-full">
+                <%= image_tag @user.avatar.url %>
+            </div>
+        </div>
+        <h3 class="pt-2 pl-2 "><%= @user.name %></h3>  
+    </div>
+    <h1 class="text-3xl font-bold mb-10"><%= @user.name %>のスケジュール</h1>
+</div>
+
+<div class="flex flex-wrap gap-4 justify-center">
+    <% @schedules.each do |schedule|%>
+        <%= render 'shared/schedule_card', schedule: schedule %>
+    <% end %>
+</div>
