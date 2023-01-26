@@ -23,7 +23,7 @@
         </div>
             <% schedule.events.each do |a|%>     
                 <% if a.three_main_events %>
-                    <div class="flex w-60 bg-primary text-white p-2">
+                    <div class="flex w-60 bg-secondary text-white p-2">
                         <p><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></p> 
                         <p><%= a.event_title%></p>  
                     </div>

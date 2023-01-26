@@ -13,5 +13,7 @@ Rails.application.routes.draw do
       get :register_mail
     end
   end
-  resources :schedules
+  resources :schedules do
+    resources :events, only: %i[show]
+  end
 end
