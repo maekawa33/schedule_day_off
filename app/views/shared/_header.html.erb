@@ -5,7 +5,7 @@
         </div>
         <div class="flex-none">
             <ul class="menu menu-horizontal px-1">
-            <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
+            <li><%= link_to "マイページ", user_path(current_user) %></li>
             <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
             <li><%= link_to "スケジュール作成", new_schedule_path, {class: "btn btn-accent"}%></li>
             </ul>
