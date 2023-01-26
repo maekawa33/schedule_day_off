@@ -1,0 +1,24 @@
+<div class="card mx-80 shadow-xl border border-secondary">
+    <div class="card-body">
+        <% unless @event.image.file.nil? %>
+                <%= image_tag @event.image.url(:schedule_index) %>
+        <% end %>
+        <div class="flex">
+            <p class="text-3xl font-bold"><%= @event.start_time.strftime( "%H:%M" )%> ~ <%= @event.end_time.strftime( "%H:%M" )%></p> 
+            <p class="card-title text-3xl font-bold"><%= @event.event_title%></p>
+        </div>
+        <div class="flex">
+            <p class="text-3xl font-bold">オススメ店舗 <%= @event.store %></p>
+            <p class="text-3xl font-bold">金額 <%= @event.price %>円</p>
+        </div>
+        <div class="container border border-secondary h-20 p-2">
+            <div class="flex flex-col justify-items-start">
+                <h2>コメント</h2>
+                <p><%= @event.comment %></p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+

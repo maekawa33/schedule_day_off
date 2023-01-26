@@ -36,8 +36,8 @@
         </div>
 
         <% @schedule.events.each do |a|%>
-            <%= link_to '#' do %>
-                <div class="flex w-96 bg-primary text-white p-2">
+            <%= link_to schedule_event_path(@schedule,a) do %>
+                <div class="flex w-96 bg-secondary text-white p-2">
                     <p><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></p> 
                     <p><%= a.event_title%></p>  
                 </div>
