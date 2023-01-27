@@ -1,0 +1,14 @@
+<div class="container">
+    <%= search_form_for @q, url: schedules_path do |f| %>
+        <%= f.search_field :schedule_title_or_events_event_title_or_events_comment_cont, class: 'form-control', placeholder: '検索ワード' %>
+        <%= f.label :get_up_time %>
+        <%= f.search_field :get_up_time_gteq %>
+        <%= f.search_field :get_up_time_lteq %>
+        <%= f.label :sleep_time %>
+        <%= f.search_field :sleep_time_gteq %>
+        <%= f.search_field :sleep_time_lteq %>
+        <%= f.label :assumed_number_people %>
+        <%= f.search_field :assumed_number_people_cont %>
+        <%= f.submit '検索', class: 'btn btn-primary' %>
+    <% end %>
+</div>
