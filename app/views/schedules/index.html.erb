@@ -1,4 +1,5 @@
 <div class="flex flex-wrap gap-4 justify-center">
+    <%= render 'search', q: @q %>
     <% @schedules.each do |schedule|%>
         <%= render 'shared/schedule_card', schedule: schedule %>
     <% end %>

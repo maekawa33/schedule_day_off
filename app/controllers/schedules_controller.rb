@@ -1,6 +1,7 @@
 class SchedulesController < ApplicationController
   def index
-    @schedules = Schedule.all
+    @q = Schedule.ransack(params[:q])
+    @schedules = @q.result(distinct: true).includes(:user).order("created_at desc")
   end
 
   def show
