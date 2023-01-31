@@ -43,5 +43,9 @@
                 </div>
             <% end %>
         <% end %>
+       
     </div>
+     <%= turbo_frame_tag 'favorites' do %>
+            <%= render 'shared/favorite', schedule: @schedule%>
+        <% end %>
 </div>
