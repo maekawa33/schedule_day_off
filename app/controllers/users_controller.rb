@@ -4,8 +4,10 @@ class UsersController < ApplicationController
 
   def show
     @schedules = @user.schedules
+    favorites = Favorite.where(user_id: @user.id).pluck(:schedule_id)
+    @favorite_schedules = Schedule.find(favorites)
   end
-
+ 
   def new
     @user = User.new
   end

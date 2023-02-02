@@ -1,0 +1,39 @@
+
+     <%= link_to schedule_path(schedule) do %>
+    <div class="card border border-primary flex-none w-80 bg-base-100 shadow-xl hover:duration-300 hover:scale-105">
+  
+        <div class="card-body items-center text-center">
+            <div class="flex">
+                <div class="avatar">
+                    <div class="w-10 rounded-full">
+                        <%= image_tag schedule.user.avatar.url %>
+                    </div>
+                </div>
+                <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>  
+            </div>
+            <h1 class="card-title text-3xl font-bold mt-2"><%= schedule.schedule_title%></h1> 
+            <div class="swiper index-swiper">
+                <div class="swiper-wrapper">
+                    <% schedule.events.each do |a| %>
+                        <% unless a.image.file.nil? %>
+                                <div class="swiper-slide">
+                                    <%= image_tag a.image.url(:schedule_index) %>
+                                </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+            <% schedule.events.each do |a|%>     
+                <% if a.three_main_events %>
+                    <div class="flex w-60 bg-secondary text-white p-2">
+                        <p><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></p> 
+                        <p><%= a.event_title%></p>  
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+        <object>
+            <%= render 'favorites/favorite_btn', schedule: schedule%>
+        </object>
+    </div>
+ <% end %>

@@ -2,7 +2,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :schedules, dependent: :destroy
-
+  has_many :favorites, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
@@ -16,4 +16,7 @@ class User < ApplicationRecord
     general: 0,
     admin: 1
   }
+  def already_favorited?(schedule)
+    self.favorites.exists?(schedule_id: schedule.id)
+  end
 end
