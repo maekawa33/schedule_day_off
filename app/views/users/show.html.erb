@@ -12,12 +12,12 @@
  <h1 class="text-3xl font-bold mb-10"><%= @user.name %>のスケジュール</h1>
 <div class="flex flex-wrap gap-4 justify-center ">
     <% @schedules.each do |schedule|%>
-        <%= render 'shared/schedule_card', schedule: schedule %>
+        <%= render 'shared/schedules_card', schedule: schedule %>
     <% end %>
 </div>
 <h1 class="text-3xl font-bold mb-10"><%= @user.name %>がいいねしたスケジュール</h1>
 <div class="flex flex-wrap gap-4 justify-center ">
     <% @favorite_schedules.each do |schedule|%>
-        <%= render 'shared/schedule_card', schedule: schedule %>
+        <%= render 'shared/schedules_card', schedule: schedule %>
     <% end %>
 </div>
