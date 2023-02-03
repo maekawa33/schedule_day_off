@@ -1,7 +1,7 @@
 
-     <%= link_to schedule_path(schedule) do %>
+
     <div class="card border border-primary flex-none w-80 bg-base-100 shadow-xl hover:duration-300 hover:scale-105">
-  
+        <%= link_to schedule_path(schedule) do %>
         <div class="card-body items-center text-center">
             <div class="flex">
                 <div class="avatar">
@@ -14,13 +14,20 @@
             <h1 class="card-title text-3xl font-bold mt-2"><%= schedule.schedule_title%></h1> 
             <div class="swiper index-swiper">
                 <div class="swiper-wrapper">
+                    <% event_images_count = 0 %>
                     <% schedule.events.each do |a| %>
                         <% unless a.image.file.nil? %>
-                                <div class="swiper-slide">
-                                    <%= image_tag a.image.url(:schedule_index) %>
-                                </div>
+                            <div class="swiper-slide">
+                                <%= image_tag a.image.url(:schedule_index) %>
+                            </div>
+                            <% event_images_count += 1 %>
                         <% end %>
                     <% end %>
+                    <% if event_images_count == 0 %>
+                        <div>
+                            <%= image_tag 'top_image.png' %>
+                        </div>
+                    <%end%>
                 </div>
             </div>
             <% schedule.events.each do |a|%>     
@@ -32,8 +39,6 @@
                 <% end %>
             <% end %>
         </div>
-        <object>
+           <% end %>
             <%= render 'favorites/favorite_btn', schedule: schedule%>
-        </object>
     </div>
- <% end %>
