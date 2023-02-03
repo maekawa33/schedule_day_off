@@ -17,6 +17,6 @@ class User < ApplicationRecord
     admin: 1
   }
   def already_favorited?(schedule)
-    favorites.exists?(schedule_id: schedule.id)
+    self.favorites.exists?(schedule_id: schedule.id)
   end
 end
