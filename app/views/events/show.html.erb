@@ -1,23 +1,35 @@
-<div class="card mx-80 shadow-xl border border-secondary">
-    <div class="card-body">
-        <% unless @event.image.file.nil? %>
-                <%= image_tag @event.image.url(:schedule_index) %>
-        <% end %>
-        <div class="flex">
-            <p class="text-3xl font-bold"><%= @event.start_time.strftime( "%H:%M" )%> ~ <%= @event.end_time.strftime( "%H:%M" )%></p> 
-            <p class="card-title text-3xl font-bold"><%= @event.event_title%></p>
+<div class="container mx-auto my-8 w-2/3 border-4 border-secondary  bg-secondary-content rounded-lg">
+    <div class="">
+        <div class="">
+            <% unless @event.image.file.nil? %>
+                    <%= image_tag @event.image.url(:schedule_show), class: "mx-auto mt-4" %>
+            <% end %>
         </div>
-        <div class="flex">
-            <p class="text-3xl font-bold">オススメ店舗 <%= @event.store %></p>
-            <p class="text-3xl font-bold">金額 <%= @event.price %>円</p>
+
+        <div class="flex w-10/12 mx-auto p-2 mt-4">
+            <div class="w-4/12 text-left">
+                <h2 class="text-2xl font-bold"><%= @event.start_time.strftime( "%H:%M" )%> ~ <%= @event.end_time.strftime( "%H:%M" )%></h2> 
+            </div>
+            <div class="w-8/12 text-center">
+                <h2 class="text-3xl font-bold"><%= @event.event_title%></h2>  
+            </div>
         </div>
-        <div class="container border border-secondary h-20 p-2">
+
+        <div class="flex w-10/12 mx-auto p-2 mt-4">
+            <div class="w-4/12 text-left">
+                <h2 class="text-2xl font-bold">金額 <%= @event.price %>円</h2>  
+            </div>
+            <div class="w-8/12 text-center">
+                <h2 class="text-2xl font-bold">店舗 <%= @event.store %></h2> 
+            </div>
+        </div>
+
+        <div class="w-10/12 mx-auto my-4 border border-secondary bg-white h-40 p-2">
             <div class="flex flex-col justify-items-start">
                 <h2>コメント</h2>
                 <p><%= @event.comment %></p>
             </div>
         </div>
-        
     </div>
 </div>
 

@@ -1,17 +1,18 @@
-<div class="card w-96 m-auto">
-<h1 class="m-auto text-3xl">メールアドレスでログイン</h1>
+<div class="container w-1/4 mx-auto my-10">
+    <h1 class="text-3xl">メールアドレスでログイン</h1>
     <%= form_with url: login_path,class: "flex flex-col gap-2", method: :post do |form|%>
         <div>
             <%= form.label :email, class: "label" %>
-            <%= form.email_field :email, class: "input input-bordered w-full max-w-xs" %>
+            <%= form.email_field :email, class: "input input-bordered input-primary w-full max-w-xs" %>
         </div>
 
         <div>
             <%= form.label :password, class: "label" %>
-            <%= form.password_field :password, class: "input input-bordered w-full max-w-xs" %>
+            <%= form.password_field :password, class: "input input-bordered input-primary w-full max-w-xs" %>
         </div>
-        <div class="ml-auto mr-14">
-            <%= form.submit class: "btn " %>
+        <div class="ml-auto mt-4 mr-14">
+            <%= form.submit class: "btn btn-primary text-white" %>
         </div>
     <% end %>
 </div>
+

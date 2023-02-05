@@ -1,6 +1,7 @@
-   <div class="card-body items-center text-center">
+<div class="container mx-auto my-8 w-2/3 border-4 border-primary rounded-lg">
+   <div class=" ">
         <%= link_to user_path(schedule.user) do %>
-            <div class="flex">
+            <div class="flex justify-center">
                 <div class="avatar">
                     <div class="w-10 rounded-full">
                         <%= image_tag schedule.user.avatar.url %>
@@ -9,25 +10,8 @@
                 <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>  
             </div>
         <% end %>
-        <h1 class="card-title text-3xl font-bold mt-2"><%= schedule.schedule_title%></h1> 
-        <div class="swiper show-swiper">
-          <div class="swiper-wrapper">
-            <% event_images_count = 0 %>
-            <% schedule.events.each do |a| %>
-                <% unless a.image.file.nil? %>
-                    <div class="swiper-slide">
-                        <%= image_tag a.image.url(:schedule_show) %>
-                    </div>
-                    <% event_images_count += 1 %>
-                <% end %>
-            <% end %>
-            <% if event_images_count == 0 %>
-                <div>
-                    <%= image_tag 'top_image.png' %>
-                </div>
-            <%end%>
-          </div>
-        </div>
+
+        <h1 class="card-title text-3xl font-bold mt-4 justify-center"><%= schedule.schedule_title%></h1> 
 
         <% total_price = 0 %>
         <% schedule.events.each do |a| %>
@@ -36,18 +20,50 @@
             <% end %>
         <% end %>
 
-        <div class="flex justify-content-end my-2">
-            <p class="ml-60">金額 <%= total_price%>円</p>
-            <p class="ml-2">人数 <%= @schedule.assumed_number_people %>人</p>
+        <div class="flex justify-center mt-4">
+            <div class="ml-80">
+                <h2 class="text-xl">金額 <%= total_price%>円</h2>
+            </div>
+            <div class="ml-4">
+                <h2 class="text-xl">人数 <%= @schedule.assumed_number_people %>人</h2>
+            </div>
+        </div>
+
+        <div class="swiper show-swiper">
+            <div class="swiper-wrapper">
+                <% event_images_count = 0 %>
+                <% schedule.events.each do |a| %>
+                    <% unless a.image.file.nil? %>
+                        <div class="swiper-slide">
+                            <%= image_tag a.image.url(:schedule_show) %>
+                        </div>
+                        <% event_images_count += 1 %>
+                    <% end %>
+                <% end %>
+                <% if event_images_count == 0 %>
+                    <div>
+                        <%= image_tag 'top_image.png' %>
+                    </div>
+                <%end%>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
 
         <% schedule.events.each do |a|%>
             <%= link_to schedule_event_path(@schedule,a) do %>
-                <div class="flex w-96 bg-secondary text-white p-2">
-                    <p><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></p> 
-                    <p><%= a.event_title%></p>  
+                <div class="flex w-2/3 bg-secondary text-white mx-auto p-2 mt-4">
+                    <div class="w-3/12">
+                        <h2><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></h2> 
+                    </div>
+                    <div class="w-9/12 text-center">
+                        <h2><%= a.event_title%></h2>  
+                    </div>
                 </div>
             <% end %>
         <% end %>
-       
+
     </div>
+    <%= render 'favorites/favorite_btn', schedule: schedule%>
+</div>
