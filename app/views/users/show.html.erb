@@ -1,23 +1,36 @@
-<div class="container m-auto">
-    <div class="flex m-10">
+<div class="container mx-auto">
+    <div class="flex my-10 justify-center">
         <div class="avatar">
-            <div class="w-10 rounded-full">
+            <div class="w-20 rounded-full">
                 <%= image_tag @user.avatar.url %>
             </div>
         </div>
-        <h3 class="pt-2 pl-2 "><%= @user.name %></h3>  
+        <h3 class="pt-8 pl-8 text-xl"><%= @user.name %></h3>  
     </div>
-   
 </div>
- <h1 class="text-3xl font-bold mb-10"><%= @user.name %>のスケジュール</h1>
-<div class="flex flex-wrap gap-4 justify-center ">
-    <% @schedules.each do |schedule|%>
-        <%= render 'shared/schedules_card', schedule: schedule %>
-    <% end %>
+
+<div class="container mx-auto my-10">
+    <h1 class="text-3xl font-bold mb-10"><%= @user.name %>のスケジュール</h1>
+    <div class="flex flex-wrap gap-4 justify-center ">
+        <% if @schedules.empty? %>
+            <h1 class="text-3xl font-bold my-20"><%= @user.name %>はスケジュールを作成していません</h1>
+        <% else %>
+            <% @schedules.each do |schedule|%>
+                <%= render 'shared/schedules_card', schedule: schedule %>
+            <% end %>
+        <% end %>
+    </div>
 </div>
-<h1 class="text-3xl font-bold mb-10"><%= @user.name %>がいいねしたスケジュール</h1>
-<div class="flex flex-wrap gap-4 justify-center ">
-    <% @favorite_schedules.each do |schedule|%>
-        <%= render 'shared/schedules_card', schedule: schedule %>
-    <% end %>
+
+<div class="container mx-auto my-10">
+    <h1 class="text-3xl font-bold mb-10"><%= @user.name %>がいいねしたスケジュール</h1>
+    <div class="flex flex-wrap gap-4 justify-center ">
+        <% if @favorite_schedules.empty? %>
+            <h1 class="text-3xl font-bold my-20"><%= @user.name %>はいいねをしていません</h1>
+        <% else %>
+            <% @favorite_schedules.each do |schedule|%>
+                <%= render 'shared/schedules_card', schedule: schedule %>
+            <% end %>
+        <% end %>
+    </div>
 </div>

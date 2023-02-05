@@ -1,32 +1,58 @@
-<div class="field px-10">
-    <%=f.text_field :schedule_title, placeholder: "スケジュールタイトル", class: "input input-bordered input-primary w-full max-w-xs"%>
-    <%=f.label :assumed_number_people%>
-    <%=f.number_field :assumed_number_people%>
-</div>
-<p>メインのイベントを3つ選んでください</p>
-<%=f.label :get_up_time%>
-<%=f.time_select :get_up_time, prompt: true, ignore_date: true, minute_step: 15%>
-<div class="details">
-    <%= f.fields_for :events do |kf|%>
-        <%render 'events/event_fields', kf: kf%>
-    <% end %>  
+<div data-controller="form", class="container mx-auto my-20 p-10 border-4 border-primary rounded-lg bg-primary-content">
 
-    <%= f.fields_for :events do |kf|%>
-        <%render 'events/event_fields', kf: kf%>
-    <% end %>  
+    <div class="flex">
+        <div class="w-4/5">
+            <%=f.text_field :schedule_title, placeholder: "スケジュールタイトル", class: "input input-bordered border-accent w-full"%>
+         </div>
+        <div class="w-1/5">
+            <%=f.number_field :assumed_number_people, placeholder: "おすすめ人数", class: "mt-6 ml-2" %>
+         </div>
+    </div>
+    
+    <div class="flex bg-accent rounded-lg mt-10 h-10  justify-evenly  pt-2">
+        <div class="text-white">
+            <%=f.label :get_up_time%>
+            </div>
+            <div>
+            <%=f.time_select :get_up_time, prompt: true, ignore_date: true, minute_step: 15%>
+        </div>
+    </div>
 
-    <div id="under-event-form"> 
+    <h1 class=" text-2xl mt-10">メインのイベントを3つ選んでください</h1>
+
+    <div class="details">
         <%= f.fields_for :events do |kf|%>
             <%render 'events/event_fields', kf: kf%>
         <% end %>  
+
+        <%= f.fields_for :events do |kf|%>
+            <%render 'events/event_fields', kf: kf%>
+        <% end %>  
+
+        <div id="under-event-form"> 
+            <%= f.fields_for :events do |kf|%>
+                <%render 'events/event_fields', kf: kf%>
+            <% end %>  
+        </div>
+
+        <div class="btn btn-secondary text-white w-full">
+            <%= render 'add_event_fields', f: f%>
+        </div>
+    </div>
+    <div>
+
+    <div class="flex bg-accent rounded-lg mt-10 h-10  justify-evenly  pt-2">
+        <div class="text-white">
+            <%=f.label :sleep_time%>
+        </div>
+        <div>
+            <%=f.time_select :sleep_time, prompt: true, ignore_date: true, minute_step: 15%>
+        </div>
     </div>
 
-    <div class="btn btn-primary">
-        <%= render 'add_event_fields', f: f%>
     </div>
+<div class="flex justify-end  mt-6 ">
+        <%=f.submit "作成", class: "btn btn-primary btn-wide"%>
+   </div>
+
 </div>
-<div>
-<%=f.label :sleep_time%>
-<%=f.time_select :sleep_time, prompt: true, ignore_date: true, minute_step: 15%>
-</div>
-<%=f.submit "作成", class: "btn btn-primary"%>
