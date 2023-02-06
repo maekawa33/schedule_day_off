@@ -1,0 +1,37 @@
+ja:
+  activerecord:
+    models:
+      event: 'イベント'
+      favorite: 'いいね'
+      schedule: 'スケジュール'
+      user: 'ユーザー'
+    attributes:
+      event:
+        id: 'ID'
+        start_time: '開始時間'
+        end_time: '終了時間'
+        event_title: 'イベント名'
+        image: 'イベント画像'
+        price: '価格'
+        store: '店舗'
+        comment: 'コメント'
+        three_main_events: 'メインイベント'
+      schedule:
+        id: 'ID'
+        schedule_title: 'スケジュール名'
+        assumed_number_people: '人数'
+        get_up_time: '起床時間'
+        sleep_time: '睡眠時間'
+      user:
+        id: 'ID'
+        email: 'メールアドレス'
+        name: 'ユーザー名'
+        avatar: 'ユーザー画像'
+        password: 'パスワード'
+        password_confirmation: 'パスワード（確認）'
+  enums:
+    user:
+      role:
+        general: '一般'
+        admin: '管理者'
+
