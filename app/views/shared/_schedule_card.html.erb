@@ -1,15 +1,20 @@
 <div class="container mx-auto my-8 w-2/3 border-4 border-primary rounded-lg">
-   <div class=" ">
-        <%= link_to user_path(schedule.user) do %>
-            <div class="flex justify-center">
+
+        <div class=" flex justify-end p-2">
+            <%= link_to "編集", edit_schedule_path(schedule), class:"btn btn-primary mr-2 text-white" %>
+            <%= link_to "削除", schedule_path(schedule), data: { turbo_method: :delete }, class:"btn btn-error text-white" %>
+        </div>
+
+        <div class="flex justify-center">
+            <%= link_to user_path(schedule.user),class: " justify-center" do %>
                 <div class="avatar">
                     <div class="w-10 rounded-full">
                         <%= image_tag schedule.user.avatar.url %>
                     </div>
+                    <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>  
                 </div>
-                <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>  
-            </div>
-        <% end %>
+            <% end %>
+        </div>
 
         <h1 class="card-title text-3xl font-bold mt-4 justify-center"><%= schedule.schedule_title%></h1> 
 
@@ -64,6 +69,5 @@
             <% end %>
         <% end %>
 
-    </div>
     <%= render 'favorites/favorite_btn', schedule: schedule%>
 </div>
