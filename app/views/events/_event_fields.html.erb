@@ -10,8 +10,8 @@
 
         <div class="w-5/12 field form-control">
             <label class="input-group">
-                <span>event_tile</span>
-                <%=kf.text_field :event_title, placeholder: "name", class: "input input-bordered w-full"%>
+                <span class="w-3/12"><%=Event.human_attribute_name(:event_title)%></span>
+                <%=kf.text_field :event_title, placeholder: "〜をする", class: "input input-bordered w-9/12"%>
             </label>
         </div>
         <div class="w-1/12 btn field form-control">
@@ -21,8 +21,8 @@
 
     <div class="field form-control form-control w-full mx-auto mt-4">
         <label class="input-group">
-            <span >comment</span>
-            <%=kf.text_area :comment, placeholder: "info@site.com", class: "textarea w-full"%>
+            <span class="w-2/12"><%=Event.human_attribute_name(:comment)%></span>
+            <%=kf.text_area :comment, placeholder: "〜がおすすめです。", class: "textarea w-10/12"%>
         </label>
     </div>
 
@@ -30,14 +30,14 @@
         <%= kf.file_field :image, class: "file-input file-input-bordered file-input-primary w-full mr-2"%>
         <div class="field form-control w-full mr-2">
             <label class="input-group">
-                <span>store</span>
-                <%=kf.text_field :store, placeholder: "URL", class: "input input-bordered w-full"%>
+                <span class="w-3/12"><%=Event.human_attribute_name(:store)%></span>
+                <%=kf.text_field :store, placeholder: "URL", class: "input input-bordered w-9/12"%>
             </label>
         </div>
         <div class="field form-control w-full">
             <label class="input-group">
-                <span>Price</span>
-                <%=kf.number_field :price, placeholder: "000円", class: "input input-bordered w-full"%>
+                <span class="w-3/12"><%=Event.human_attribute_name(:price)%></span>
+                <%=kf.number_field :price, placeholder: "000円", class: "input input-bordered w-9/12"%>
             </label>
         </div>
     </div>

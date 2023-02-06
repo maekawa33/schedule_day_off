@@ -1,0 +1,33 @@
+ja:
+  defaults:
+    login: 'ログイン'
+    signup: '登録'
+    logout: 'ログアウト'
+    message:
+      message:
+      require_login: 'ログインしてください'
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成できませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新できませんでした"
+      delete_confirm: "削除しますか？"
+      deleted: "%{item}を削除しました"
+      not_authorized: "権限がありません"
+  static_pages:
+    top:
+      title: '休日スケジュール'
+    privacy_policy:
+      title: 'プライバシーポリシー'
+    terms_of_service:
+      title: '利用規約'
+  users:
+    new:
+      title: '会員登録'
+  user_sessions:
+    new:
+      title: 'ログイン'
+    create:
+      success: 'ログインしました'
+      fail: 'ログインに失敗しました'
+    destroy:
+      success: 'ログアウトしました'

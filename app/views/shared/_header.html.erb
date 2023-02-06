@@ -1,12 +1,12 @@
-<header >
+<header>
     <div class="navbar bg-primary text-white">
         <div class="flex-1">
             <%= link_to "休日スケジュール", top_path, {class:"btn btn-ghost normal-case text-xl"} %>
         </div>
         <div class="flex-none">
             <ul class="menu menu-horizontal px-1">
-            <li><%= link_to "マイページ", user_path(current_user) %></li>
-            <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+            <li><%= link_to "マイページ", user_path(current_user), {class: "btn btn-secondary mr-2"}%></li>
+            <li><%= link_to "ログアウト", logout_path, {class: "btn btn-secondary mr-2", method: :delete}%></li>
             <li><%= link_to "スケジュール作成", new_schedule_path, {class: "btn btn-accent"}%></li>
             </ul>
         </div>
