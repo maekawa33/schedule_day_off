@@ -21,23 +21,25 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to login_path, success: 'User was successfully created.'
+      redirect_to login_path, notice: "ユーザー「#{@user.name}」を作成しました"
     else
+      flash.now[:alert] = "ユーザーの作成に失敗しました"
       render :register_mail, status: :unprocessable_entity
     end
   end
 
   def update
     if @user.update(user_params)
-      redirect_to user_url(@user)
+      redirect_to user_url(@user), notice: "ユーザー「#{@user.name}」を更新しました"
     else
+      flash.now[:alert] = "ユーザーの更新に失敗しました"
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @user.destroy
-    redirect_to users_url
+    redirect_to users_url, notice: "ユーザー「#{@user.name}」を削除しました"
   end
 
   private

@@ -8,14 +8,15 @@ class UserSessionsController < ApplicationController
   def create
     @user = login(params[:email], params[:password])
     if @user
-      redirect_back_or_to schedules_path
+      redirect_back_or_to schedules_path, notice: "#{@user.name}でログインに成功しました"
     else
-      render :login_mail
+      flash.now[:alert] = "ログインに失敗しました"
+      render :login_mail, status: :unprocessable_entity
     end
   end
 
   def destroy
     logout
-    redirect_to new_user_path
+    redirect_to new_user_path, notice: "ログアウトに成功しました"
   end
 end

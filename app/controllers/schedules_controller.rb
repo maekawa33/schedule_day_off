@@ -17,8 +17,9 @@ class SchedulesController < ApplicationController
   def create
     @schedule = current_user.schedules.new(schedule_params)
     if @schedule.save
-      redirect_to root_path
+      redirect_to schedules_path, notice: "スケジュール「#{@schedule.schedule_title}」を投稿しました"
     else
+      flash.now[:alert] = "スケジュールの作成に失敗しました"
       render :new, status: :unprocessable_entity
     end
   end
@@ -30,15 +31,16 @@ class SchedulesController < ApplicationController
    def update
     @schedule = Schedule.find(params[:id])
      if @schedule.update(schedule_params)
-       redirect_to schedules_path
+        redirect_to schedules_path, notice: "スケジュール「#{@schedule.schedule_title}」を更新しました"
      else
-       render :new
+        flash.now[:alert] = "スケジュールの更新に失敗しました"
+        render :new, status: :unprocessable_entity
      end
    end
  
    def destroy
      @schedule = Schedule.find(params[:id])
-     @schedule.destroy
+     @schedule.destroy, notice: "スケジュール「#{@schedule.schedule_title}」を削除しました"
      redirect_to schedules_path, status: :see_other
    end
 
