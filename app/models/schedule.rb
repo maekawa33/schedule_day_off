@@ -6,7 +6,10 @@ class Schedule < ApplicationRecord
 
   validates :schedule_title, presence: true
   validates :assumed_number_people, presence: true
+  validates :get_up_time, presence: true
+  validates :sleep_time, presence: true
   validate :three_main_events_validate
+
   def three_main_events_validate
     three_main_events = 3
     main_event_count = 0
@@ -15,6 +18,6 @@ class Schedule < ApplicationRecord
     end
     return unless main_event_count != three_main_events
 
-    errors.add(:events, 'main_events fail')
+    errors.add(:base, 'メインイベントを三つ選んでください')
   end
 end

@@ -2,7 +2,7 @@
 <div class="nested-fields bg-secondary rounded-lg my-10 p-5"> 
     <div class="flex">
         <div class="w-1/12 field">
-            <%= kf.check_box :three_main_events, { class: "checkbox bg-white"}, true, false%>
+            <%= kf.check_box :three_main_events, { class: "checkbox bg-white", checked: true},true, false%>
         </div>
         <div class="w-5/12 field ">
             <%=kf.time_select :start_time, prompt: true, ignore_date: true, minute_step: 15%>〜<%=kf.time_select :end_time,  prompt: true, ignore_date: true, minute_step: 15%>

@@ -4,7 +4,6 @@ ja:
     signup: '登録'
     logout: 'ログアウト'
     message:
-      message:
       require_login: 'ログインしてください'
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
