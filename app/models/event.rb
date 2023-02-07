@@ -5,5 +5,5 @@ class Event < ApplicationRecord
 
   validates :start_time, presence: true
   validates :end_time, presence: true
-  validates :event_title, presence: true
+  validates :event_title, presence: true, length: { maximum: 10 }
 end

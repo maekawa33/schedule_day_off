@@ -4,7 +4,7 @@ class Schedule < ApplicationRecord
   has_many :events, dependent: :destroy
   accepts_nested_attributes_for :events, reject_if: :all_blank, allow_destroy: true
 
-  validates :schedule_title, presence: true
+  validates :schedule_title, presence: true, length: { maximum: 10 }
   validates :assumed_number_people, presence: true
   validates :get_up_time, presence: true
   validates :sleep_time, presence: true
