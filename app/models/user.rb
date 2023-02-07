@@ -19,4 +19,8 @@ class User < ApplicationRecord
   def already_favorited?(schedule)
     self.favorites.exists?(schedule_id: schedule.id)
   end
+
+  def own?(object)
+    id == object.user_id
+  end
 end
