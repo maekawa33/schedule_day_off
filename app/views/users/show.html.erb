@@ -1,3 +1,9 @@
+<% if current_user&.mine?(@user) %>
+    <div class=" flex justify-center p-2 ml-40">
+        <%= link_to "ユーザーの編集", edit_user_path(@user), class:"btn btn-primary mr-2 text-white" %>
+    </div>
+<% end %>
+
 <div class="container mx-auto">
     <div class="flex my-10 justify-center">
         <div class="avatar">
