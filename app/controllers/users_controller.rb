@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to login_path, success: 'User was successfully created.'
     else
-      render :new
+      render :register_mail, status: :unprocessable_entity
     end
   end
 

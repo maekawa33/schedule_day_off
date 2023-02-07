@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
     if @user
       redirect_back_or_to schedules_path
     else
-      render :new
+      render :login_mail
     end
   end
 
