@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'user_sessions#destroy'
 
   root to: 'static_pages#top'
-  resources :users, only: %i[new create show] do
+  resources :users do
     collection do
       get :register_mail
     end
