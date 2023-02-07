@@ -13,7 +13,7 @@ User.all.each do |user|
   5.times {
     Schedule.create!(
       schedule_title: Faker::Hobby.activity,
-      assumed_number_people: Faker::Number.between(from:1, to:5),
+      assumed_number_people: Faker::Number.between(from:1, to:4),
       get_up_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
       sleep_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
       user: user,
