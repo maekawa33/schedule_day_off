@@ -5,7 +5,7 @@
             <%=f.text_field :schedule_title, placeholder: "スケジュールタイトル", class: "input input-bordered border-accent w-full"%>
         </div>
         <div class="w-1/5">
-            <%=f.number_field :assumed_number_people, placeholder: "おすすめ人数", class: "mt-6 ml-2" %>
+            <%= f.select :assumed_number_people, Schedule.assumed_number_people.keys.map { |k| [t("enums.schedule.assumed_number_people.#{k}"), k] }, { include_blank: "指定なし"},{ class: "mt-6 ml-2" } %>
         </div>
     </div>
     

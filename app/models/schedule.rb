@@ -10,6 +10,7 @@ class Schedule < ApplicationRecord
   validates :sleep_time, presence: true
   validate :three_main_events_validate
 
+  enum assumed_number_people: [ :one_person, :two_people, :three_people, :four_or_more_people ]
   def three_main_events_validate
     three_main_events = 3
     main_event_count = 0
