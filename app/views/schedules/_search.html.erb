@@ -1,39 +1,41 @@
-<div class="flex justify-center my-8">
-    <%= search_form_for @q, url: schedules_path do |f| %>
-        <div class="flex justiry-center">
+    <div class="flex justify-center my-8">
+        <%= search_form_for q, url: schedules_path do |f| %>
+        <div class="flex justify-center">
             <%= f.search_field :schedule_title_or_events_event_title_or_events_comment_cont, class: 'form-control input input-bordered input-primary w-full max-w-xs rounded-full m-1', placeholder: '検索ワード' %>
             <%= f.submit '検索', class: 'btn btn-primary rounded-full' %>
         </div>
-        <div class="flex justiry-center">
+
+        <div class="flex justify-center">
             <div class="dropdown">
                 <%= f.label :get_up_time, tabindex: "0", class: "btn btn-outline btn-primary rounded-full m-1"%>
-                    <div tabindex="0" class="dropdown-content menu p-2 shadow bg-primary rounded-box">
-                        <div class="flex">
-                        <%=f.time_select :get_up_time_gteq, {prompt: true, ignore_date: true, minute_step: 15},class: "text-xl"%>
-                        〜
-                        <%=f.time_select :get_up_time_lteq, {prompt: true, ignore_date: true, minute_step: 15},class: "text-xl"%>
-                        </div>
+                <div tabindex="0" class="dropdown-content menu p-2 shadow bg-primary rounded-box">
+                    <div class="flex">
+                    <%=f.time_select :get_up_time_gteq, {prompt: true, ignore_date: true, minute_step: 15},class: "text-xl"%>
+                    〜
+                    <%=f.time_select :get_up_time_lteq, {prompt: true, ignore_date: true, minute_step: 15},class: "text-xl"%>
                     </div>
                 </div>
-                <div class="dropdown">
+            </div>
+
+            <div class="dropdown">
                 <%= f.label :sleep_time, tabindex: "0", class: "btn btn-outline btn-primary rounded-full m-1"%>
-                    <div tabindex="0" class="dropdown-content menu p-2 shadow bg-primary rounded-box">
-                        <div class="flex">
-                        <%=f.time_select :sleep_time_gteq, {prompt: true, ignore_date: true, minute_step: 15},class: "text-xl"%>
-                        〜
-                        <%=f.time_select :sleep_time_lteq, {prompt: true, ignore_date: true, minute_step: 15},class: "text-xl"%>
-                        </div>
+                <div tabindex="0" class="dropdown-content menu p-2 shadow bg-primary rounded-box">
+                    <div class="flex">
+                    <%=f.time_select :sleep_time_gteq, {prompt: true, ignore_date: true, minute_step: 15},class: "text-xl"%>
+                    〜
+                    <%=f.time_select :sleep_time_lteq, {prompt: true, ignore_date: true, minute_step: 15},class: "text-xl"%>
                     </div>
                 </div>
-                <div class="dropdown">
+            </div>
+
+            <div class="dropdown">
                 <%= f.label :assumed_number_people, tabindex: "0", class: "btn btn-outline btn-primary rounded-full m-1"%>
                 <div tabindex="0" class="dropdown-content menu p-2 shadow bg-primary rounded-box rounded-full">
                     <div class="flex">
-                        <%=f.number_field :assumed_number_people_cont%>人
+                        <%=f.select :assumed_number_people_eq, Schedule.assumed_number_people.keys.map.with_index { |k, i| [t("enums.schedule.assumed_number_people.#{k}"), i]}, { include_blank: "人数" }, { class: "text-xl"}%>
                     </div>
                 </div>
             </div>
         </div>
     <% end %>
 </div>
-
