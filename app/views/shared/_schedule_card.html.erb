@@ -56,18 +56,36 @@
             <div class="swiper-button-next"></div>
         </div>
 
+        <div class="flex w-2/3 bg-accent text-white mx-auto p-2 mt-4 text-center">
+            <div class="w-3/12">
+                <h2><%= schedule.get_up_time.strftime( "%H:%M" )%></h2> 
+            </div>
+            <div class="w-9/12 ">
+                <h2>起床時間</h2>  
+            </div>
+        </div>
+
         <% schedule.events.each do |a|%>
             <%= link_to schedule_event_path(@schedule,a) do %>
-                <div class="flex w-2/3 bg-secondary text-white mx-auto p-2 mt-4">
+                <div class="flex w-2/3 bg-secondary text-white mx-auto p-2 mt-4 text-center">
                     <div class="w-3/12">
                         <h2><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></h2> 
                     </div>
-                    <div class="w-9/12 text-center">
+                    <div class="w-9/12">
                         <h2><%= a.event_title%></h2>  
                     </div>
                 </div>
             <% end %>
         <% end %>
+
+        <div class="flex w-2/3 bg-accent text-white mx-auto p-2 mt-4 text-center">
+            <div class="w-3/12">
+                <h2><%= schedule.sleep_time.strftime( "%H:%M" )%></h2> 
+            </div>
+            <div class="w-9/12">
+                <h2>就寝時間</h2>  
+            </div>
+        </div>
 
     <%= render 'favorites/favorite_btn', schedule: schedule%>
 </div>
