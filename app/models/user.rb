@@ -14,7 +14,8 @@ class User < ApplicationRecord
 
   enum role: {
     general: 0,
-    admin: 1
+    guest: 1,
+    admin: 2
   }
   def already_favorited?(schedule)
     self.favorites.exists?(schedule_id: schedule.id)
