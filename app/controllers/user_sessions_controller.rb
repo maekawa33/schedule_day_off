@@ -15,6 +15,19 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  def guest_login
+    @guest_user = User.create(
+    name: 'ゲスト',
+    email: SecureRandom.alphanumeric(10) + "@email.com",
+    avatar: open("./app/assets/images/default_icon.png"),
+    role: 0,
+    password: 'password',
+    password_confirmation: 'password'
+    )
+    auto_login(@guest_user)
+    redirect_to schedules_path, success: 'ゲストとしてログインしました'
+  end
+
   def destroy
     logout
     redirect_to new_user_path, notice: "ログアウトに成功しました"

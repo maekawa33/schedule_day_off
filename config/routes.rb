@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'terms_of_service', to: 'static_pages#terms_of_service'
   get 'login', to: 'user_sessions#new'
   get 'login_mail', to: 'user_sessions#login_mail'
+  post 'guest_login', to: 'user_sessions#guest_login'
   post 'login', to: 'user_sessions#create'
   get 'logout', to: 'user_sessions#destroy'
 
