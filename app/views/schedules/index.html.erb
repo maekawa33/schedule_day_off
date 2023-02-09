@@ -4,3 +4,7 @@
         <%= render 'shared/schedules_card', schedule: schedule %>
     <% end %>
 </div>
+
+<div class="text-center my-8">
+ <%= paginate(@schedules) %>
+ </div>
