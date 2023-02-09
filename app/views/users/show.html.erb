@@ -17,26 +17,36 @@
 
 <div class="container mx-auto my-10">
     <h1 class="text-3xl font-bold mb-10"><%= @user.name %>のスケジュール</h1>
-    <div class="flex flex-wrap gap-4 justify-center ">
-        <% if @schedules.empty? %>
+    <% if @schedules.empty? %>
+        <div class="flex flex-wrap gap-4 justify-center ">
             <h1 class="text-3xl font-bold my-20"><%= @user.name %>はスケジュールを作成していません</h1>
-        <% else %>
+        </div>
+    <% else %>
+        <div class="flex flex-wrap gap-4 justify-center ">
             <% @schedules.each do |schedule|%>
-                <%= render 'shared/schedules_card', schedule: schedule %>
+                <%= render 'shared/schedules_card', schedule: schedule %>    
             <% end %>
-        <% end %>
-    </div>
+        </div>
+        <div class="text-center my-8">
+            <%= paginate @schedules, param_name: "user_page" %>
+        </div>
+    <% end %>
 </div>
 
 <div class="container mx-auto my-10">
     <h1 class="text-3xl font-bold mb-10"><%= @user.name %>がいいねしたスケジュール</h1>
-    <div class="flex flex-wrap gap-4 justify-center ">
-        <% if @favorite_schedules.empty? %>
+    <% if @favorite_schedules.empty? %>
+        <div class="flex flex-wrap gap-4 justify-center ">
             <h1 class="text-3xl font-bold my-20"><%= @user.name %>はいいねをしていません</h1>
-        <% else %>
+        </div>
+    <% else %>
+        <div class="flex flex-wrap gap-4 justify-center ">
             <% @favorite_schedules.each do |schedule|%>
                 <%= render 'shared/schedules_card', schedule: schedule %>
             <% end %>
-        <% end %>
-    </div>
+        </div>
+        <div class="text-center my-8">
+            <%= paginate @favorite_schedules, param_name: "favorite_name" %>
+        </div>
+    <% end %>
 </div>
