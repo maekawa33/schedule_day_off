@@ -1,5 +1,4 @@
 class UserSessionsController < ApplicationController
-  skip_before_action :require_login
 
   def new; end
 
@@ -20,7 +19,7 @@ class UserSessionsController < ApplicationController
     name: 'ゲスト',
     email: SecureRandom.alphanumeric(10) + "@email.com",
     avatar: open("./app/assets/images/default_icon.png"),
-    role: 1,
+    role: 2,
     password: 'password',
     password_confirmation: 'password'
     )

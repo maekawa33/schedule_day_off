@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: %i[new register_mail create]
   before_action :set_user, only: %i[show edit update destroy]
-
+  authorize_resource only: [:show, :edit, :update, ]
   def show
     @schedules = @user.schedules.page(params[:user_page]).per(6)
     favorites = Favorite.where(user_id: @user.id).pluck(:schedule_id)
@@ -49,6 +48,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :avatar, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :avatar, :role, :password, :password_confirmation)
   end
 end
