@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  authorize_resource
   def create
     @schedule = Schedule.find(params[:schedule_id])
     @favorite = current_user.favorites.create(schedule_id: params[:schedule_id])
