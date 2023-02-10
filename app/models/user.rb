@@ -13,9 +13,10 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
 
   enum role: {
-    general: 0,
-    guest: 1,
-    admin: 2
+    not_login: 0,
+    login: 1,
+    guest: 2,
+    admin: 3
   }
   def already_favorited?(schedule)
     self.favorites.exists?(schedule_id: schedule.id)
