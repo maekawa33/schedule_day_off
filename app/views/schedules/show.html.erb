@@ -80,10 +80,11 @@
             <div class="swiper-button-next"></div>
         </div>
 
-
-        <div class="text-center my-4">
-            <%= link_to "イベント追加", new_schedule_event_path(schedule_id: @schedule.id), class: "btn btn-wide btn-secondary text-white", data: { turbo_frame: dom_id(Event.new,dom_id(@schedule))}%>
-        </div>
+        <% if current_user&.own?(@schedule) %>
+            <div class="text-center my-4">
+                <%= link_to "イベント追加", new_schedule_event_path(schedule_id: @schedule.id), class: "btn btn-wide btn-secondary text-white", data: { turbo_frame: dom_id(Event.new,dom_id(@schedule))}%>
+            </div>
+        <%end%>
 
         <%= turbo_frame_tag dom_id(Event.new,dom_id(@schedule))%>
 
