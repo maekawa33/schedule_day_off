@@ -41,10 +41,10 @@ class SchedulesController < ApplicationController
    def update
     @schedule = Schedule.find(params[:id])
      if @schedule.update(schedule_params)
-        redirect_to schedules_path, notice: "スケジュール「#{@schedule.schedule_title}」を更新しました"
+        redirect_to schedule_path(@schedule), notice: "スケジュール「#{@schedule.schedule_title}」を更新しました"
      else
         flash.now[:alert] = "スケジュールの更新に失敗しました"
-        render :new, status: :unprocessable_entity
+        render :edit, status: :unprocessable_entity
      end
    end
  
