@@ -26,7 +26,7 @@
     <% else %>
         <div class="flex flex-wrap gap-4 justify-center ">
             <% @schedules.each do |schedule|%>
-                <%= render 'shared/schedules_card', schedule: schedule %>    
+                <%= render 'schedules/schedule', schedule: schedule %>    
             <% end %>
         </div>
         <div class="text-center my-8">
@@ -44,7 +44,7 @@
     <% else %>
         <div class="flex flex-wrap gap-4 justify-center ">
             <% @favorite_schedules.each do |schedule|%>
-                <%= render 'shared/schedules_card', schedule: schedule %>
+                <%= render 'schedules/schedule', schedule: schedule %>
             <% end %>
         </div>
         <div class="text-center my-8">
