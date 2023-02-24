@@ -1,0 +1,42 @@
+
+<%= turbo_stream.update dom_id(Event.new,dom_id(@schedule)), "" %>
+  
+<%= turbo_stream.update dom_id(@schedule) do%>
+  <%today = []%>
+  <%next_day = []%>
+      <% @events.each do |event|%>
+          <% if event.id%>    
+              <% if event.start_time.hour > @schedule.get_up_time.hour %>      
+                  <%today.push(event)%>
+              <% elsif event.start_time.hour == @schedule.get_up_time.hour && event.start_time.min >= @schedule.get_up_time.min%>
+                  <%today.push(event)%>
+              <% else%>
+                  <%next_day.push(event)%>
+              <% end %>   
+              <% end %>
+          <% end %>
+      <% today.each do |a|%>
+          <%= link_to schedule_event_path(@schedule,a) do %>
+              <div class="flex w-2/3 bg-secondary text-white mx-auto p-2 mt-4 text-center">
+                  <div class="w-3/12">
+                      <h2><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></h2> 
+                  </div>
+                  <div class="w-9/12">
+                      <h2><%= a.event_title%></h2>  
+                  </div>
+              </div>
+          <% end %>
+      <% end %>
+      <% next_day.each do |a|%>
+          <%= link_to schedule_event_path(@schedule,a) do %>
+              <div class="flex w-2/3 bg-secondary text-white mx-auto p-2 mt-4 text-center">
+                  <div class="w-3/12">
+                      <h2><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></h2> 
+                  </div>
+                  <div class="w-9/12">
+                      <h2><%= a.event_title%></h2>  
+                  </div>
+              </div>
+          <% end %>
+      <% end %>     
+<% end %>

@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   end
   resources :schedules do
     resource :favorites
-    resources :events, only: %i[show]
+    resources :events
   end
 end
