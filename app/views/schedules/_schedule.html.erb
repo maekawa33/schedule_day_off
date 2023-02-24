@@ -1,7 +1,7 @@
 
 
-    <div class="container border-4 border-primary flex-none w-80  shadow-xl hover:duration-300 hover:scale-105">
-        <%= link_to schedule_path(schedule), data: {turbo: false} do %>
+<div class="container border-4 border-primary flex-none w-80  shadow-xl hover:duration-300 hover:scale-105">
+    <%= link_to schedule_path(schedule), data: {turbo: false} do %>
         <div class="card-body items-center text-center">
             <div class="flex">
                 <div class="avatar">
@@ -14,7 +14,7 @@
 
             <h1 class="card-title text-2xl font-bold mt-2"><%= schedule.schedule_title%></h1> 
 
-            <div class="swiper index-swiper">
+            <div class="swiper index-swiper mx-auto">
                 <div class="swiper-wrapper">
                     <% event_images_count = 0 %>
                     <% schedule.events.each do |a| %>
@@ -32,22 +32,13 @@
                     <%end%>
                 </div>
             </div>
-
-
-            <% schedule.events.each do |a|%>
-                <% if a.three_main_events %>
-                    <div class="flex w-full bg-secondary text-white mx-auto p-2 mt-2">
-                        <div class="w-3/12">
-                            <h2><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></h2> 
-                        </div>
-                        <div class="w-9/12 my-auto">
-                            <h2 class="text-center"><%= a.event_title%></h2>  
-                        </div>
-                    </div>
-                <% end %>
-            <% end %>
-
+             <div class="flex flex-col gap-4">
+            <p>起床時間<%= schedule.get_up_time.strftime( "%H:%M" )%></p>
+            <p>就寝時間<%= schedule.sleep_time.strftime( "%H:%M" )%></p>
+            <p>想定人数<%= schedule.assumed_number_people_i18n%></p>
         </div>
-           <% end %>
-            <%= render 'favorites/favorite_btn', schedule: schedule%>
-    </div>
+        </div>
+       
+    <% end %>
+    <%= render 'favorites/favorite_btn', schedule: schedule%>
+</div>

@@ -10,9 +10,9 @@
                 <%= f.label :get_up_time, tabindex: "0", class: "btn btn-outline btn-primary rounded-full m-1"%>
                 <div tabindex="0" class="dropdown-content menu p-2 shadow bg-primary rounded-box">
                     <div class="flex">
-                    <%=f.time_select :get_up_time_gteq, {prompt: true, minute_step: 15},class: "text-xl"%>
+                    <%=f.time_select :get_up_time_gteq, { prompt: true, minute_step: 15},class: "text-xl"%>
                     <span>〜</span>
-                    <%=f.time_select :get_up_time_lteq, {prompt: true, minute_step: 15},class: "text-xl"%>
+                    <%=f.time_select :get_up_time_lteq, { prompt: true, minute_step: 15},class: "text-xl"%>
                     </div>
                 </div>
             </div>
@@ -21,9 +21,9 @@
                 <%= f.label :sleep_time, tabindex: "0", class: "btn btn-outline btn-primary rounded-full m-1"%>
                 <div tabindex="0" class="dropdown-content menu p-2 shadow bg-primary rounded-box">
                     <div class="flex">
-                    <%=f.time_select :sleep_time_gteq, {prompt: true, minute_step: 15},class: "text-xl"%>
+                    <%=f.time_select :sleep_time_gteq, { prompt: true, minute_step: 15},class: "text-xl"%>
                     <span>〜</span>
-                    <%=f.time_select :sleep_time_lteq, {prompt: true, minute_step: 15},class: "text-xl"%>
+                    <%=f.time_select :sleep_time_lteq, { prompt: true, minute_step: 15},class: "text-xl"%>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<%= turbo_stream.replace dom_id(@schedule, :favorite) do %>
+<%= turbo_stream.update_all ".#{dom_id(@schedule, :favorite)}" do %>
   <%= render partial: "favorites/unfavorite",
              locals: { schedule: @schedule } %>
 <% end %>

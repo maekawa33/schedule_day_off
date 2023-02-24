@@ -1,3 +1,135 @@
+<div class="container mx-auto my-8 w-2/3 border-4 border-primary rounded-lg">
+    <div class="flex justify-center relative">
+        <div class="flex">
+            <%= link_to user_path(@schedule.user),class: " justify-center" do %>
+                <div class="avatar">
+                    <div class="w-10 rounded-full">
+                        <%= image_tag @schedule.user.avatar.url %>
+                    </div>
+                    <h3 class="pt-2 pl-2"><%= @schedule.user.name %></h3>  
+                </div>
+            <% end %>
+        </div>
+            
+        <% if current_user&.own?(@schedule) %>
+            <div class="absolute right-0 p-2">
+                <%= link_to "イベント削除", schedule_path(@schedule), data: { turbo_method: :delete }, class:"btn btn-error text-white" %>
+            </div>
+        <% end %>
+    </div>
+    
+    <div class="flex mt-4">
+        <div class="w-9/12 text-center border-b-4">
+            <h1 class="text-3xl font-bold"><%= @schedule.schedule_title%></h1> 
+        </div>
 
-    <%= render 'shared/schedule_card', schedule: @schedule%>
-   
+        <div class="w-3/12 text-center border-b-4">
+            <h2 class="text-xl">人数 <%= @schedule.assumed_number_people_i18n %></h2>
+        </div>
+    </div>
+
+  <div class="flex mt-4">
+         <div class="w-5/12 text-center border-b-4">
+            <h2 class="text-xl">起床時間  <%= @schedule.get_up_time.strftime( "%H:%M" )%></h2>
+        </div>
+
+        <div class="w-5/12 text-center border-b-4">
+            <h2 class="text-xl">就寝時間  <%= @schedule.sleep_time.strftime( "%H:%M" )%></h2>
+        </div>
+
+        <div class="w-2/12 text-center">
+            <% if current_user&.own?(@schedule) %>
+                <%= link_to "編集", edit_schedule_path(@schedule), class:"btn btn-primary mr-2 text-white" %>
+            <% end %>
+        </div>
+    </div>
+
+        <% total_price = 0 %>
+        <% @schedule.events.each do |a| %>
+            <% if a.price %>
+                <% total_price += a.price %>
+            <% end %>
+        <% end %>
+
+        <div class="flex justify-center mt-4">
+            <div class="ml-80 border-b-4">
+                <h2 class="text-xl">金額 <%= total_price%>円</h2>
+            </div>
+        </div>
+
+        <div class="swiper show-swiper">
+            <div class="swiper-wrapper">
+                <% event_images_count = 0 %>
+                <% @schedule.events.each do |a| %>
+                    <% unless a.image.file.nil? %>
+                        <div class="swiper-slide">
+                            <%= image_tag a.image.url(:schedule_show) %>
+                        </div>
+                        <% event_images_count += 1 %>
+                    <% end %>
+                <% end %>
+                <% if event_images_count == 0 %>
+                    <div>
+                        <%= image_tag 'top_image.png' %>
+                    </div>
+                <%end%>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
+
+        <div class="text-center my-4">
+            <%= link_to "イベント追加", new_schedule_event_path(schedule_id: @schedule.id), class: "btn btn-wide btn-secondary text-white", data: { turbo_frame: dom_id(Event.new,dom_id(@schedule))}%>
+        </div>
+
+        <%= turbo_frame_tag dom_id(Event.new,dom_id(@schedule))%>
+
+        <div class="divider">起床時間  <%= @schedule.get_up_time.strftime( "%H:%M" )%></div>
+
+            <%= turbo_frame_tag dom_id(@schedule) do%>
+            <%today = []%>
+            <%next_day = []%>
+                <% @events.each do |event|%>
+                    <% if event.id%>    
+                        <% if event.start_time.hour > @schedule.get_up_time.hour %>      
+                            <%today.push(event)%>
+                        <% elsif event.start_time.hour == @schedule.get_up_time.hour && event.start_time.min >= @schedule.get_up_time.min%>
+                            <%today.push(event)%>
+                        <% else%>
+                            <%next_day.push(event)%>
+                        <% end %>   
+                    <% end %>
+                <% end %>
+                <% today.each do |a|%>
+                    <%= link_to schedule_event_path(@schedule,a) do %>
+                        <div class="flex w-2/3 bg-secondary text-white mx-auto p-2 mt-4 text-center">
+                            <div class="w-3/12">
+                                <h2><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></h2> 
+                            </div>
+                            <div class="w-9/12">
+                                <h2><%= a.event_title%></h2>  
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+                <% next_day.each do |a|%>
+                    <%= link_to schedule_event_path(@schedule,a) do %>
+                        <div class="flex w-2/3 bg-secondary text-white mx-auto p-2 mt-4 text-center">
+                            <div class="w-3/12">
+                                <h2><%= a.start_time.strftime( "%H:%M" )%> ~ <%= a.end_time.strftime( "%H:%M" )%></h2> 
+                            </div>
+                            <div class="w-9/12">
+                                <h2><%= a.event_title%></h2>  
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>     
+            <% end %>
+
+
+        <div class="divider">就寝時間  <%= @schedule.sleep_time.strftime( "%H:%M" )%></div>
+
+    <%= render 'favorites/favorite_btn', schedule: @schedule%>
+</div>

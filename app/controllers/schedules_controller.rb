@@ -1,24 +1,33 @@
 class SchedulesController < ApplicationController
   authorize_resource
   def index
+  fix_params = params[:q]
+  if fix_params
+    fix_params["get_up_time_gteq(1i)"], fix_params["get_up_time_gteq(2i)"] , fix_params["get_up_time_gteq(3i)"]  = nil if fix_params["get_up_time_gteq(4i)"].blank? || fix_params["get_up_time_lteq(4i)"].blank?
+    fix_params["get_up_time_lteq(1i)"],   fix_params["get_up_time_lteq(2i)"],   fix_params["get_up_time_lteq(3i)"] = nil if fix_params["get_up_time_gteq(4i)"].blank? || fix_params["get_up_time_lteq(4i)"].blank?
+    fix_params["sleep_time_gteq(1i)"], fix_params["sleep_time_gteq(2i)"], fix_params["sleep_time_gteq(3i)"] = nil if fix_params["sleep_time_gteq(4i)"].blank? || fix_params["sleep_time_lteq(4i)"].blank?
+    fix_params["sleep_time_lteq(1i)"], fix_params["sleep_time_lteq(2i)"] , fix_params["sleep_time_lteq(3i)"]  = nil if fix_params["sleep_time_gteq(4i)"].blank? || fix_params["sleep_time_lteq(4i)"].blank?
+    @q = Schedule.ransack(fix_params)
+  else
     @q = Schedule.ransack(params[:q])
-    @schedules = @q.result(distinct: true).includes(:user).order('created_at desc').page(params[:page]).per(20)
+  end
+  @schedules = @q.result(distinct: true).includes(:user).order('created_at desc').page(params[:page]).per(20)
   end
 
   def show
     @schedule = Schedule.find(params[:id])
     @user = @schedule.user
+    @events = @schedule.events.order(:start_time)
   end
 
   def new
     @schedule = current_user.schedules.new
-    @schedule.events.new
   end
 
   def create
     @schedule = current_user.schedules.new(schedule_params)
     if @schedule.save
-      redirect_to schedules_path, notice: "スケジュール「#{@schedule.schedule_title}」を投稿しました"
+      redirect_to schedule_path(@schedule), notice: "スケジュール「#{@schedule.schedule_title}」を作成しました"
     else
       flash.now[:alert] = "スケジュールの作成に失敗しました"
       render :new, status: :unprocessable_entity
@@ -48,10 +57,6 @@ class SchedulesController < ApplicationController
   private
 
   def schedule_params
-    params.require(:schedule).permit(
-      :schedule_title, :assumed_number_people, :get_up_time, :sleep_time,
-      events_attributes: %i[id three_main_events start_time end_time event_title
-                            image price store comment _destroy]
-    )
+    params.require(:schedule).permit(:schedule_title, :assumed_number_people, :get_up_time, :sleep_time)
   end
 end

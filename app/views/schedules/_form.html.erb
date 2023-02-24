@@ -1,42 +1,26 @@
-<div data-controller="form", class="container mx-auto my-20 p-10 border-4 border-primary rounded-lg bg-primary-content">
+<div data-controller="form", class="container mx-auto my-20 p-10">
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="flex">
-        <div class="w-4/5">
-            <%=f.text_field :schedule_title, placeholder: "スケジュールタイトル", class: "input input-bordered border-accent w-full"%>
-        </div>
-        <div class="w-1/5">
-            <%= f.select :assumed_number_people, Schedule.assumed_number_people.keys.map { |k| [t("enums.schedule.assumed_number_people.#{k}"), k] }, { include_blank: "指定なし"},{ class: "mt-6 ml-2" } %>
-        </div>
-    </div>
-    
-    <div class="flex bg-accent rounded-lg mt-10 h-10  justify-evenly  pt-2">
-        <div class="text-white">
-            <%=f.label :get_up_time%>
-        </div>
-        <div>
-            <%=f.time_select :get_up_time, prompt: true, ignore_date: true, minute_step: 15%>
-        </div>
+
+    <h1 class=" text-2xl mt-10 mx-auto">スケジュール作成</h1>
+
+     <div> 
+        <%=f.label :schedule_title%>
+        <%=f.text_field :schedule_title, placeholder: "スケジュールタイトル", class: "input input-bordered w-full"%>
     </div>
 
-    <h1 class=" text-2xl mt-10 mx-auto">イベントを複数作り、メインの3つにチェックを入れてください</h1>
-
-    <div id="under-event-form"> 
-        <%= f.fields_for :events do |kf|%>
-            <%render 'events/event_fields', kf: kf%>
-        <% end %>  
+    <div> 
+        <%=f.label :assumed_number_people%>
+        <%= f.select :assumed_number_people, Schedule.assumed_number_people.keys.map { |k| [t("enums.schedule.assumed_number_people.#{k}"), k] }, { include_blank: "指定なし"},{ class: "mt-6 ml-2" } %>
     </div>
 
-    <div class="btn btn-secondary text-white w-full">
-        <%= render 'add_event_fields', f: f%>
+    <div> 
+        <%=f.label :get_up_time%>
+        <%=f.time_select :get_up_time, prompt: true, ignore_date: true, minute_step: 15%>
     </div>
-    
-    <div class="flex bg-accent rounded-lg mt-10 h-10  justify-evenly  pt-2">
-        <div class="text-white">
-            <%=f.label :sleep_time%>
-        </div>
-        <div>
-            <%=f.time_select :sleep_time, prompt: true, ignore_date: true, minute_step: 15%>
-        </div>
+
+    <div> 
+        <%=f.label :sleep_time%>
+        <%=f.time_select :sleep_time, prompt: true, ignore_date: true, minute_step: 15%>
     </div>
 
     <div class="flex justify-end  mt-6 ">
