@@ -4,11 +4,11 @@
 
 @import 'swiper/swiper-bundle.css';
 .index-swiper {
-    width: 200px;
+    width: 225px;
     height: 150px;
   }
 
   .show-swiper {
-    width: 500px;
-    height: 300px;
+    width: 600px;
+    height: 400px;
   }
