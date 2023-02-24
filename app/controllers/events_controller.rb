@@ -21,27 +21,24 @@ class EventsController < ApplicationController
     end
   end
 
-  def update
-  end
+  def edit
+    @event = Event.find(params[:id])
+   end
 
-  def delete
-  end
-
- 
    def update
-    @schedule = Schedule.find(params[:id])
-     if @schedule.update(schedule_params)
-        redirect_to schedules_path, notice: "スケジュール「#{@schedule.schedule_title}」を更新しました"
+    @event = Event.find(params[:id])
+     if @event.update(event_params)
+        redirect_to schedule_path(@event.schedule), notice: "イベント「#{@event.event_title}」を更新しました"
      else
-        flash.now[:alert] = "スケジュールの更新に失敗しました"
-        render :new, status: :unprocessable_entity
+        flash.now[:alert] = "イベントの更新に失敗しました"
+        render :edit, status: :unprocessable_entity
      end
    end
  
    def destroy
-     @schedule = Schedule.find(params[:id])
-     @schedule.destroy
-     redirect_to schedules_path, notice: "スケジュール「#{@schedule.schedule_title}」を削除しました"
+     @event = Event.find(params[:id])
+     @event.destroy
+     redirect_to schedule_path(@event.schedule), notice: "イベント「#{@event.event_title}」を削除しました"
    end
 
   def event_params
