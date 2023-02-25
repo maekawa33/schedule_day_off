@@ -19,7 +19,7 @@ class UserSessionsController < ApplicationController
     name: 'ゲスト',
     email: SecureRandom.alphanumeric(10) + "@email.com",
     avatar: open("./app/assets/images/default_icon.png"),
-    role: 2,
+    role: 1,
     password: 'password',
     password_confirmation: 'password'
     )
