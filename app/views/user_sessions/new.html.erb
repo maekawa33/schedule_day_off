@@ -1,9 +1,27 @@
 <div class="flex flex-col w-1/2 border-opacity-50 mx-auto my-40">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
   <div class="card bg-base-300 rounded-box place-items-center text-center">
     <div class="flex flex-col p-2">
         <h2 class="text-lg">ログイン</h2>
-        <%= link_to "メールアドレスでログイン", login_mail_path ,{class: "btn btn-primary w-80 text-white my-4"} %>
+        <%= link_to "メールアドレスでログイン", login_mail_path ,{class: "btn btn-primary w-80 text-white mt-4"} %>
+
         <%= link_to "ゲストでログイン", guest_login_path, {data: { turbo_method: :post }, class: "btn btn-black w-80 text-white my-4"} %>
+
+        <div id="g_id_onload"
+          data-client_id="541792608588-bamjotn42uuclaes1os2seja095hked6.apps.googleusercontent.com"
+          data-login_uri="http://localhost:3000/google_login_api/callback"
+          data-auto_prompt="false">
+        </div>
+        <div class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-theme="outline"
+          data-text="sign_in_with"
+          data-shape="rectangular"
+          data-logo_alignment="left"
+          data-width=320>
+        </div>
+ 
     </div>
   </div>
   <div class="divider"></div>

@@ -5,19 +5,24 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
-  validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
-  validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
-  validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
+  validates :password, length: { minimum: 3 }, if: -> { default? && (new_record? || changes[:crypted_password]) }
+  validates :password, confirmation: true, if: -> { default? && (new_record? || changes[:crypted_password]) }
+  validates :password_confirmation, presence: true, if: -> { default? && (new_record? || changes[:crypted_password]) }
 
   validates :name, presence: true, length: { minimum: 3, maximum: 20 }
-  validates :email, uniqueness: true, presence: true
-
+  validates :email, uniqueness: {scope: :login_type }, presence: true
+  validates :login_type, presence: true
   enum role: {
-    not_login: 0,
-    login: 1,
-    guest: 2,
-    admin: 3
+    general: 0,
+    guest: 1,
+    admin: 2
   }
+
+  enum login_type: {
+    default: 0,
+    google: 1,
+  }
+
   def already_favorited?(schedule)
     self.favorites.exists?(schedule_id: schedule.id)
   end
