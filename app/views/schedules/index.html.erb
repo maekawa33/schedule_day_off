@@ -1,8 +1,10 @@
+<div class="bg-primary-content">
 <%= render 'search', q: @q %>
 <div class="flex flex-wrap gap-4 justify-center">
     <%= render @schedules %>
 </div>
 
-<div class="text-center my-8">
+<div class="text-center py-8">
     <%= paginate(@schedules) %>
+</div>
 </div>
