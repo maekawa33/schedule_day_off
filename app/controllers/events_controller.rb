@@ -26,9 +26,10 @@ class EventsController < ApplicationController
    end
 
    def update
+    @schedule = Schedule.find(params[:schedule_id])
     @event = Event.find(params[:id])
      if @event.update(event_params)
-        redirect_to schedule_path(@event.schedule), notice: "イベント「#{@event.event_title}」を更新しました"
+      @events = @schedule.events.order(:start_time)
      else
         flash.now[:alert] = "イベントの更新に失敗しました"
         render :edit, status: :unprocessable_entity

@@ -5,9 +5,9 @@ class Event < ApplicationRecord
 
   validates :start_time, presence: true
   validates :end_time, presence: true
-  validates :event_title, presence: true, length: { maximum: 10 }
+  validates :event_title, presence: true, length: { maximum: 18 }
 
-  validate :sleep_time_validate
+  validate :sleep_time_validate, unless: -> { start_time.blank? && end_time.blank?}
   def sleep_time_validate
 
     schedule = Schedule.find(schedule_id)
