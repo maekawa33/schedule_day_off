@@ -1,4 +1,5 @@
-<div class="container w-1/4 mx-auto my-10">
+<div class="bg-primary-content h-screen">
+<div class="container w-1/4 mx-auto pt-40">
     <h1 class="text-3xl">メールアドレス登録</h1>
     <%= form_with(model: @user,class: "flex flex-col gap-2")  do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
@@ -14,7 +15,7 @@
 
         <div>
             <%= f.label :avatar, class: "label" %>
-            <%= f.file_field :avatar, class: "input max-w-xs"%>
+            <%= f.file_field :avatar%>
         </div>
 
         <div>
@@ -31,4 +32,5 @@
             <%= f.submit class: "btn btn-primary text-white" %>
         </div>
     <% end %>
+</div>
 </div>
