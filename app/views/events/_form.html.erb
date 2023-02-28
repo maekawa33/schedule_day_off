@@ -38,7 +38,7 @@
         </label>
         <div class="flex justify-end  mt-6">
             <%= link_to "キャンセル", schedule_path(@event.schedule),class: "btn btn-wide" ,data: { turbo_frame: dom_id(@event, :show) } %>
-            <%=f.submit "作成", class: "btn btn-primary btn-wide" ,data: { turbo_frame: "_self" }%>
+            <%=f.submit "作成", class: "btn btn-primary btn-wide"%>
         </div>
     </div>
     </div>
