@@ -1,17 +1,40 @@
-<div class="h-screen">
-    <div class="container mx-auto mt-40">
-        <div class="flex justify-center mb-10">
-            <div class="flex flex-col justify-around text-center">
-                <h1 class="text-3xl font-bold">休日スケジュール</h1>
-                <h2 class="text-xl">休日スケジュール投稿アプリ</h2>
-                <p class="text-xl">あなたがおすすめする休日をシェアしよう</p>
+
+    <div class="bg-primary-content">
+        <div class="flex flex-col text-center items-center gap-6">
+            <div class="flex justify-center border-b-2 border-secondary pt-8">
+                <%= image_tag 'top_image.png', class: 'w-60' %>
+                <h1 class="text-3xl font-serif text-secondary mt-24">休日スケジュール投稿アプリ</h1>
             </div>
-            <%= image_tag 'top_image.png', class: 'w-80' %>
-        </div>
-        <div class="text-center">
-            <%= link_to 'みんなのスケジュール', schedules_path, class: 'btn btn-primary text-white', data: {turbo: false} %>
-            <%= link_to 'ユーザー登録', new_user_path, class: 'btn btn-primary text-white' %>
+            <div>
+                <h1 class="text-3xl font-serif text-black py-10">休日スケジュールの使い方</h1>
+            </div>
+            <div class="flex flex-col text-center items-center">
+                <%= image_tag 'top_1.png', class: 'w-60  rounded-lg' %>
+                <h2 class="text-2xl font-serif text-black pt-4">1.みんなの休日を見てみよう</h2>
+                <p class="text-xl font-serif text-inherit pt-4 w-1/2">
+                    一覧ページからみんなの休日を覗いてみよう。「スケジュールタイトル」「起床時間」「就寝時間」「人数」から、検索することができます。
+                </p>
+            </div>
+            <div class="flex flex-col text-center items-center pt-10">
+                <%= image_tag 'top_2.png', class: 'w-60 rounded-lg' %>
+                <h2 class="text-2xl font-serif text-black pt-4">2.ユーザー登録をしてみよう</h2>
+                <p class="text-xl font-serif text-inherit pt-4 w-1/2">
+                    ユーザー登録をすると、「スケジュールの作成」「投稿されたスケジュールのいいね」ができるようになります。
+                </p>
+            </div>
+            <div class="flex flex-col text-center items-center pt-10 ">
+                <%= image_tag 'top_3.png', class: 'w-60 rounded-lg' %>
+                <h2 class="text-2xl font-serif text-black pt-4">3.休日スケジュールを投稿してみよう</h2>
+                <p class="text-xl font-serif text-inherit pt-4 w-1/2">
+                    ①「スケジュールタイトル」「起床時間」「就寝時間」「人数」を入力してスケジュールを作成しよう。
+                </p>
+                <p class="text-xl font-serif text-inherit w-1/2 pb-10 border-b-2 border-secondary">
+                    ② 作成したスケジュール内で、「開始時間」「終了時間」「イベントタイトル」等を入力してイベントを作成しよう
+                </p>
+            </div> 
+            <div class="text-center p-20">
+                <%= link_to 'みんなのスケジュール', schedules_path, class: 'btn btn-secondary text-white mr-10', data: {turbo: false} %>
+                <%= link_to 'ユーザー登録', new_user_path, class: 'btn btn-secondary text-white' %>
+            </div>
         </div>
     </div>
-</div>
-

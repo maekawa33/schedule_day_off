@@ -1,7 +1,5 @@
 
-    <%= turbo_stream.update dom_id(Event.new,dom_id(@schedule)), "" %>
-
-    <%= turbo_stream.update dom_id(@schedule) do%>
+<%= turbo_stream.update dom_id(@event.schedule) do%>
     <%today = []%>
     <%next_day = []%>
         <% @events.each do |event|%>

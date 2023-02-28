@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import UserShowTabController from "./user_show_tab_controller"
+application.register("user-show-tab", UserShowTabController)
