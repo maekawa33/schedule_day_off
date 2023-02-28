@@ -1,5 +1,6 @@
-<div class="container w-1/4 mx-auto my-10">
-    <h1 class="text-3xl">メールアドレスでログイン</h1>
+<div class="bg-primary-content h-screen">
+<div class="container w-1/4 mx-auto py-40">
+    <h1 class="text-3xl">メールアドレスで<br>ログイン</h1>
     <%= form_with url: login_path,class: "flex flex-col gap-2", method: :post do |f|%>
         <div>
             <%= f.label :email, class: "label" %>
@@ -14,5 +15,6 @@
             <%= f.submit class: "btn btn-primary text-white" %>
         </div>
     <% end %>
+</div>
 </div>
 
