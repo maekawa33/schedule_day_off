@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
-  authorize_resource only: [:show, :edit, :update, ]
+  authorize_resource only: %i[show edit update]
   def show
     @schedules = @user.schedules.page(params[:user_page]).per(9)
     favorites = Favorite.where(user_id: @user.id).pluck(:schedule_id)
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to login_path, notice: "ユーザー「#{@user.name}」を作成しました"
     else
-      flash.now[:alert] = "ユーザーの作成に失敗しました"
+      flash.now[:alert] = 'ユーザーの作成に失敗しました'
       render :register_mail, status: :unprocessable_entity
     end
   end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_url(@user), notice: "ユーザー「#{@user.name}」を更新しました"
     else
-      flash.now[:alert] = "ユーザーの更新に失敗しました"
+      flash.now[:alert] = 'ユーザーの更新に失敗しました'
       render :edit, status: :unprocessable_entity
     end
   end

@@ -8,6 +8,5 @@ class Schedule < ApplicationRecord
   validates :get_up_time, presence: true
   validates :sleep_time, presence: true
 
-  enum assumed_number_people: [ :one_person, :two_people, :three_people, :four_or_more_people ]
-  
+  enum assumed_number_people: { one_person: 0, two_people: 1, three_people: 2, four_or_more_people: 3 }
 end
