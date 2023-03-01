@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { default? && (new_record? || changes[:crypted_password]) }
 
   validates :name, presence: true, length: { minimum: 3, maximum: 20 }
-  validates :email, uniqueness: {scope: :login_type }, presence: true
+  validates :email, uniqueness: { scope: :login_type }, presence: true
   validates :login_type, presence: true
   enum role: {
     general: 0,
@@ -20,11 +20,11 @@ class User < ApplicationRecord
 
   enum login_type: {
     default: 0,
-    google: 1,
+    google: 1
   }
 
   def already_favorited?(schedule)
-    self.favorites.exists?(schedule_id: schedule.id)
+    favorites.exists?(schedule_id: schedule.id)
   end
 
   def own?(object)

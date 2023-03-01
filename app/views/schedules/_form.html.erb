@@ -1,29 +1,25 @@
-<div data-controller="form", class="bg-primary-content mx-auto p-10">
-    <%= render 'shared/error_messages', object: f.object %>
-
-     <div> 
-        <%=f.label :schedule_title%>
-        <%=f.text_field :schedule_title, placeholder: "スケジュールタイトル", class: "input input-bordered w-full"%>
+<div data-controller="form"
+    <%= render 'shared/error_messages', object: f.object %>>
+        <%= f.label :schedule_title %>
+        <%= f.text_field :schedule_title, placeholder: "スケジュールタイトル", class: "input input-bordered w-full" %>
     </div>
+    <div class="flex gap-6 py-6">
+        <div>
+            <%= f.label :assumed_number_people %>
+            <%= f.select :assumed_number_people, Schedule.assumed_number_people.keys.map { |k| [t("enums.schedule.assumed_number_people.#{k}"), k] }, { include_blank: "指定なし"} %>
+        </div>
 
-<div class="flex gap-6 py-6">
-    <div> 
-        <%=f.label :assumed_number_people%>
-        <%= f.select :assumed_number_people, Schedule.assumed_number_people.keys.map { |k| [t("enums.schedule.assumed_number_people.#{k}"), k] }, { include_blank: "指定なし"} %>
-    </div>
+        <div>
+            <%= f.label :get_up_time %>
+            <%= f.time_select :get_up_time, prompt: true, ignore_date: true, minute_step: 15 %>
+        </div>
 
-    <div> 
-        <%=f.label :get_up_time%>
-        <%=f.time_select :get_up_time, prompt: true, ignore_date: true, minute_step: 15%>
+        <div>
+            <%= f.label :sleep_time %>
+            <%= f.time_select :sleep_time, prompt: true, ignore_date: true, minute_step: 15 %>
+        </div>
     </div>
-
-    <div> 
-        <%=f.label :sleep_time%>
-        <%=f.time_select :sleep_time, prompt: true, ignore_date: true, minute_step: 15%>
-    </div>
-</div>
     <div class="flex justify-end  mt-6 ">
-        <%=f.submit "作成", class: "btn btn-primary btn-wide" %>
+        <%= f.submit "作成", class: "btn btn-primary btn-wide" %>
     </div>
 </div>
-

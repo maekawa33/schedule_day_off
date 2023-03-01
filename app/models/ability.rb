@@ -14,6 +14,5 @@ class Ability
     else
       can :read, [Schedule, Event, User], published: true
     end
-
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_25_030429) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_01_054150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,7 +23,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_25_030429) do
     t.integer "price"
     t.string "store"
     t.string "comment"
-    t.boolean "three_main_events"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["schedule_id"], name: "index_events_on_schedule_id"
