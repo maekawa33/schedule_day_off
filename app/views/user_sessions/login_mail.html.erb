@@ -1,20 +1,18 @@
 <div class="bg-primary-content h-screen">
-<div class="container w-1/4 mx-auto py-40">
-    <h1 class="text-3xl">メールアドレスで<br>ログイン</h1>
-    <%= form_with url: login_path,class: "flex flex-col gap-2", method: :post do |f|%>
-        <div>
-            <%= f.label :email, class: "label" %>
-            <%= f.email_field :email, class: "input input-bordered input-primary w-full max-w-xs" %>
-        </div>
-
-        <div>
-            <%= f.label :password, class: "label" %>
-            <%= f.password_field :password, class: "input input-bordered input-primary w-full max-w-xs" %>
-        </div>
-        <div class="ml-auto mt-4 mr-14">
-            <%= f.submit class: "btn btn-primary text-white" %>
-        </div>
-    <% end %>
+    <div class="container w-1/4 mx-auto py-40">
+        <h1 class="text-3xl">メールアドレスで<br>ログイン</h1>
+        <%= form_with url: login_path,class: "flex flex-col gap-2", method: :post do |f| %>
+            <div>
+                <%= f.label :email, class: "label" %>
+                <%= f.email_field :email, class: "input input-bordered input-primary w-full max-w-xs" %>
+            </div>
+            <div>
+                <%= f.label :password, class: "label" %>
+                <%= f.password_field :password, class: "input input-bordered input-primary w-full max-w-xs" %>
+            </div>
+            <div class="ml-auto mt-4 mr-14">
+                <%= f.submit class: "btn btn-primary text-white" %>
+            </div>
+        <% end %>
+    </div>
 </div>
-</div>
-
