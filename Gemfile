@@ -87,5 +87,6 @@ group :development do
   gem 'rubocop-rspec'
   gem 'bullet'
   gem 'solargraph'
+  gem 'erb_lint', require: false
 end
 
