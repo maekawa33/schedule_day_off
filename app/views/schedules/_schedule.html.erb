@@ -4,7 +4,7 @@
             <div class="flex">
                 <div class="avatar">
                     <div class="w-10 rounded-full">
-                        <%= image_tag schedule.user.avatar.url %>
+                        <%= image_tag schedule.user.avatar.url(:user_index) %>
                     </div>
                 </div>
                 <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>
@@ -15,7 +15,7 @@
                     <% event_images_count = 0 %>
                     <% schedule.events.each do |a| %>
                         <% unless a.image.file.nil? %>
-                            <div class="swiper-slide">
+                            <div class="swiper-slide flex justify-center">
                                 <%= image_tag a.image.url(:schedule_index) %>
                             </div>
                             <% event_images_count += 1 %>
