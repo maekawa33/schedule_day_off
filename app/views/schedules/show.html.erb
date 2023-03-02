@@ -5,7 +5,7 @@
                 <%= link_to user_path(@schedule.user) do %>
                     <div class="avatar">
                         <div class="w-20 rounded-full border-2 border-primary shadow-xl ">
-                            <%= image_tag @schedule.user.avatar.url %>
+                            <%= image_tag @schedule.user.avatar.url(:user_show) %>
                         </div>
                         <h2 class="pt-6 pl-8 text-3xl"><%= @schedule.user.name %></h2>
                     </div>
@@ -20,14 +20,14 @@
                 <% event_images_count = 0 %>
                 <% @schedule.events.each do |a| %>
                     <% unless a.image.file.nil? %>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide flex justify-center">
                             <%= image_tag a.image.url(:schedule_show) %>
                         </div>
                         <% event_images_count += 1 %>
                     <% end %>
                 <% end %>
                 <% if event_images_count == 0 %>
-                    <div>
+                    <div class="flex justify-center">
                         <%= image_tag 'top_image.png' %>
                     </div>
                 <% end %>
