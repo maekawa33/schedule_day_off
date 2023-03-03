@@ -1,3 +1,26 @@
+<%= turbo_stream.update dom_id(@event.schedule, :swiper) do%>
+    <div data-controller="slideshow" class="show-swiper border-2 border-primary shadow-xl rounded-lg bg-white mx-auto">
+        <% event_images_count = 0 %>
+        <% @schedule.events.each do |a| %>
+            <% unless a.image.file.nil? %>
+                <div data-slideshow-target="slide" >
+                    <%= image_tag a.image.url(:schedule_show), class: "mx-auto" %>
+                </div>
+                <% event_images_count += 1 %>
+            <% end %>
+        <% end %>
+        <% if event_images_count == 0 %>
+            <div>
+                <%= image_tag 'top_image.png', class: "mx-auto" %>
+            </div>
+        <% end %>
+        <div class="pt-4 text-center">
+        <button data-action="slideshow#previous" > ← </button>
+        <button data-action="slideshow#next" > → </button>
+        </div>
+    </div>
+<% end %>
+
 <%= turbo_stream.update dom_id(@event.schedule) do%>
     <%today = []%>
     <%next_day = []%>
