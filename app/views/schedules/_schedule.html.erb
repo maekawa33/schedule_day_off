@@ -1,5 +1,5 @@
-<div class="container border-4 border-primary rounded-lg flex-none w-80 bg-white  shadow-xl hover:duration-300 hover:scale-105">
-    <%= link_to schedule_path(schedule), data: {turbo: false} do %>
+<div class="container border-4 border-primary rounded-lg flex-none w-72 bg-white  shadow-xl hover:duration-300 hover:scale-105">
+    <%= link_to schedule_path(schedule) do %>
         <div class="card-body items-center text-center">
             <div class="flex">
                 <div class="avatar">
@@ -10,23 +10,21 @@
                 <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>
             </div>
             <h1 class="card-title text-2xl font-bold mt-2"><%= schedule.schedule_title %></h1>
-            <div class="swiper index-swiper mx-auto">
-                <div class="swiper-wrapper">
+            <div data-controller="slideshow" class=" index-swiper mx-auto">
                     <% event_images_count = 0 %>
                     <% schedule.events.each do |a| %>
                         <% unless a.image.file.nil? %>
-                            <div class="swiper-slide flex justify-center">
-                                <%= image_tag a.image.url(:schedule_index) %>
+                            <div data-slideshow-target="slide">
+                                <%= image_tag a.image.url(:schedule_index), class: "mx-auto" %>
                             </div>
                             <% event_images_count += 1 %>
                         <% end %>
                     <% end %>
                     <% if event_images_count == 0 %>
                         <div>
-                            <%= image_tag 'top_image.png' %>
+                            <%= image_tag 'top_image.png', class: "mx-auto",size: "200x100" %>
                         </div>
                     <% end %>
-                </div>
             </div>
             <div class="flex gap-4 text-center text-black">
                 <div>
