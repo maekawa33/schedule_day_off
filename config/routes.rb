@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   post 'google_login_api/callback', to: 'google_login_api#callback'
   get 'top', to: 'static_pages#top'
   get 'privacy_policy', to: 'static_pages#privacy_policy'

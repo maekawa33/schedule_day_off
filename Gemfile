@@ -97,3 +97,4 @@ group :development do
   gem 'erb_lint', require: false
 end
 
+gem "sassc-rails"
