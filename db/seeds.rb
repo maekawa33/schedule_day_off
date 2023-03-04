@@ -1,3 +1,11 @@
+User.create!(
+  name: 'maekawa',
+  email: ENV['EMAIL'],
+  role: 2,
+  password: ENV['PASSWORD'],
+  password_confirmation: ENV['PASSWORD'],
+  avatar: open("./app/assets/images/default_icon.png")
+)
 
   User.create!(
     name: 'ニックネーム',
@@ -8,7 +16,8 @@
 		avatar: open("./app/assets/images/default_icon.png")
   )
 
-User.all.each do |user|
+user = User.find_by(name: 'ニックネーム')
+
   Schedule.create!(
     schedule_title: '休日',
     assumed_number_people: 1,
@@ -16,7 +25,7 @@ User.all.each do |user|
     sleep_time: '22:00',
     user: user,
   )
-end
+
   
 Schedule.all.each do |schedule|
   Event.create!(
