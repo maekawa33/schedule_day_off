@@ -47,10 +47,10 @@ ja:
         admin: '管理者'
     schedule:
       assumed_number_people: 
-          one_person: '一人'
-          two_people: '二人'
-          three_people: '三人'
-          four_or_more_people: '四人以上'
+          one_person: '1人'
+          two_people: '2人'
+          three_people: '3人'
+          four_or_more_people: '複数人'
   helpers:
     label:
       email: 'メールアドレス'
