@@ -11,7 +11,7 @@ RailsAdmin.config do |config|
   config.current_user_method(&:current_user)
   config.parent_controller = 'ApplicationController'
 
-   == CancanCan ==
+   ## == CancanCan ==
    config.authorize_with :cancancan
 
   ## == Pundit ==
