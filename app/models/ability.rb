@@ -9,10 +9,12 @@ class Ability
     if user.role =='admin'
       can :access, :rails_admin 
       can :manage, :all
-    elsif user.role == 'general'
+    elsif user.role == 'general' 
       can :manage, :all
+      cannot :access, :rails_admin
     elsif user.role == 'guest'
       can :manage, :all
+      cannot :access, :rails_admin
       cannot :update, User
     else
       can :read, [Schedule, Event, User], published: true
