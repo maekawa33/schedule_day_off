@@ -8,7 +8,7 @@
           <%= link_to "ゲストでログイン", guest_login_path, {data: { turbo_method: :post }, class: "btn btn-black w-80 text-white my-4"} %>
           <div id="g_id_onload"
           data-client_id=<%=ENV['GOOGLE_CRIENT_ID']%>
-          data-login_uri="http://localhost:3000/google_login_api/callback"
+          data-login_uri="https://schedule-day-off.herokuapp.com/google_login_api/callback"
           data-auto_prompt="false">
           </div>
           <div class="g_id_signin"
