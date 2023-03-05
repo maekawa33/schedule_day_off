@@ -20,7 +20,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to login_path, notice: "ユーザー「#{@user.name}」を作成しました"
+      auto_login(@user)
+      redirect_to schedules_path, notice: "ユーザー「#{@user.name}」を登録しました"
     else
       flash.now[:alert] = 'ユーザーの作成に失敗しました'
       render :register_mail, status: :unprocessable_entity
