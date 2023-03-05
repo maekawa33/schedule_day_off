@@ -6,7 +6,20 @@
           <h2 class="text-lg">会員登録</h2>
           <%= link_to "メールアドレスで登録", register_mail_users_path ,{class: "btn btn-primary w-80 text-white mt-4"} %>
           <%= link_to "ゲストで登録", guest_login_path, {data: { turbo_method: :post }, class: "btn btn-black w-80 text-white my-4"} %>
-          <%= render 'shared/google_btn' %>
+          <div id="g_id_onload"
+          data-client_id=<%=ENV['GOOGLE_CRIENT_ID']%>
+          data-login_uri="http://localhost:3000/google_login_api/callback"
+          data-auto_prompt="false">
+          </div>
+          <div class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-theme="standard"
+          data-text="sign_up_with"
+          data-shape="rectangular"
+          data-logo_alignment="left"
+          data-width=320>
+          </div>
       </div>
     </div>
     <div class="divider"></div>
