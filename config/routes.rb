@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+  get 'password_resets/create'
+  get 'password_resets/edit'
+  get 'password_resets/update'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   post 'google_login_api/callback', to: 'google_login_api#callback'
   get 'top', to: 'static_pages#top'
@@ -20,4 +24,5 @@ Rails.application.routes.draw do
     resource :favorites
     resources :events
   end
+  resources :password_resets, only: %i[new create edit update]
 end
