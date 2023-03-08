@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 3 }, if: -> { default? && (new_record? || changes[:crypted_password]) }
   validates :password, confirmation: true, if: -> { default? && (new_record? || changes[:crypted_password]) }
   validates :password_confirmation, presence: true, if: -> { default? && (new_record? || changes[:crypted_password]) }
+  validates :reset_password_token, uniqueness: true, allow_nil: true
 
   validates :name, presence: true, length: { minimum: 3, maximum: 20 }
   validates :email, uniqueness: { scope: :login_type }, presence: true
