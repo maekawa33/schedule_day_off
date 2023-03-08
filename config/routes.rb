@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post 'guest_login', to: 'user_sessions#guest_login'
   post 'login', to: 'user_sessions#create'
   get 'logout', to: 'user_sessions#destroy'
-
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   root to: 'static_pages#top'
   resources :users do
     collection do
