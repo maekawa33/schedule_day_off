@@ -62,6 +62,10 @@ class SchedulesController < ApplicationController
     redirect_to schedules_path, notice: "スケジュール「#{@schedule.schedule_title}」を削除しました"
   end
 
+  def rank
+    @month_schedule_favorite_ranks = Schedule.find(Favorite.group(:schedule_id).where(created_at: Time.current.all_month).order('count(schedule_id) desc').pluck(:schedule_id))
+  end
+
   private
 
   def schedule_params

@@ -1,11 +1,4 @@
-User.create!(
-  name: 'maekawa',
-  email: ENV['EMAIL'],
-  role: 2,
-  password: ENV['PASSWORD'],
-  password_confirmation: ENV['PASSWORD'],
-  avatar: open("./app/assets/images/default_icon.png")
-)
+
 
   User.create!(
     name: 'ニックネーム',
@@ -17,7 +10,7 @@ User.create!(
   )
 
 user = User.find_by(name: 'ニックネーム')
-
+10.times{
   Schedule.create!(
     schedule_title: '休日',
     assumed_number_people: 1,
@@ -59,4 +52,4 @@ Schedule.all.each do |schedule|
     schedule: schedule,
   )
 end
-
+}

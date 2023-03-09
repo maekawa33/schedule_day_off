@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     end
   end
   resources :schedules do
+    collection do
+      get 'rank'
+    end
     resource :favorites
     resources :events
   end
