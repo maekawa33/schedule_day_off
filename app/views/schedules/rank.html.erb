@@ -10,13 +10,13 @@
         <% end %>
         <% if schedule.favorites.count != last_favorite %>
           <% rank = i %>
+          <% break if rank == 4 %>
           <div class="flex flex-col text-center gap-2">
             <h2 class="text-xl">第<%= rank %>位</h2>
             <h2 class="text-xl"><%= schedule.favorites.count %>いいね</h2>
             <%= render 'schedule', schedule: schedule%>
           </div>
           <% last_favorite = schedule.favorites.count %>
-          <% break if last_favorite == 4 %>
         <% else %>
           <% last_favorite = schedule.favorites.count %>
           <div class="flex flex-col text-center gap-2">
