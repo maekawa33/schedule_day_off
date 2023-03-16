@@ -29,11 +29,11 @@
             <div class="flex gap-4 text-center text-black">
                 <div>
                     <h2 class="font-serif">起床時間</h2>
-                    <p><%= schedule.get_up_time.strftime( "%H : %M" ) %></p>
+                    <p><%= l schedule.get_up_time %></p>
                 </div>
                 <div>
                     <h2 class="font-serif">就寝時間</h2>
-                    <p><%= schedule.sleep_time.strftime( "%H : %M" ) %></p>
+                    <p><%= l schedule.sleep_time %></p>
                 </div>
                 <div>
                     <h2 class="font-serif">人数</h2>

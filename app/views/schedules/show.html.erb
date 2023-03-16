@@ -66,11 +66,11 @@
                 </div>
                 <div class="flex gap-4">
                     <%= icon(name: "get_up")%>
-                    <h2 class="text-xl"><%= @schedule.get_up_time.strftime( "%H : %M" ) %></h2>
+                    <h2 class="text-xl"><%= l @schedule.get_up_time%></h2>
                 </div>
                 <div class="flex gap-4">
                    <%= icon(name: "sleep")%>
-                    <h2 class="text-xl"><%= @schedule.sleep_time.strftime( "%H : %M" ) %></h2>
+                    <h2 class="text-xl"><%= l @schedule.sleep_time %></h2>
                 </div>
                 <div class="flex gap-4">
                     <%= icon(name: "money")%>
@@ -86,14 +86,14 @@
             </div>
         <% end %>
         <%= turbo_frame_tag dom_id(Event.new,dom_id(@schedule)) %>
-        <div class="divider my-8">起床時間  <%= @schedule.get_up_time.strftime( "%H:%M" ) %></div>
+        <div class="divider my-8">起床時間  <%= l @schedule.get_up_time %></div>
         <%= turbo_frame_tag dom_id(@schedule) do %>
             <% @events.each do |event| %>
                 <%= turbo_frame_tag dom_id(event, :show) do %>
                     <%= link_to schedule_event_path(@schedule,event) do %>
                         <div class="flex w-2/3 bg-secondary text-white mx-auto p-2 mt-4 text-center">
                             <div class="w-3/12">
-                                <h2><%= event.start_time.strftime( "%H:%M" ) %> ~ <%= event.end_time.strftime( "%H:%M" ) %></h2>
+                                <h2><%= l event.start_time %> ~ <%= l event.end_time %></h2>
                             </div>
                             <div class="w-9/12">
                                 <h2><%= event.event_title %></h2>
@@ -103,7 +103,7 @@
                 <% end %>
             <% end %>
         <% end %>
-        <div class="divider mt-8">就寝時間  <%= @schedule.sleep_time.strftime( "%H:%M" ) %></div>
+        <div class="divider mt-8">就寝時間  <%= l @schedule.sleep_time %></div>
         <%= render 'favorites/favorite_btn', schedule: @schedule %>
     </div>
 </div>
