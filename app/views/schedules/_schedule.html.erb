@@ -13,7 +13,7 @@
             <div data-controller="slideshow" class=" index-swiper mx-auto">
                     <% event_images_count = 0 %>
                     <% schedule.events.each do |a| %>
-                        <% unless a.image.file.nil? %>
+                        <% if a.image.file.present? %>
                             <div data-slideshow-target="slide">
                                 <%= image_tag a.image.url(:schedule_index), class: "mx-auto" %>
                             </div>

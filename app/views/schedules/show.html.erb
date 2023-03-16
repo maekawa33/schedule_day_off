@@ -21,7 +21,7 @@
             <div data-controller="slideshow" class="show-swiper border-2 border-primary shadow-xl rounded-lg bg-white mx-auto">
                 <% event_images_count = 0 %>
                 <% @schedule.events.each do |a| %>
-                    <% unless a.image.file.nil? %>
+                    <% if a.image.file.present? %>
                         <div data-slideshow-target="slide" >
                             <%= image_tag a.image.url(:schedule_show), class: "mx-auto" %>
                         </div>
