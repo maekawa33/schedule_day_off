@@ -27,4 +27,12 @@ class Schedule < ApplicationRecord
     order_time_events = today + next_day
     order_time_events
   end
+
+  def total_price
+    total_price = 0
+    object.events.each do |event|
+      total_price += event.price if event.price
+    end
+    total_price
+  end
 end
