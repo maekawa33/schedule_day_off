@@ -9,4 +9,22 @@ class Schedule < ApplicationRecord
   validates :sleep_time, presence: true
 
   enum assumed_number_people: { one_person: 0, two_people: 1, three_people: 2, four_or_more_people: 3 }
+
+  def order_time
+    today = [] 
+    next_day = [] 
+    events.order(:start_time).each do |event|
+      if event.id
+        if event.start_time.hour > get_up_time.hour
+          today.push(event)
+        elsif event.start_time.hour == get_up_time.hour && event.start_time.min >= get_up_time.min
+          today.push(event)
+        else
+          next_day.push(event)
+        end
+      end
+    end
+    order_time_events = today + next_day
+    order_time_events
+  end
 end
