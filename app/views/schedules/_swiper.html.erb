@@ -1,8 +1,8 @@
- <div data-controller="slideshow" class= "<%= "border-2 border-primary shadow-xl rounded-lg bg-white mx-auto #{size}-swiper "%>">
+ <div data-controller="slideshow" class="<%= "border-2 border-primary shadow-xl rounded-lg bg-white mx-auto #{size}-swiper " %>">
     <% event_images_count = 0 %>
     <% schedule.events.each do |a| %>
         <% if a.image.file.present? %>
-            <div data-slideshow-target="slide" >
+            <div data-slideshow-target="slide">
                 <%= image_tag a.image.url(size.to_sym), class: "mx-auto" %>
             </div>
             <% event_images_count += 1 %>
@@ -15,9 +15,8 @@
     <% end %>
     <% if size == "show" %>
       <div class="pt-4 text-center">
-        <button data-action="slideshow#previous" > ← </button>
-        <button data-action="slideshow#next" > → </button>
+        <button data-action="slideshow#previous"> ← </button>
+        <button data-action="slideshow#next"> → </button>
       </div>
     <% end %>
 </div>
-

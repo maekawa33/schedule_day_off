@@ -18,7 +18,7 @@
             </div>
         </div>
         <%= turbo_frame_tag dom_id(@schedule, :swiper) do %>
-            <%= render 'swiper', size: "show", schedule: @schedule%>
+            <%= render 'swiper', size: "show", schedule: @schedule %>
         <% end %>
         <%= turbo_frame_tag dom_id(@schedule, :edit) do %>
             <div class="flex p-8 relative ">
@@ -29,12 +29,12 @@
                     <% if current_user&.own?(@schedule) %>
                         <div class="mr-2 ml-1">
                             <%= link_to edit_schedule_path(@schedule) do %>
-                                <%= icon(name: "edit")%>
+                                <%= icon(name: "edit") %>
                             <% end %>
                         </div>
                         <div class="mr-2 ml-1">
                             <%= link_to schedule_path(@schedule), data: { turbo_method: :delete, turbo_confirm: '削除しますか?' } do %>
-                                <%= icon(name: "destroy")%>
+                                <%= icon(name: "destroy") %>
                             <% end %>
                         </div>
                     <% end %>
@@ -42,19 +42,19 @@
             </div>
             <div class="flex gap-16 p-8 justify-center">
                 <div class="flex gap-4">
-                    <%= icon(name: "person")%>
+                    <%= icon(name: "person") %>
                     <h2 class="text-xl"><%= @schedule.assumed_number_people_i18n %></h2>
                 </div>
                 <div class="flex gap-4">
-                    <%= icon(name: "get_up")%>
-                    <h2 class="text-xl"><%= l @schedule.get_up_time%></h2>
+                    <%= icon(name: "get_up") %>
+                    <h2 class="text-xl"><%= l @schedule.get_up_time %></h2>
                 </div>
                 <div class="flex gap-4">
-                   <%= icon(name: "sleep")%>
+                   <%= icon(name: "sleep") %>
                     <h2 class="text-xl"><%= l @schedule.sleep_time %></h2>
                 </div>
                 <div class="flex gap-4">
-                    <%= icon(name: "money")%>
+                    <%= icon(name: "money") %>
                     <h2 class="text-xl"><%= @schedule.decorate.total_price %>円</h2>
                 </div>
             </div>
@@ -69,7 +69,7 @@
         <%= turbo_frame_tag dom_id(Event.new,dom_id(@schedule)) %>
         <div class="divider my-8">起床時間  <%= l @schedule.get_up_time %></div>
         <%= turbo_frame_tag dom_id(@schedule) do %>
-            <%= render 'schedule_events', schedule: @schedule, events: @events%>
+            <%= render 'schedule_events', schedule: @schedule, events: @events %>
         <% end %>
         <div class="divider mt-8">就寝時間  <%= l @schedule.sleep_time %></div>
         <%= render 'favorites/favorite_btn', schedule: @schedule %>

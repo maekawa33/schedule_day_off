@@ -9,7 +9,7 @@
         <div class="flex">
             <%= f.label :assumed_number_people, {class: 'p-3'} %>
             <div class="w-20 h-4/5 bg-white rounded-lg shadow-lg text-center ">
-                <%= f.select :assumed_number_people, Schedule.assumed_number_people.keys.map { |k| [t("enums.schedule.assumed_number_people.#{k}"), k] }, { include_blank: "指定なし"},  {class: "bg-transparent text-lg appearance-none outline-none pt-2"}%>
+                <%= f.select :assumed_number_people, Schedule.assumed_number_people.keys.map { |k| [t("enums.schedule.assumed_number_people.#{k}"), k] }, { include_blank: "指定なし"},  {class: "bg-transparent text-lg appearance-none outline-none pt-2"} %>
             </div>
         </div>
 
