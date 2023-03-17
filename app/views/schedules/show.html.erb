@@ -18,26 +18,7 @@
             </div>
         </div>
         <%= turbo_frame_tag dom_id(@schedule, :swiper) do %>
-            <div data-controller="slideshow" class="show-swiper border-2 border-primary shadow-xl rounded-lg bg-white mx-auto">
-                <% event_images_count = 0 %>
-                <% @schedule.events.each do |a| %>
-                    <% if a.image.file.present? %>
-                        <div data-slideshow-target="slide" >
-                            <%= image_tag a.image.url(:schedule_show), class: "mx-auto" %>
-                        </div>
-                        <% event_images_count += 1 %>
-                    <% end %>
-                <% end %>
-                <% if event_images_count == 0 %>
-                    <div>
-                        <%= image_tag 'top_image.png', class: "mx-auto" %>
-                    </div>
-                <% end %>
-                <div class="pt-4 text-center">
-                <button data-action="slideshow#previous" > ← </button>
-                <button data-action="slideshow#next" > → </button>
-                </div>
-            </div>
+            <%= render 'swiper', size: "show", schedule: @schedule%>
         <% end %>
         <%= turbo_frame_tag dom_id(@schedule, :edit) do %>
             <div class="flex p-8 relative ">
@@ -88,20 +69,7 @@
         <%= turbo_frame_tag dom_id(Event.new,dom_id(@schedule)) %>
         <div class="divider my-8">起床時間  <%= l @schedule.get_up_time %></div>
         <%= turbo_frame_tag dom_id(@schedule) do %>
-            <% @events.each do |event| %>
-                <%= turbo_frame_tag dom_id(event, :show) do %>
-                    <%= link_to schedule_event_path(@schedule,event) do %>
-                        <div class="flex w-2/3 bg-secondary text-white mx-auto p-2 mt-4 text-center">
-                            <div class="w-3/12">
-                                <h2><%= l event.start_time %> ~ <%= l event.end_time %></h2>
-                            </div>
-                            <div class="w-9/12">
-                                <h2><%= event.event_title %></h2>
-                            </div>
-                        </div>
-                    <% end %>
-                <% end %>
-            <% end %>
+            <%= render 'schedule_events', schedule: @schedule, events: @events%>
         <% end %>
         <div class="divider mt-8">就寝時間  <%= l @schedule.sleep_time %></div>
         <%= render 'favorites/favorite_btn', schedule: @schedule %>

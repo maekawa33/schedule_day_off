@@ -15,9 +15,8 @@ class EventsController < ApplicationController
   def create
     @schedule = Schedule.find(params[:schedule_id])
     @event = @schedule.events.new(event_params)
-
     if @event.save
-      @events = @schedule.events.order(:start_time)
+      @events = @schedule.sort_events
     else
       flash.now[:alert] = 'イベントの作成に失敗しました'
       render :new, status: :unprocessable_entity
@@ -28,7 +27,7 @@ class EventsController < ApplicationController
     @schedule = Schedule.find(params[:schedule_id])
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      @events = @schedule.events.order(:start_time)
+      @events = @schedule.sort_events
     else
       flash.now[:alert] = 'イベントの更新に失敗しました'
       render :edit, status: :unprocessable_entity

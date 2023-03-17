@@ -10,7 +10,7 @@ class Schedule < ApplicationRecord
 
   enum assumed_number_people: { one_person: 0, two_people: 1, three_people: 2, four_or_more_people: 3 }
 
-  def order_time
+  def sort_events
     today = [] 
     next_day = [] 
     events.order(:start_time).each do |event|
@@ -24,10 +24,9 @@ class Schedule < ApplicationRecord
         end
       end
     end
-    order_time_events = today + next_day
-    order_time_events
+    sorted_events = today + next_day
+    sorted_events
   end
-
   def total_price
     total_price = 0
     events.each do |event|

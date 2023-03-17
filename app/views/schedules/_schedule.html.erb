@@ -1,4 +1,4 @@
-<div class="container border-4 border-primary rounded-lg flex-none w-72 bg-white  shadow-xl hover:duration-300 hover:scale-105">
+<div class="container border-2 border-primary rounded-lg flex-none w-72 bg-white  shadow-xl hover:duration-300 hover:scale-105">
     <%= link_to schedule_path(schedule) do %>
         <div class="card-body items-center text-center">
             <div class="flex">
@@ -10,22 +10,7 @@
                 <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>
             </div>
             <h1 class="card-title text-2xl font-bold mt-2"><%= schedule.schedule_title %></h1>
-            <div data-controller="slideshow" class=" index-swiper mx-auto">
-                    <% event_images_count = 0 %>
-                    <% schedule.events.each do |a| %>
-                        <% if a.image.file.present? %>
-                            <div data-slideshow-target="slide">
-                                <%= image_tag a.image.url(:schedule_index), class: "mx-auto" %>
-                            </div>
-                            <% event_images_count += 1 %>
-                        <% end %>
-                    <% end %>
-                    <% if event_images_count == 0 %>
-                        <div>
-                            <%= image_tag 'top_image.png', class: "mx-auto",size: "200x100" %>
-                        </div>
-                    <% end %>
-            </div>
+                <%= render 'swiper', size: "index", schedule: schedule%>
             <div class="flex gap-4 text-center text-black">
                 <div>
                     <h2 class="font-serif">起床時間</h2>

@@ -25,7 +25,7 @@ class SchedulesController < ApplicationController
   def show
     @schedule = Schedule.find(params[:id])
     @user = @schedule.user
-    @events = @schedule.order_time
+    @events = @schedule.sort_events
   end
 
   def new

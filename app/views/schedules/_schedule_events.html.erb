@@ -1,0 +1,14 @@
+<% events.each do |event| %>
+    <%= turbo_frame_tag dom_id(event, :show) do %>
+        <%= link_to schedule_event_path(schedule,event) do %>
+            <div class="flex w-2/3 bg-secondary text-white mx-auto p-2 mt-4 text-center">
+                <div class="w-3/12">
+                    <h2><%= l event.start_time %> ~ <%= l event.end_time %></h2>
+                </div>
+                <div class="w-9/12">
+                    <h2><%= event.event_title %></h2>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+<% end %>
