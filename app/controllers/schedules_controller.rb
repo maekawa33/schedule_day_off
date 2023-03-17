@@ -3,16 +3,16 @@ class SchedulesController < ApplicationController
   def index
     fix_params = params[:q]
     if fix_params
-      if fix_params['get_up_time_gteq(4i)'].blank? || fix_params['get_up_time_lteq(4i)'].blank?
+      if fix_params['get_up_time_gteq(4i)'].blank? || fix_params['get_up_time_gteq(5i)'].blank?
         fix_params['get_up_time_gteq(1i)'], fix_params['get_up_time_gteq(2i)'], fix_params['get_up_time_gteq(3i)'] = nil
       end
-      if fix_params['get_up_time_gteq(4i)'].blank? || fix_params['get_up_time_lteq(4i)'].blank?
+      if fix_params['get_up_time_lteq(4i)'].blank? || fix_params['get_up_time_lteq(5i)'].blank?
         fix_params['get_up_time_lteq(1i)'], fix_params['get_up_time_lteq(2i)'], fix_params['get_up_time_lteq(3i)'] = nil
       end
-      if fix_params['sleep_time_gteq(4i)'].blank? || fix_params['sleep_time_lteq(4i)'].blank?
+      if fix_params['sleep_time_gteq(4i)'].blank? || fix_params['sleep_time_gteq(5i)'].blank?
         fix_params['sleep_time_gteq(1i)'], fix_params['sleep_time_gteq(2i)'], fix_params['sleep_time_gteq(3i)'] = nil
       end
-      if fix_params['sleep_time_gteq(4i)'].blank? || fix_params['sleep_time_lteq(4i)'].blank?
+      if fix_params['sleep_time_lteq(4i)'].blank? || fix_params['sleep_time_lteq(5i)'].blank?
         fix_params['sleep_time_lteq(1i)'], fix_params['sleep_time_lteq(2i)'], fix_params['sleep_time_lteq(3i)'] = nil
       end
       @q = Schedule.ransack(fix_params)
