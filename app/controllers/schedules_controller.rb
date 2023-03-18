@@ -20,7 +20,7 @@ class SchedulesController < ApplicationController
     else
       @q = Schedule.ransack(params[:q])
     end
-    @schedules = @q.result(distinct: true).includes(:user).order('created_at desc').page(params[:page]).per(20)
+    @schedules = @q.result(distinct: true).includes([:user, :events]).order('created_at desc').page(params[:page]).per(20)
   end
 
   def show
