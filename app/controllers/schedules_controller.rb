@@ -1,5 +1,6 @@
 class SchedulesController < ApplicationController
   authorize_resource
+  before_action :set_schedule, only: [:show, :edit, :update, :destroy]
   def index
     fix_params = params[:q]
     if fix_params
@@ -23,18 +24,15 @@ class SchedulesController < ApplicationController
   end
 
   def show
-    @schedule = Schedule.find(params[:id])
     @user = @schedule.user
     @events = @schedule.sort_events
   end
 
   def new
-    @schedule = current_user.schedules.new
+    @schedule = current_user.schedules.build
   end
 
-  def edit
-    @schedule = Schedule.find(params[:id])
-  end
+  def edit; end
 
   def create
     @schedule = current_user.schedules.new(schedule_params)
@@ -47,7 +45,6 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
       redirect_to schedule_path(@schedule), notice: "スケジュール「#{@schedule.schedule_title}」を更新しました"
     else
@@ -57,7 +54,6 @@ class SchedulesController < ApplicationController
   end
 
   def destroy
-    @schedule = Schedule.find(params[:id])
     @schedule.destroy
     redirect_to schedules_path, notice: "スケジュール「#{@schedule.schedule_title}」を削除しました"
   end
@@ -70,5 +66,9 @@ class SchedulesController < ApplicationController
 
   def schedule_params
     params.require(:schedule).permit(:schedule_title, :assumed_number_people, :get_up_time, :sleep_time)
+  end
+
+  def set_schedule
+    @schedule = Schedule.find(params[:id])
   end
 end
