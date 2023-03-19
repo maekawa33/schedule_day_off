@@ -2,9 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   authorize_resource only: %i[show edit update]
   def show
-    @schedules = @user.schedules.page(params[:user_page]).per(9)
-    favorites = Favorite.where(user_id: @user.id).pluck(:schedule_id)
-    @favorite_schedules = Kaminari.paginate_array(Schedule.find(favorites)).page(params[:favorite_page]).per(9)
+    @schedules = Schedule.includes(:user, :events)
+                     .where(user_id: params[:id])
+                     .page(params[:user_page])
+                     .per(9)
+    @favorite_schedules = Schedule.joins(:favorites).includes([:user, :events])
+                               .where(favorites: { user_id: params[:id]})
+                               .page(params[:favorite_page]).per(9)
   end
 
   def new
