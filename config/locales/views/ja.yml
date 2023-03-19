@@ -12,6 +12,9 @@ ja:
       delete_confirm: "削除しますか？"
       deleted: "%{item}を削除しました"
       not_authorized: "権限がありません"
+  time:
+    formats:
+      default: "%H:%M"
   static_pages:
     top:
       title: '休日スケジュール'

@@ -1,40 +1,38 @@
 class SchedulesController < ApplicationController
   authorize_resource
+  before_action :set_schedule, only: [:show, :edit, :update, :destroy]
   def index
     fix_params = params[:q]
     if fix_params
-      if fix_params['get_up_time_gteq(4i)'].blank? || fix_params['get_up_time_lteq(4i)'].blank?
+      if fix_params['get_up_time_gteq(4i)'].blank? || fix_params['get_up_time_gteq(5i)'].blank?
         fix_params['get_up_time_gteq(1i)'], fix_params['get_up_time_gteq(2i)'], fix_params['get_up_time_gteq(3i)'] = nil
       end
-      if fix_params['get_up_time_gteq(4i)'].blank? || fix_params['get_up_time_lteq(4i)'].blank?
+      if fix_params['get_up_time_lteq(4i)'].blank? || fix_params['get_up_time_lteq(5i)'].blank?
         fix_params['get_up_time_lteq(1i)'], fix_params['get_up_time_lteq(2i)'], fix_params['get_up_time_lteq(3i)'] = nil
       end
-      if fix_params['sleep_time_gteq(4i)'].blank? || fix_params['sleep_time_lteq(4i)'].blank?
+      if fix_params['sleep_time_gteq(4i)'].blank? || fix_params['sleep_time_gteq(5i)'].blank?
         fix_params['sleep_time_gteq(1i)'], fix_params['sleep_time_gteq(2i)'], fix_params['sleep_time_gteq(3i)'] = nil
       end
-      if fix_params['sleep_time_gteq(4i)'].blank? || fix_params['sleep_time_lteq(4i)'].blank?
+      if fix_params['sleep_time_lteq(4i)'].blank? || fix_params['sleep_time_lteq(5i)'].blank?
         fix_params['sleep_time_lteq(1i)'], fix_params['sleep_time_lteq(2i)'], fix_params['sleep_time_lteq(3i)'] = nil
       end
       @q = Schedule.ransack(fix_params)
     else
       @q = Schedule.ransack(params[:q])
     end
-    @schedules = @q.result(distinct: true).includes(:user).order('created_at desc').page(params[:page]).per(20)
+    @schedules = @q.result(distinct: true).includes([:user, :events]).order('created_at desc').page(params[:page]).per(20)
   end
 
   def show
-    @schedule = Schedule.find(params[:id])
     @user = @schedule.user
-    @events = @schedule.events.order(:start_time)
+    @events = @schedule.sort_events
   end
 
   def new
-    @schedule = current_user.schedules.new
+    @schedule = current_user.schedules.build
   end
 
-  def edit
-    @schedule = Schedule.find(params[:id])
-  end
+  def edit; end
 
   def create
     @schedule = current_user.schedules.new(schedule_params)
@@ -47,7 +45,6 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
       redirect_to schedule_path(@schedule), notice: "スケジュール「#{@schedule.schedule_title}」を更新しました"
     else
@@ -57,18 +54,22 @@ class SchedulesController < ApplicationController
   end
 
   def destroy
-    @schedule = Schedule.find(params[:id])
     @schedule.destroy
     redirect_to schedules_path, notice: "スケジュール「#{@schedule.schedule_title}」を削除しました"
   end
 
   def rank
-    @month_schedule_favorite_ranks = Schedule.find(Favorite.group(:schedule_id).where(created_at: Time.current.all_month).order('count(schedule_id) desc').pluck(:schedule_id))
+    favorite_schedule_ids = Favorite.where(created_at: Time.current.all_month).group(:schedule_id).order('count(schedule_id) desc').pluck(:schedule_id)
+    @month_schedule_favorite_ranks = Schedule.includes([:user, :events]).find(favorite_schedule_ids)
   end
 
   private
 
   def schedule_params
     params.require(:schedule).permit(:schedule_title, :assumed_number_people, :get_up_time, :sleep_time)
+  end
+
+  def set_schedule
+    @schedule = Schedule.find(params[:id])
   end
 end

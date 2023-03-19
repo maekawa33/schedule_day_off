@@ -7,7 +7,7 @@ class GoogleLoginApiController < ApplicationController
   def callback
     if params[:credential].present?
       payload = Google::Auth::IDTokens.verify_oidc(params[:credential],
-                                                   aud: ENV['GOOGLE_CRIENT_ID'])
+                                                   aud: ENV.fetch('GOOGLE_CRIENT_ID', nil))
       user = User.find_or_initialize_by(email: payload['email'], login_type: :google, name: payload['name'])
 
       if user.save
