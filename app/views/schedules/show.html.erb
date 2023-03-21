@@ -12,7 +12,7 @@
                 <% end %>
             </div>
             <div class="mr-2 ml-1">
-                <%= link_to schedules_path,class: "absolute right-0 p-2" do %>
+                <%= link_to :back, class: "absolute right-0 p-2" do %>
                     <%= icon(name: "return") %>
                 <% end %>
             </div>
@@ -40,7 +40,7 @@
                     <% end %>
                 </div>
             </div>
-            <div class="flex gap-16 p-8 justify-center">
+            <div class="hidden md:flex gap-16 p-8 justify-center">
                 <div class="flex gap-4">
                     <%= icon(name: "person") %>
                     <h2 class="text-xl"><%= @schedule.assumed_number_people_i18n %></h2>
@@ -50,10 +50,28 @@
                     <h2 class="text-xl"><%= l @schedule.get_up_time %></h2>
                 </div>
                 <div class="flex gap-4">
-                   <%= icon(name: "sleep") %>
+                    <%= icon(name: "sleep") %>
                     <h2 class="text-xl"><%= l @schedule.sleep_time %></h2>
                 </div>
                 <div class="flex gap-4">
+                    <%= icon(name: "money") %>
+                    <h2 class="text-xl"><%= @schedule.decorate.total_price %>円</h2>
+                </div>
+            </div>
+            <div class="md:hidden justify-center">
+                <div class="flex gap-4 justify-center mt-4">
+                    <%= icon(name: "person") %>
+                    <h2 class="text-xl"><%= @schedule.assumed_number_people_i18n %></h2>
+                </div>
+                <div class="flex gap-4 justify-center mt-4">
+                    <%= icon(name: "get_up") %>
+                    <h2 class="text-xl"><%= l @schedule.get_up_time %></h2>
+                </div>
+                <div class="flex gap-4 justify-center mt-4">
+                    <%= icon(name: "sleep") %>
+                    <h2 class="text-xl"><%= l @schedule.sleep_time %></h2>
+                </div>
+                <div class="flex gap-4 justify-center mt-4">
                     <%= icon(name: "money") %>
                     <h2 class="text-xl"><%= @schedule.decorate.total_price %>円</h2>
                 </div>
