@@ -1,9 +1,9 @@
-<div class="container border-2 border-primary rounded-lg flex-none w-72 bg-white  shadow-xl hover:duration-300 hover:scale-105">
+<div class="container border-2 border-primary rounded-lg flex-none w-72 bg-primary-content shadow-xl hover:duration-300 hover:scale-105">
     <%= link_to schedule_path(schedule) do %>
         <div class="card-body items-center text-center">
             <div class="flex">
                 <div class="avatar">
-                    <div class="w-10 rounded-full">
+                    <div class="w-10 rounded-full border-2 border-primary shadow-xl bg-white">
                         <%= image_tag schedule.user.avatar.url(:user_index) %>
                     </div>
                 </div>
@@ -11,7 +11,7 @@
             </div>
             <h1 class="card-title text-2xl font-bold mt-2"><%= schedule.schedule_title %></h1>
                 <%= render 'schedules/swiper', size: "index", schedule: schedule %>
-            <div class="flex gap-4 text-center text-black">
+            <div class="flex gap-4 text-center text-black mt-4">
                 <div>
                     <h2 class="font-serif">起床時間</h2>
                     <p><%= l schedule.get_up_time %></p>

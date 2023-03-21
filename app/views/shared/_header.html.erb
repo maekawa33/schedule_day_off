@@ -1,14 +1,25 @@
 <header>
     <div class="navbar bg-primary text-white h-20">
         <div class="flex-1">
-            <%= link_to "休日スケジュール", schedules_path, {class:"btn btn-ghost normal-case text-xl"} %>
+            <%= link_to "休日スケジュール", top_path, {class:"btn btn-ghost normal-case text-xl"} %>
         </div>
-        <div class="flex-none">
+        <div class="hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
+            <li><%= link_to "みんなのスケジュール", schedules_path, {class: "btn btn-secondary mr-2"} %></li>
             <li><%= link_to "月間ランキング", rank_schedules_path, {class: "btn btn-secondary mr-2"} %></li>
             <li><%= link_to "マイページ", user_path(current_user), {class: "btn btn-secondary mr-2"} %></li>
             <li><%= link_to "ログアウト", logout_path, {class: "btn btn-secondary mr-2", method: :delete} %></li>
             <li><%= link_to "スケジュール作成", new_schedule_path, {class: "btn btn-accent"} %></li>
+            </ul>
+        </div>
+        <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn-secondary m-1 lg:hidden"><%= icon(name: "bars")%></label>
+            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-64 gap-2">
+                <li><%= link_to "みんなのスケジュール", schedules_path, {class: "btn btn-secondary w-4/5 mx-auto"} %></li>
+                <li><%= link_to "月間ランキング", rank_schedules_path, {class: "btn btn-secondary w-4/5 mx-auto"} %></li>
+            <li><%= link_to "マイページ", user_path(current_user), {class: "btn btn-secondary w-4/5 mx-auto"} %></li>
+            <li><%= link_to "ログアウト", logout_path, {class: "btn btn-secondary w-4/5 mx-auto", method: :delete} %></li>
+            <li><%= link_to "スケジュール作成", new_schedule_path, {class: "btn btn-accent w-4/5 mx-auto"} %></li>
             </ul>
         </div>
     </div>

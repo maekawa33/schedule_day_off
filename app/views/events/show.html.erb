@@ -2,37 +2,42 @@
     <%= turbo_frame_tag dom_id(@event, :edit) do %>
         <div class="container mx-auto my-8 text-black border-2 border-secondary shadow-xl  bg-secondary-content rounded-lg">
             <div>
-                <div class="p-2 flex relative">
-                <% if current_user&.own?(@event.schedule) %>
-                    <%= link_to schedule_event_path(@event.schedule,@event), data: { turbo_method: :delete } do %>
-                         <%= icon(name: "destroy") %>
+                <div class="p-2 flex relative gap-4">
+                    <% if current_user&.own?(@event.schedule) %>
+                        <%= link_to schedule_event_path(@event.schedule,@event), data: { turbo_method: :delete } do %>
+                            <%= icon(name: "destroy") %>
+                        <% end %>
+                        <%= link_to edit_schedule_event_path(@event.schedule,@event) do %>
+                            <%= icon(name: "edit") %>
+                        <% end %>
                     <% end %>
-                    <%= link_to edit_schedule_event_path(@event.schedule,@event) do %>
-                         <%= icon(name: "edit") %>
-                    <% end %>
-                <% end %>
                     <%= link_to schedule_path(@event.schedule),class: "absolute right-0 p-2" ,data: { turbo_frame: dom_id(@event, :show) }  do %>
-                         <%= icon(name: "return") %>
+                        <%= icon(name: "return") %>
                     <% end %>
                 </div>
-                <div>
-                    <% if @event.image.file.present? %>
-                            <%= image_tag @event.image.url(:index), class: "mx-auto mt-4 border-2 border-secondary shadow-xl bg-white  rounded-lg" %>
-                    <% end %>
+                <% if @event.image.file.present? %>
+                    <%= image_tag @event.image.url(:index), class: "md:hidden mx-auto mt-4 border-2 border-secondary shadow-xl bg-white  rounded-lg " %>
+                <% end %>
+                <div class="flex justify-center">
+                    <div>
+                        <% if @event.image.file.present? %>
+                                <%= image_tag @event.image.url(:index), class: "hidden md:flex mx-auto mt-4 border-2 border-secondary shadow-xl bg-white  rounded-lg " %>
+                        <% end %>
+                    </div>
+                    <div class="flex flex-col gap-4 p-4 mt-6">
+                        <div class="flex flex-col">
+                            <h2 class="text-xl font-sans mt-2"><%= l @event.start_time %> ~ <%= l @event.end_time %></h2>
+                            <h2 class="text-3xl font-sans ml-6"><%= @event.event_title %></h2>
+                        </div>
+                        <div class="flex justify-end gap-6">
+                            <%= icon(name: "money") %>
+                            <h2 class="text-xl font-sans"><%= @event.price ? @event.price : "000" %>円</h2>
+                            <%= icon(name: "store") %>
+                            <h2 class="text-xl font-sans"><%= @event.store.blank? ?  "なし" : @event.store %></h2>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-col gap-4 p-4">
-                    <div class="flex">
-                        <h2 class="text-2xl font-sans"><%= l @event.start_time %> ~ <%= l @event.end_time %></h2>
-                        <h2 class="text-3xl font-sans ml-6"><%= @event.event_title %></h2>
-                    </div>
-                    <div class="flex">
-                         <%= icon(name: "money") %>
-                        <h2 class="text-2xl font-sans"><%= @event.price ? @event.price : "000" %>円</h2>
-                    </div>
-                    <div class="flex">
-                        <%= icon(name: "store") %>
-                        <h2 class="text-2xl font-sans"><%= @event.store.blank? ?  "なし" : @event.store %></h2>
-                    </div>
+                <div class="flex flex-col items-center">
                     <div class="w-4/5 border border-secondary text-center my-4"></div>
                     <p class="text-xl font-sans ml-2"><%= @event.comment %></p>
                 </div>

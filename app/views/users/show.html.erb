@@ -1,5 +1,5 @@
-<div class="bg-primary-content" data-controller="user-show-tab">
-    <% if current_user.role == "general" %>
+<div class="bg-base-200 min-h-screen" data-controller="user-show-tab">
+    <% if current_user&.role == "general" %>
         <% if current_user&.mine?(@user) %>
             <div class=" flex justify-center p-2 ml-40">
                 <%= link_to "ユーザーの編集", edit_user_path(@user), class:"btn btn-primary mr-2 text-white" %>
@@ -27,7 +27,7 @@
                     <h1 class="text-2xl font-bold my-20"><%= @user.name %>はスケジュールを作成していません</h1>
                 </div>
             <% else %>
-                <div class="flex flex-wrap gap-4 ">
+                <div class="flex flex-wrap gap-4 justify-center">
                     <% @schedules.each do |schedule| %>
                         <%= render 'schedules/schedule', schedule: schedule %>
                     <% end %>
@@ -45,7 +45,7 @@
                     <h1 class="text-2xl font-bold my-20"><%= @user.name %>はいいねをしていません</h1>
                 </div>
             <% else %>
-                <div class="flex flex-wrap gap-4  ">
+                <div class="flex flex-wrap gap-4  justify-center">
                     <% @favorite_schedules.each do |schedule| %>
                         <%= render 'schedules/schedule', schedule: schedule %>
                     <% end %>
