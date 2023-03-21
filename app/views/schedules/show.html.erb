@@ -11,11 +11,6 @@
                     </div>
                 <% end %>
             </div>
-            <div class="mr-2 ml-1">
-                <%= link_to :back, class: "absolute right-0 p-2" do %>
-                    <%= icon(name: "return") %>
-                <% end %>
-            </div>
         </div>
         <%= turbo_frame_tag dom_id(@schedule, :swiper) do %>
             <%= render 'swiper', size: "show", schedule: @schedule %>
