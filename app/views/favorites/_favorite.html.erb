@@ -1,10 +1,8 @@
 <div class="<%= dom_id(schedule, :favorite) %>">
-  <div class="mt-2">
-    <div class="flex justify-end mr-2 my-2 gap-2">
+    <div class="flex gap-2">
       <%= link_to schedule_favorites_path(schedule), data: { turbo_method: :post } do %>
         <%= icon(name: "favorite") %>
       <% end %>
       <%= schedule.favorites.count %>
     </div>
-  </div>
 </div>

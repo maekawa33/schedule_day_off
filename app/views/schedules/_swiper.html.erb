@@ -10,7 +10,7 @@
     <% end %>
     <% if event_images_count == 0 %>
         <div>
-            <%= image_tag 'top_image.png', class: "mx-auto #{size}-swiper" %>
+            <%= image_tag "#{ size == "show" ? "logo_show.png" : "logo_index.png"}", class: "mx-auto" %>
         </div>
     <% end %>
     <% if size == "show" %>

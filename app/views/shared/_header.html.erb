@@ -1,7 +1,9 @@
 <header>
     <div class="navbar bg-primary text-white h-20">
         <div class="flex-1">
-            <%= link_to "休日スケジュール", top_path, {class:"btn btn-ghost normal-case text-xl"} %>
+            <%= link_to top_path do%>
+                <%= image_tag 'logo_header.png', class: 'w-20 p-2' %>
+            <% end %>
         </div>
         <div class="hidden lg:flex">
             <ul class="menu menu-horizontal px-1">

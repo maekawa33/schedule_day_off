@@ -11,11 +11,6 @@
                     </div>
                 <% end %>
             </div>
-            <div class="mr-2 ml-1">
-                <%= link_to :back, class: "absolute right-0 p-2" do %>
-                    <%= icon(name: "return") %>
-                <% end %>
-            </div>
         </div>
         <%= turbo_frame_tag dom_id(@schedule, :swiper) do %>
             <%= render 'swiper', size: "show", schedule: @schedule %>
@@ -90,6 +85,11 @@
             <%= render 'schedule_events', schedule: @schedule, events: @events %>
         <% end %>
         <div class="divider mt-8">就寝時間  <%= l @schedule.sleep_time %></div>
-        <%= render 'favorites/favorite_btn', schedule: @schedule %>
+        <div class="flex justify-end gap-4 p-2">
+            <%=  link_to "https://twitter.com/share?url=https://schedule-day-off.herokuapp.com/schedules/#{@schedule.id}&text=#{@schedule.user.name}さんが休日スケジュールを作成しました。%0a%0a「#{@schedule.schedule_title}」%0a%0a", target: '_blank' do  %>
+                <%= icon(name: "twitter") %>
+            <% end %>
+            <%= render 'favorites/favorite_btn', schedule: @schedule %>
+        </div>
     </div>
 </div>
