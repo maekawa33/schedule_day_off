@@ -1,4 +1,30 @@
 module ApplicationHelper
+  def default_meta_tags
+    {
+      site: '休日スケジュール',
+      title: '休日スケジュールの投稿・共有サービス',
+      reverse: true,
+      charset: 'utf-8',
+      description: '休日スケジュールを使えば、自分の休日を投稿・共有できます',
+      keywords: '休日、休日スケジュール',
+      canonical: request.original_url,
+      separator: '|',
+      og: {
+        site_name: :site,
+        title: :title,
+        description: :description,
+        type: 'website',
+        url: request.original_url,
+        image: image_url('ogp.png'), 
+        local: 'ja-JP'
+      },
+      twitter: {
+        card: 'summary_large_image', 
+        site: '@ScheduleDayOff', 
+        image: image_url('ogp.png') 
+      }
+    }
+  end
   def icon(name:)
     if name == 'return'
       tag.svg(xmlns: 'http://www.w3.org/2000/svg', class: 'w-8 h-8', viewBox: '0 0 512 512') do |tag|
