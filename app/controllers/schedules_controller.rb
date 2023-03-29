@@ -60,7 +60,7 @@ class SchedulesController < ApplicationController
   end
 
   def rank
-    favorite_schedule_ids = Favorite.where(created_at: Time.current.all_month).group(:schedule_id).order('count(schedule_id) desc').pluck(:schedule_id)
+    favorite_schedule_ids = Favorite.month_schedules.count_desc.pluck(:schedule_id)
     @month_schedule_favorite_ranks = Schedule.includes(%i[user events]).find(favorite_schedule_ids)
   end
 
