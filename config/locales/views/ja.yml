@@ -3,6 +3,7 @@ ja:
     login: 'ログイン'
     signup: '登録'
     logout: 'ログアウト'
+    password_reset: 'パスワードリセット'
     message:
       require_login: 'ログインしてください'
       not_authorized: "権限がありません"
