@@ -27,5 +27,7 @@ Style/AsciiComments: # 日本語でのコメント記述
   Enabled: false
 Metrics/MethodLength: #メソッド文字数
   Max: 20
-
-
+Metrics/AbcSize: #abcサイズ
+  Max: 25
+Layout/LineLength: #一行あたりの文字数
+  Max: 125
