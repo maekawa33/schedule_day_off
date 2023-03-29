@@ -15,16 +15,17 @@ module ApplicationHelper
         description: :description,
         type: 'website',
         url: request.original_url,
-        image: image_url('ogp.png'), 
+        image: image_url('ogp.png'),
         local: 'ja-JP'
       },
       twitter: {
-        card: 'summary_large_image', 
-        site: '@ScheduleDayOff', 
-        image: image_url('ogp.png') 
+        card: 'summary_large_image',
+        site: '@ScheduleDayOff',
+        image: image_url('ogp.png')
       }
     }
   end
+
   def icon(name:)
     if name == 'return'
       tag.svg(xmlns: 'http://www.w3.org/2000/svg', class: 'w-8 h-8', viewBox: '0 0 512 512') do |tag|

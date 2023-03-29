@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_schedule, only: [:new, :create, :update]
+  before_action :set_event, only: %i[show edit update destroy]
+  before_action :set_schedule, only: %i[new create update]
   def show; end
 
   def new
@@ -14,7 +14,6 @@ class EventsController < ApplicationController
     if @event.save
       @events = @schedule.sort_events
     else
-      flash.now[:alert] = 'イベントの作成に失敗しました'
       render :new, status: :unprocessable_entity
     end
   end
@@ -23,14 +22,13 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       @events = @schedule.sort_events
     else
-      flash.now[:alert] = 'イベントの更新に失敗しました'
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @event.destroy
-    redirect_to schedule_path(@event.schedule), notice: "イベント「#{@event.event_title}」を削除しました"
+    redirect_to schedule_path(@event.schedule)
   end
 
   private

@@ -3,12 +3,12 @@ class UsersController < ApplicationController
   authorize_resource only: %i[show edit update]
   def show
     @schedules = Schedule.includes(:user, :events)
-                     .where(user_id: params[:id])
-                     .page(params[:user_page])
-                     .per(9)
-    @favorite_schedules = Schedule.joins(:favorites).includes([:user, :events])
-                               .where(favorites: { user_id: params[:id]})
-                               .page(params[:favorite_page]).per(9)
+                         .where(user_id: params[:id])
+                         .page(params[:user_page])
+                         .per(9)
+    @favorite_schedules = Schedule.joins(:favorites).includes(%i[user events])
+                                  .where(favorites: { user_id: params[:id] })
+                                  .page(params[:favorite_page]).per(9)
   end
 
   def new
@@ -25,25 +25,25 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      redirect_to schedules_path, notice: "ユーザー「#{@user.name}」を登録しました"
+      redirect_to schedules_path, success: t('.success', name: @user.name)
     else
-      flash.now[:alert] = 'ユーザーの作成に失敗しました'
+      flash.now[:error] = t('.fail')
       render :register_mail, status: :unprocessable_entity
     end
   end
 
   def update
     if @user.update(user_params)
-      redirect_to user_url(@user), notice: "ユーザー「#{@user.name}」を更新しました"
+      redirect_to user_url(@user), success: t('.success', name: @user.name)
     else
-      flash.now[:alert] = 'ユーザーの更新に失敗しました'
+      flash.now[:error] =  t('.fail')
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: "ユーザー「#{@user.name}」を削除しました"
+    redirect_to users_url, success: t('.success', name: @user.name)
   end
 
   private

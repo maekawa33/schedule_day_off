@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
+  add_flash_types :success, :error
   rescue_from CanCan::AccessDenied do |_exception|
-    redirect_to main_app.root_path, alert: '画面を閲覧する権限がありません。'
+    redirect_to main_app.root_path, error: t('defaults.message.not_authorized')
   end
 
   private
 
   def not_authenticated
-    redirect_to main_app.login_path
+    redirect_to main_app.login_path, error: t('defaults.message.not_authorized')
   end
 end

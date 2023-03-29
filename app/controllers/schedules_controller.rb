@@ -1,6 +1,6 @@
 class SchedulesController < ApplicationController
   authorize_resource
-  before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :set_schedule, only: %i[show edit update destroy]
   def index
     fix_params = params[:q]
     if fix_params
@@ -20,7 +20,8 @@ class SchedulesController < ApplicationController
     else
       @q = Schedule.ransack(params[:q])
     end
-    @schedules = @q.result(distinct: true).includes([:user, :events]).order('created_at desc').page(params[:page]).per(20)
+    @schedules = @q.result(distinct: true).includes(%i[user
+                                                       events]).order('created_at desc').page(params[:page]).per(20)
   end
 
   def show
@@ -37,30 +38,30 @@ class SchedulesController < ApplicationController
   def create
     @schedule = current_user.schedules.new(schedule_params)
     if @schedule.save
-      redirect_to schedule_path(@schedule), notice: "スケジュール「#{@schedule.schedule_title}」を作成しました"
+      redirect_to schedule_path(@schedule), success: t('.success', title: @schedule.schedule_title)
     else
-      flash.now[:alert] = 'スケジュールの作成に失敗しました'
+      flash.now[:error] = t('.fail')
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @schedule.update(schedule_params)
-      redirect_to schedule_path(@schedule), notice: "スケジュール「#{@schedule.schedule_title}」を更新しました"
+      redirect_to schedule_path(@schedule), success: t('.success', title: @schedule.schedule_title)
     else
-      flash.now[:alert] = 'スケジュールの更新に失敗しました'
+      flash.now[:error] = t('.fail', title: @schedule.schedule_title)
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @schedule.destroy
-    redirect_to schedules_path, notice: "スケジュール「#{@schedule.schedule_title}」を削除しました"
+    redirect_to schedules_path, success: t('.success', title: @schedule.schedule_title)
   end
 
   def rank
     favorite_schedule_ids = Favorite.where(created_at: Time.current.all_month).group(:schedule_id).order('count(schedule_id) desc').pluck(:schedule_id)
-    @month_schedule_favorite_ranks = Schedule.includes([:user, :events]).find(favorite_schedule_ids)
+    @month_schedule_favorite_ranks = Schedule.includes(%i[user events]).find(favorite_schedule_ids)
   end
 
   private

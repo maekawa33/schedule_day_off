@@ -12,13 +12,13 @@ class GoogleLoginApiController < ApplicationController
 
       if user.save
         auto_login(user)
-        redirect_to schedules_path, notice: "#{user.name}でログインに成功しました"
+        redirect_to schedules_path, success: t('.success', name: user.name)
       else
-        redirect_to new_user_path, alert: 'ログインに失敗しました'
+        redirect_to new_user_path, error: t('.fail')
       end
 
     else
-      redirect_to new_user_path, alert: 'ログインに失敗しました'
+      redirect_to new_user_path, error: t('.fail')
     end
   end
 
@@ -26,7 +26,7 @@ class GoogleLoginApiController < ApplicationController
 
   def verify_g_csrf_token
     if cookies['g_csrf_token'].blank? || params[:g_csrf_token].blank? || cookies['g_csrf_token'] != params[:g_csrf_token]
-      redirect_to root_path, notice: '不正なアクセスです'
+      redirect_to root_path, error: t('defaults.message.not_authorized')
     end
   end
 end
