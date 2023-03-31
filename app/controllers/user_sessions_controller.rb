@@ -6,9 +6,9 @@ class UserSessionsController < ApplicationController
   def create
     @user = login(params[:email], params[:password])
     if @user
-      redirect_back_or_to schedules_path, notice: "#{@user.name}でログインに成功しました"
+      redirect_back_or_to schedules_path, success: t('.success', name: @user.name)
     else
-      flash.now[:alert] = 'ログインに失敗しました'
+      flash.now[:error] = t('.fail')
       render :login_mail, status: :unprocessable_entity
     end
   end
@@ -22,11 +22,11 @@ class UserSessionsController < ApplicationController
       password_confirmation: 'password'
     )
     auto_login(@guest_user)
-    redirect_to schedules_path, success: 'ゲストとしてログインしました'
+    redirect_to schedules_path, success: t('.success')
   end
 
   def destroy
     logout
-    redirect_to new_user_path, notice: 'ログアウトに成功しました'
+    redirect_to new_user_path, success: t('.success')
   end
 end

@@ -3,14 +3,9 @@ ja:
     login: 'ログイン'
     signup: '登録'
     logout: 'ログアウト'
+    password_reset: 'パスワードリセット'
     message:
       require_login: 'ログインしてください'
-      created: "%{item}を作成しました"
-      not_created: "%{item}を作成できませんでした"
-      updated: "%{item}を更新しました"
-      not_updated: "%{item}を更新できませんでした"
-      delete_confirm: "削除しますか？"
-      deleted: "%{item}を削除しました"
       not_authorized: "権限がありません"
   time:
     formats:
@@ -25,14 +20,44 @@ ja:
   users:
     new:
       title: '会員登録'
+    create:
+      success: "ユーザー「%{name}」を作成しました"
+      fail: 'ユーザーの作成に失敗しました'
+    update:
+      success: "ユーザー「%{name}」を更新しました"
+      fail: "ユーザー「%{name}」の更新に失敗しました"
+    destroy:
+      success: "ユーザー「%{name}」を削除しました"
   user_sessions:
     new:
       title: 'ログイン'
     create:
-      success: 'ログインしました'
+      success: "%{name}でログインに成功しました"
+      fail: 'ログインに失敗しました'
+    guest_login:
+      success: 'ゲストでログインに成功しました'
       fail: 'ログインに失敗しました'
     destroy:
       success: 'ログアウトしました'
+  google_login_api:
+    callback:
+      success: "%{name}でログインに成功しました"
+      fail: 'ログインに失敗しました'
+  password_resets:
+    create:
+      success: 'パスワードリセット手順を送信しました'
+    update:
+      success: 'パスワードを変更しました'
+      fail: 'パスワードの変更に失敗しました'
+  schedules:
+    create:
+      success: "スケジュール「%{title}」を作成しました"
+      fail: 'スケジュールの作成に失敗しました'
+    update:
+      success: "スケジュール「%{title}」を更新しました"
+      fail: "スケジュール「%{title}」の更新に失敗しました"
+    destroy:
+      success: "スケジュール「%{title}」を削除しました"
   views:
     pagination:
       first: '最初'
