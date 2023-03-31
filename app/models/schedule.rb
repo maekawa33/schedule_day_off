@@ -15,7 +15,7 @@ class Schedule < ApplicationRecord
     next_day = []
     events.order(:start_time).each do |event|
       if event.id
-        if after_get_up_hour? || after_get_up_minute?
+        if after_get_up_hour?(event) || after_get_up_minute?(event)
           today.push(event)
         else
           next_day.push(event)
@@ -36,10 +36,10 @@ end
 
 private
 
-def after_get_up_hour?
+def after_get_up_hour?(event)
   event.start_time.hour > get_up_time.hour
 end
 
-def after_get_up_minute?
+def after_get_up_minute?(event)
   event.start_time.hour == get_up_time.hour && event.start_time.min >= get_up_time.min
 end
