@@ -1,6 +1,6 @@
-<div class="container border-2 border-primary rounded-lg flex-none w-72 bg-primary-content shadow-xl hover:duration-300 hover:scale-105">
+<div class="container p-2 border-2 border-primary rounded-lg w-64 bg-primary-content shadow-xl hover:duration-300 hover:scale-105">
     <%= link_to schedule_path(schedule) do %>
-        <div class="card-body items-center text-center">
+
             <div class="flex">
                 <div class="avatar">
                     <div class="w-10 rounded-full border-2 border-primary shadow-xl bg-white">
@@ -9,23 +9,29 @@
                 </div>
                 <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>
             </div>
-            <h1 class="card-title text-2xl font-bold mt-2"><%= schedule.schedule_title %></h1>
-                <%= render 'schedules/swiper', size: "index", schedule: schedule %>
-            <div class="flex gap-4 text-center text-black mt-4">
-                <div>
-                    <h2 class="font-serif">起床時間</h2>
-                    <p><%= l schedule.get_up_time %></p>
+
+            <div class="mx-auto">
+                <div class="my-2 text-center">
+                    <h1 class=" text-2xl font-bold text-center"><%= schedule.schedule_title %></h1>
                 </div>
-                <div>
-                    <h2 class="font-serif">就寝時間</h2>
-                    <p><%= l schedule.sleep_time %></p>
+                <%= render 'schedules/swiper_index', schedule: schedule %>
                 </div>
-                <div>
-                    <h2 class="font-serif">人数</h2>
-                    <p><%= schedule.assumed_number_people_i18n %></p>
+
+            <div class="flex flex-col gap-2 text-base md:text-lg my-4">
+                <div class="flex">
+                    <h2 class="font-serif text-black">起床時間</h2>
+                    <p class="ml-4 text-secondary"><%= l schedule.get_up_time %></p>
                 </div>
+                <div class="flex">
+                    <h2 class="font-serif text-black">就寝時間</h2>
+                    <p class="ml-4 text-secondary"><%= l schedule.sleep_time %></p>
+                </div>
+                <div class="flex">
+                    <h2 class="font-serif text-black">人数</h2>
+                    <p class="ml-14 text-secondary"><%= schedule.assumed_number_people_i18n %></p>
             </div>
         </div>
+
     <% end %>
     <div class="flex justify-end gap-4 p-2">
         <%=  link_to "https://twitter.com/share?url=https://schedule-day-off.herokuapp.com/schedules/#{schedule.id}&text=#{schedule.user.name}さんが休日スケジュールを作成しました。%0a%0a「#{schedule.schedule_title}」%0a%0a", target: '_blank' do  %>

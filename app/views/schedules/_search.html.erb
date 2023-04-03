@@ -9,27 +9,27 @@
                 <%= f.label :get_up_time, tabindex: "0", class: "btn btn-outline btn-primary bg-white rounded-full m-1" %>
                 <div tabindex="0" class="dropdown-content menu p-2 shadow bg-primary rounded-box">
                     <div class="flex">
-                        <%= f.time_select :get_up_time_gteq, { prompt: true, minute_step: 15},class: "text-xl" %>
+                        <%= f.time_field :get_up_time_gteq, class: "text-base md:text-xl" %>
                         <span>〜</span>
-                        <%= f.time_select :get_up_time_lteq, { prompt: true, minute_step: 15},class: "text-xl" %>
+                        <%= f.time_field :get_up_time_lteq, class: "text-base md:text-xl" %>
                     </div>
                 </div>
             </div>
-            <div class="dropdown">
+            <div class="dropdown dropdown-end">
                 <%= f.label :sleep_time, tabindex: "0", class: "btn btn-outline btn-primary bg-white rounded-full m-1" %>
                 <div tabindex="0" class="dropdown-content menu p-2 shadow bg-primary rounded-box">
                     <div class="flex">
-                    <%= f.time_select :sleep_time_gteq, { prompt: true, minute_step: 15},class: "text-xl" %>
+                    <%= f.time_field :sleep_time_gteq, class: "text-base md:text-xl" %>
                     <span>〜</span>
-                    <%= f.time_select :sleep_time_lteq, { prompt: true, minute_step: 15},class: "text-xl" %>
+                    <%= f.time_field :sleep_time_lteq, class: "text-base md:text-xl" %>
                     </div>
                 </div>
             </div>
-            <div class="dropdown">
+            <div class="dropdown dropdown-end">
                 <%= f.label :assumed_number_people, tabindex: "0", class: "btn btn-outline btn-primary bg-white rounded-full m-1" %>
                 <div tabindex="0" class="dropdown-content menu p-2 shadow bg-primary rounded-box rounded-full">
                     <div class="flex">
-                        <%= f.select :assumed_number_people_eq, Schedule.assumed_number_people.keys.map.with_index { |k, i| [t("enums.schedule.assumed_number_people.#{k}"), i]}, { include_blank: "人数" }, { class: "text-xl"} %>
+                        <%= f.select :assumed_number_people_eq, Schedule.assumed_number_people.keys.map.with_index { |k, i| [t("enums.schedule.assumed_number_people.#{k}"), i]}, { include_blank: "人数" }, { class: "text-bese md:text-xl"} %>
                     </div>
                 </div>
             </div>

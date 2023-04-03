@@ -1,7 +1,7 @@
 <%= turbo_stream.update dom_id(Event.new,dom_id(@schedule)), "" %>
 
 <%= turbo_stream.update dom_id(@schedule, :swiper) do%>
-    <%= render 'schedules/swiper', size: "show", schedule: @schedule%>
+    <%= render 'schedules/swiper_show', schedule: @schedule%>
 <% end %>
 
 <%= turbo_stream.update dom_id(@schedule) do%>
