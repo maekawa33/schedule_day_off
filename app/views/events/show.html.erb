@@ -2,44 +2,60 @@
     <%= turbo_frame_tag dom_id(@event, :edit) do %>
         <div class="container mx-auto my-8 text-black border-2 border-secondary shadow-xl  bg-secondary-content rounded-lg">
             <div>
-                <div class="p-2 flex relative gap-4">
+                <div class="flex justify-between p-2">
+                    <div>
+                        <%= link_to schedule_path(@event.schedule),data: { turbo_frame: dom_id(@event, :show) }  do %>
+                            <%= icon(name: "return") %>
+                        <% end %>
+                    </div>
                     <% if current_user&.own?(@event.schedule) %>
+                        <div class="flex gap-2">
                         <%= link_to schedule_event_path(@event.schedule,@event), data: { turbo_method: :delete } do %>
                             <%= icon(name: "destroy") %>
                         <% end %>
                         <%= link_to edit_schedule_event_path(@event.schedule,@event) do %>
                             <%= icon(name: "edit") %>
                         <% end %>
-                    <% end %>
-                    <%= link_to schedule_path(@event.schedule),class: "absolute right-0 p-2" ,data: { turbo_frame: dom_id(@event, :show) }  do %>
-                        <%= icon(name: "return") %>
+                        </div>
                     <% end %>
                 </div>
-                <% if @event.image.file.present? %>
-                    <%= image_tag @event.image.url(:index), class: "md:hidden mx-auto mt-4 border-2 border-secondary shadow-xl bg-white  rounded-lg " %>
-                <% end %>
-                <div class="flex justify-center">
                     <div>
-                        <% if @event.image.file.present? %>
-                                <%= image_tag @event.image.url(:index), class: "hidden md:flex mx-auto mt-4 border-2 border-secondary shadow-xl bg-white  rounded-lg " %>
-                        <% end %>
+
+                <div class="flex border-y border-secondary p-2">
+                    <div>
+                        <h1 class="text-base sm:text-xl">イベント</h1>
+                        <div class="sm:flex">
+                            <h2 class="text-base sm:text-xl font-sans"><%= l @event.start_time %></h2>
+                            <h2 class="text-base sm:text-xl font-sans">~ <%= l @event.end_time %></h2>
                     </div>
-                    <div class="flex flex-col gap-4 p-4 mt-6">
-                        <div class="flex flex-col">
-                            <h2 class="text-xl font-sans mt-2"><%= l @event.start_time %> ~ <%= l @event.end_time %></h2>
-                            <h2 class="text-3xl font-sans ml-6"><%= @event.event_title %></h2>
                         </div>
-                        <div class="flex justify-end gap-6">
-                            <%= icon(name: "money") %>
-                            <h2 class="text-xl font-sans"><%= @event.price ? @event.price : "000" %>円</h2>
-                            <%= icon(name: "store") %>
-                            <h2 class="text-xl font-sans"><%= @event.store.blank? ?  "なし" : @event.store %></h2>
+                    <div class="m-auto">
+                        <h2 class="text-base sm:text-xl font-sans"><%= @event.event_title %></h2>
                         </div>
                     </div>
+                <% if @event.price.present? %>
+                    <div class="border-b border-secondary p-2">
+                        <h1 class="text-base sm:text-xl">金額</h1>
+                        <h2 class="text-base sm:text-xl font-sans"><%= @event.price %>円</h2>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="w-4/5 border border-secondary text-center my-4"></div>
-                    <p class="text-xl font-sans ml-2"><%= @event.comment %></p>
+                <% end %>
+                <% if @event.store.present? %>
+                    <div class="border-b border-secondary p-2">
+                        <h1 class="text-base sm:text-xl">店舗</h1>
+                        <h2 class="text-base sm:text-xl font-sans"><%= @event.store %></h2>
+                    </div>
+                <% end %>
+                <% if @event.comment.present? %>
+                    <div class="border-b border-secondary p-2">
+                        <h1 class="text-base sm:text-xl">コメント</h1>
+                        <h2 class="text-base sm:text-xl font-sans"><%= @event.comment %></h2>
+                    </div>
+                <% end %>
+                <% if @event.image.file.present? %>
+                    <div class="bg-white mx-auto w-4/5 h-[100px] sm:h-[200px] md:h-[300px]">
+                        <%= image_tag @event.image.url(:index), class: "w-full h-full object-contain" %>
+                    </div>
+                <% end %>
                 </div>
             </div>
         </div>
