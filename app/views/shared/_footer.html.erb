@@ -1,10 +1,10 @@
-<footer>
-    <div class="navbar bg-primary text-white flex-row-reverse h-20">
-        <div class="flex-none">
-        <ul class="menu menu-horizontal px-1">
-            <li><%= link_to "利用規約", terms_of_service_path %></li>
-            <li><%= link_to "プライバシーポリシー", privacy_policy_path %></li>
-        </ul>
-        </div>
+<footer class="footer footer-center p-10 bg-primary text-white rounded">
+    <div class="grid grid-flow-col gap-4">
+        <%= link_to t('defaults.terms'), terms_of_service_path, class: 'hover:underline hover:text-gray-600 hover:decoration-gray-600' %>
+        <%= link_to t('defaults.privacy'), privacy_policy_path, class: 'hover:underline hover:text-gray-600 hover:decoration-gray-600' %>
+        <%= link_to t('defaults.contact'), 'https://forms.gle/DwmK3ZE591cK9jdt5', target: :_blank, rel: 'noopener noreferrer', class: 'hover:underline hover:text-gray-600 hover:decoration-gray-600' %>
+    </div> 
+    <div>
+        <p>© 2023 休日スケジュール - Schedule Day Off -</p>
     </div>
 </footer>

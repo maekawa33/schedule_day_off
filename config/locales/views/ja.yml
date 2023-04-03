@@ -1,12 +1,19 @@
 ja:
   defaults:
     login: 'ログイン'
-    signup: '登録'
+    signup: 'ユーザー登録'
     logout: 'ログアウト'
     password_reset: 'パスワードリセット'
     message:
       require_login: 'ログインしてください'
       not_authorized: "権限がありません"
+    terms: "利用規約"
+    privacy: "プライバシーポリシー"
+    contact: "お問い合わせ"
+    schedules: "みんなのスケジュール"
+    month_rank: "月間ランキング"
+    my_page: "マイページ"
+    create: "スケジュール作成"
   time:
     formats:
       default: "%H:%M"
