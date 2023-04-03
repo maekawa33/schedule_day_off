@@ -1,0 +1,21 @@
+<div data-controller="slideshow" >
+    <% event_images_count = 0 %>
+    <% schedule.events.each do |event| %>
+        <% if event.image.file.present? %>
+            <div data-slideshow-target="slide" class="border-2 border-primary shadow-xl bg-white mx-auto w-4/5 h-[200px] sm:h-[300px] md:h-[400px]">
+                <%= image_tag event.image.url(:show), class: "w-full h-full object-contain" %>
+            </div>
+            <% event_images_count += 1 %>
+        <% end %>
+    <% end %>
+    <% if event_images_count == 0 %>
+        <div class="border-2 border-primary shadow-xl bg-white mx-auto w-4/5 h-[200px] sm:h-[300px] md:h-[400px]">
+            <%= image_tag "logo_show.png", class: "w-full h-full object-contain" %>
+        </div>
+    <% else %>
+        <div class="pt-4 text-center text-3xl">
+            <button data-action="slideshow#previous"> ← </button>
+            <button data-action="slideshow#next"> → </button>
+        </div>
+    <% end %>
+</div>
