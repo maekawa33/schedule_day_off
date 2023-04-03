@@ -74,6 +74,7 @@ gem 'googleauth'
 group :production do
   # Amazon S3を使用するためのパッケージ
   gem 'aws-sdk-s3', require: false
+  gem 'fog-aws'
 end
 
 group :development, :test do
