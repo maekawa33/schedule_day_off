@@ -15,7 +15,7 @@ ja:
       schedule/events:
         id: 'ID'
         start_time: '開始時間'
-        end_time: '終了時間'
+        end_time: '終了時間（任意）'
         event_title: 'タイトル'
         image: '画像'
         price: '価格'
@@ -25,7 +25,7 @@ ja:
       event:
         id: 'ID'
         start_time: '開始時間'
-        end_time: '終了時間'
+        end_time: '終了時間（任意）'
         event_title: 'タイトル'
         image: '画像'
         price: '価格'
