@@ -2,24 +2,7 @@ class SchedulesController < ApplicationController
   authorize_resource
   before_action :set_schedule, only: %i[show edit update destroy]
   def index
-    fix_params = params[:q]
-    if fix_params
-      if fix_params['get_up_time_gteq(4i)'].blank? || fix_params['get_up_time_gteq(5i)'].blank?
-        fix_params['get_up_time_gteq(1i)'], fix_params['get_up_time_gteq(2i)'], fix_params['get_up_time_gteq(3i)'] = nil
-      end
-      if fix_params['get_up_time_lteq(4i)'].blank? || fix_params['get_up_time_lteq(5i)'].blank?
-        fix_params['get_up_time_lteq(1i)'], fix_params['get_up_time_lteq(2i)'], fix_params['get_up_time_lteq(3i)'] = nil
-      end
-      if fix_params['sleep_time_gteq(4i)'].blank? || fix_params['sleep_time_gteq(5i)'].blank?
-        fix_params['sleep_time_gteq(1i)'], fix_params['sleep_time_gteq(2i)'], fix_params['sleep_time_gteq(3i)'] = nil
-      end
-      if fix_params['sleep_time_lteq(4i)'].blank? || fix_params['sleep_time_lteq(5i)'].blank?
-        fix_params['sleep_time_lteq(1i)'], fix_params['sleep_time_lteq(2i)'], fix_params['sleep_time_lteq(3i)'] = nil
-      end
-      @q = Schedule.ransack(fix_params)
-    else
-      @q = Schedule.ransack(params[:q])
-    end
+    @q = Schedule.ransack(params[:q])
     @schedules = @q.result(distinct: true).includes(%i[user
                                                        events]).order('created_at desc').page(params[:page]).per(20)
   end
