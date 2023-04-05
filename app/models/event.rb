@@ -4,23 +4,27 @@ class Event < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   validates :start_time, presence: true
-  validates :end_time, presence: true
   validates :event_title, presence: true, length: { maximum: 18 }
+  validate :start_time_sleep_validate
+  validate :end_time_sleep_validate, if: -> { end_time.present? }
 
-  validate :sleep_time_validate, unless: -> { start_time.blank? && end_time.blank? }
-  def sleep_time_validate
+  def start_time_sleep_validate
     schedule = Schedule.find(schedule_id)
+    errors.add(:base, '寝ている時間です') if sleep_time?(schedule, start_time)
+  end
 
-    if schedule.get_up_time < schedule.sleep_time
-      errors.add(:base, '寝ている時間です') unless schedule.get_up_time <= start_time && start_time <= schedule.sleep_time
-    elsif schedule.get_up_time > schedule.sleep_time
-      errors.add(:base, '寝ている時間です') if schedule.sleep_time <= start_time && start_time <= schedule.get_up_time
-    end
+  def end_time_sleep_validate
+    schedule = Schedule.find(schedule_id)
+    errors.add(:base, '寝ている時間です') if sleep_time?(schedule, end_time)
+  end
 
+  private
+
+  def sleep_time?(schedule, time)
     if schedule.get_up_time < schedule.sleep_time
-      errors.add(:base, '寝ている時間です') unless schedule.get_up_time <= end_time && end_time <= schedule.sleep_time
+      schedule.get_up_time >= time || time >= schedule.sleep_time
     elsif schedule.get_up_time > schedule.sleep_time
-      errors.add(:base, '寝ている時間です') if schedule.sleep_time <= end_time && end_time <= schedule.get_up_time
+      schedule.sleep_time <= time && time <= schedule.get_up_time
     end
   end
 end
