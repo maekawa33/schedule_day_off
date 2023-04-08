@@ -27,6 +27,11 @@ ja:
   users:
     new:
       title: '会員登録'
+      email: 'メールアドレスで登録'
+      guest: 'ゲストで登録'
+      have_account: 'アカウントをお持ちの方'
+    register_mail:
+      title: 'メールアドレス登録'
     create:
       success: "ユーザー「%{name}」を作成しました"
       fail: 'ユーザーの作成に失敗しました'
@@ -38,6 +43,12 @@ ja:
   user_sessions:
     new:
       title: 'ログイン'
+      email: 'メールアドレスでログイン'
+      guest: 'ゲストでログイン'
+      do_not_have_account: 'アカウントをお持ちでない'
+    login_mail:
+      title: 'メールアドレスでログイン'
+      foget_password: 'パスワードをお忘れの方はこちら'
     create:
       success: "%{name}でログインに成功しました"
       fail: 'ログインに失敗しました'
