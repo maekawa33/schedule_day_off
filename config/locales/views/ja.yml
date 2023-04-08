@@ -27,6 +27,9 @@ ja:
   users:
     new:
       title: '会員登録'
+      email: 'メールアドレスで登録'
+      guest: 'ゲストで登録'
+      have_account: 'アカウントをお持ちの方'
     create:
       success: "ユーザー「%{name}」を作成しました"
       fail: 'ユーザーの作成に失敗しました'
