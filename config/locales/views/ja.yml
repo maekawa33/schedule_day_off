@@ -41,6 +41,9 @@ ja:
   user_sessions:
     new:
       title: 'ログイン'
+      email: 'メールアドレスでログイン'
+      guest: 'ゲストでログイン'
+      do_not_have_account: 'アカウントをお持ちでない'
     create:
       success: "%{name}でログインに成功しました"
       fail: 'ログインに失敗しました'
