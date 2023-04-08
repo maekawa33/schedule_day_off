@@ -1,6 +1,6 @@
 <div class="bg-primary-content min-h-screen">
     <div class="container mx-auto pt-40">
-        <h1 class="text-3xl text-center my-4"><%= t('.title') %></h1>
+        <h1 class="text-xl sm:text-2xl md:text-3xl text-center font-bold"><%= t('.title') %></h1>
         <%= form_with(model: @user,class: "w-2/3 mx-auto space-y-4")  do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
             <div>

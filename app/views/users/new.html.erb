@@ -1,7 +1,7 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <div class="bg-primary-content min-h-screen pt-40 ">
   <div class="bg-white rounded-lg shadow-xl w-5/6 p-2 mx-auto ">
-    <h2 class="text-lg bold text-center my-4"><%=t('defaults.signup')%></h2>
+    <h2 class="text-lg font-bold text-center my-4"><%=t('defaults.signup')%></h2>
     <ul class="mx-auto text-center space-y-4">
       <li><%= link_to  t('.email'), register_mail_users_path ,{class: "btn btn-primary text-white w-5/6 "} %></li>
       <li><%= link_to  t('.guest'), guest_login_path, {data: { turbo_method: :post }, class: "btn btn-black text-white w-5/6"} %></li>
@@ -24,7 +24,7 @@
   </div> 
   <div class="divider w-5/6 mx-auto"></div>
   <div class="bg-white rounded-lg shadow-xl w-5/6 p-2 mx-auto text-center">
-      <h2 class="text-lg bold text-center my-4"><%= t('.have_account') %></h2>
+      <h2 class="text-lg font-bold text-center my-4"><%= t('.have_account') %></h2>
       <%= link_to  t('defaults.login'), login_path, {class: "btn btn-secondary w-5/6 text-white my-4"} %>
   </div>
 </div>
