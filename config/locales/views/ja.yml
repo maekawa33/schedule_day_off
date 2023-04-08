@@ -46,6 +46,9 @@ ja:
       email: 'メールアドレスでログイン'
       guest: 'ゲストでログイン'
       do_not_have_account: 'アカウントをお持ちでない'
+    login_mail:
+      title: 'メールアドレスでログイン'
+      foget_password: 'パスワードをお忘れの方はこちら'
     create:
       success: "%{name}でログインに成功しました"
       fail: 'ログインに失敗しました'
