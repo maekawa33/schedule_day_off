@@ -15,9 +15,6 @@ gem "jsbundling-rails"
 #CSS Bundler
 gem 'cssbundling-rails'
 
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem 'jbuilder'
-
 # Use Sass to process CSS
 gem "sassc-rails"
 
