@@ -15,9 +15,6 @@ gem "jsbundling-rails"
 #CSS Bundler
 gem 'cssbundling-rails'
 
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem 'jbuilder'
-
 # Use Sass to process CSS
 gem "sassc-rails"
 
@@ -77,7 +74,6 @@ gem 'googleauth'
 group :production do
   # Amazon S3を使用するためのパッケージ
   gem 'fog-aws'
-  gem 'aws-sdk-s3', require: false
 end
 
 group :development, :test do
