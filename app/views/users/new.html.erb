@@ -1,27 +1,18 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <div class="bg-primary-content min-h-screen pt-40 ">
   <div class="bg-white rounded-lg shadow-xl w-5/6 p-2 mx-auto ">
-    <h2 class="text-lg font-bold text-center my-4"><%=t('defaults.signup')%></h2>
+    <h2 class="text-lg font-bold text-center my-4"><%= t('defaults.signup') %></h2>
     <ul class="mx-auto text-center space-y-4">
       <li><%= link_to  t('.email'), register_mail_users_path ,{class: "btn btn-primary text-white w-5/6 "} %></li>
       <li><%= link_to  t('.guest'), guest_login_path, {data: { turbo_method: :post }, class: "btn btn-black text-white w-5/6"} %></li>
       <li>
-        <div id="g_id_onload"
-        data-client_id=<%=ENV['GOOGLE_CRIENT_ID']%>
-        data-login_uri="https://www.schedule-day-off.com/google_login_api/callback"
-        data-auto_prompt="false">
+        <div id="g_id_onload" data-client_id="<%= ENV['GOOGLE_CRIENT_ID'] %>" data-login_uri="https://www.schedule-day-off.com/google_login_api/callback" data-auto_prompt="false">
         </div>
-        <div class="g_id_signin w-5/6 mx-auto"
-        data-type="standard"
-        data-size="large"
-        data-theme="standard"
-        data-text="sign_up_with"
-        data-shape="pill"
-        data-logo_alignment="left">
+        <div class="g_id_signin w-5/6 mx-auto" data-type="standard" data-size="large" data-theme="standard" data-text="sign_up_with" data-shape="pill" data-logo_alignment="left">
         </div>
       </li>
     </ul>
-  </div> 
+  </div>
   <div class="divider w-5/6 mx-auto"></div>
   <div class="bg-white rounded-lg shadow-xl w-5/6 p-2 mx-auto text-center">
       <h2 class="text-lg font-bold text-center my-4"><%= t('.have_account') %></h2>
