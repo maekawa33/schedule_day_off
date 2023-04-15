@@ -6,13 +6,14 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    if user.role == 'admin'
+    case user.role
+    when 'admin'
       can :access, :rails_admin
       can :manage, :all
-    elsif user.role == 'general'
+    when 'general'
       can :manage, :all
       cannot :access, :rails_admin
-    elsif user.role == 'guest'
+    when 'guest'
       can :manage, :all
       cannot :access, :rails_admin
       cannot :update, User
