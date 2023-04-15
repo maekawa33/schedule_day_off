@@ -1,5 +1,7 @@
 {
     "solargraph.commandPath": "/Users/maekawa/.asdf/shims/solargraph",
+    "solargraph.bundlerPath": "/Users/maekawa/.asdf/shims/bundle",
+    "solargraph.diagnostics": true,
     "ruby.useBundler": true,
     "ruby.lint": {
         "rubocop": true
