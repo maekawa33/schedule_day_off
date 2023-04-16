@@ -1,9 +1,24 @@
-name: Greeting Workflow           # ワークフロー名
-on: [push]                        # トリガーとなる GitHub イベント
+name: Run erb_lint, rubocop
+
+on:
+  push:
+  pull_request:
 
 jobs:
-  job1:                           # ジョブ名
-    runs-on: ubuntu-latest        # ジョブの実行環境(runner)
-    steps:                        # ジョブのステップ
-      - name: Greeting
-        run: echo "Hello, world!"
+  rubocop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run rubocop
+        run: bundle exec rubocop
+
+			- name: Run erb_lint
+        run: bundle exec erblint --lint-all
