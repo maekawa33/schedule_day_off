@@ -1,14 +1,9 @@
-name: Linting
-
-on: [push]
+name: Greeting Workflow           # ワークフロー名
+on: [push]                        # トリガーとなる GitHub イベント
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-			- uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-		    with:
-		      bundler-cache: true
-      - name: Rubocop
-        run: bundle exec rubocop
+  job1:                           # ジョブ名
+    runs-on: ubuntu-latest        # ジョブの実行環境(runner)
+    steps:                        # ジョブのステップ
+      - name: Greeting
+        run: echo "Hello, world!"
