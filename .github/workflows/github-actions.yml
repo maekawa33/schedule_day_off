@@ -16,12 +16,12 @@ jobs:
         uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
         with:
           ruby-version: '3.1'
-          
+
       - name: Install dependencies
         run: bundle install
 
       - name: Run rubocop
-        run: bundle exec rubocop
+        run: rubocop
 
 			- name: Run erb_lint
-        run: bundle exec erblint --lint-all
+        run: erblint --lint-all
