@@ -1,12 +1,13 @@
 name: Run erb_lint, rubocop
 
-on: [pull_request]
+on:
+  push:
+  pull_request:
 
 jobs:
   rubocop:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
+    timeout-minutes: 10
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -16,8 +17,13 @@ jobs:
         with:
           bundler-cache: true
 
+			- name: Bundler and gem install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3 --path vendor/bundle
+
       - name: Run rubocop
-        run: bundle exec rubocop -parallel
+        run: bundle exec rubocop
 
 			- name: Run erb_lint
         run: bundle exec erblint --lint-all
