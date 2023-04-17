@@ -8,6 +8,10 @@ class Event < ApplicationRecord
   validate :start_time_sleep_validate
   validate :end_time_sleep_validate, if: -> { end_time.present? }
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[event_title comment]
+  end
+
   def start_time_sleep_validate
     schedule = Schedule.find(schedule_id)
     errors.add(:base, '寝ている時間です') if sleep_time?(schedule, start_time)
