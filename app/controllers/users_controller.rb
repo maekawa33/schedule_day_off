@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_url(@user), success: t('.success', name: @user.name)
     else
-      flash.now[:error] =  t('.fail')
+      flash.now[:error] = t('.fail')
       render :edit, status: :unprocessable_entity
     end
   end

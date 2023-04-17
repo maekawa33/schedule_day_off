@@ -9,6 +9,13 @@ class Schedule < ApplicationRecord
   validates :sleep_time, presence: true
 
   enum assumed_number_people: { one_person: 0, two_people: 1, three_people: 2, four_or_more_people: 3 }
+  def self.ransackable_associations(auth_object = nil)
+    ['events']
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[schedule_title get_up_time sleep_time assumed_number_people]
+  end
 
   def sort_events
     today = []
