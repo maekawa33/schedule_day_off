@@ -2,7 +2,7 @@ require: #追記した規約ファイル読込
   - rubocop-rails
   - rubocop-rspec
 AllCops:
-  TargetRubyVersion: 3.1 #Rubyバージョン指定
+  TargetRubyVersion: 3.1.0 #Rubyバージョン指定
   NewCops: enable  # バージョンが上がった際に追加されたCopを有効にする
   Exclude: # 検査除外とするディレクトリ・ファイルの指定
     - 'bin/**'
