@@ -12,3 +12,5 @@ jobs:
 
     - name: Print .rubocop.yml content
       run: cat ${{ github.workspace }}/.rubocop.yml
+      run: cat ${{ github.workspace }}/.Gemfile
+      run: cat ${{ github.workspace }}/.Gemfile.lock
