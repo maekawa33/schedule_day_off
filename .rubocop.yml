@@ -12,7 +12,7 @@ AllCops:
     - 'db/schema.rb'
     - 'db/seeds.rb'
     - 'Gemfile'
-    - 'vender/**/*'
+    - 'vendor/**/*'
     - 'db/**/*'
     - 'app/channels/**/*'
     - 'bin/**/*'
