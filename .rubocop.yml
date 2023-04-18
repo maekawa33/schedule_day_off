@@ -20,6 +20,7 @@ AllCops:
     - 'tmp/**/*'
     - 'log/**/*'
     - 'app/helpers/**/*'
+    - 'test/rdjson_formatter/**/*'
 Style/Documentation: # classの説明を1行目に記述 
   Enabled: false
 Style/FrozenStringLiteralComment: # 文字列リテラルについての警告
