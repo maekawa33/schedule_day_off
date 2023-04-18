@@ -13,4 +13,4 @@ jobs:
       with:
         bundler-cache: true
     - name: Print .rubocop.yml content
-      run: cat ${{ github.workspace }}/Gemfile
+      run: cat ${{ github.workspace }}/.rubocop.yml
