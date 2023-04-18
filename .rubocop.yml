@@ -35,3 +35,5 @@ Layout/LineLength: #一行あたりの文字数
   Max: 125
 Naming/PredicateName: #メソッド名設定
   Enabled: false
+Lint/UnusedMethodArgument: 
+  Enabled: false
