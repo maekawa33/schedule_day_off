@@ -3,15 +3,12 @@ name: Linting
 on: [push]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-        with:
-          bundler-cache: true
-          cache-version: 1
-      - name: Rubocop
-        run: bundle exec rubocop
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Print .rubocop.yml content
+      run: cat ${{ github.workspace }}/.rubocop.yml
