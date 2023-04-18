@@ -13,4 +13,4 @@ jobs:
       with:
         bundler-cache: true
     - name: Print .rubocop.yml content
-      run: which -a rubocop
+      run: bundle exec rubocop --config ${{ github.workspace }}/.rubocop.yml
