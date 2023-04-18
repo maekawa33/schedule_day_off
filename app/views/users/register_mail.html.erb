@@ -1,30 +1,30 @@
 <div class="bg-primary-content min-h-screen">
     <div class="container mx-auto pt-40">
         <h1 class="text-xl sm:text-2xl md:text-3xl text-center font-bold"><%= t('.title') %></h1>
-        <%= form_with(model: @user,class: "w-2/3 mx-auto space-y-4")  do |f| %>
+        <%= form_with(model: @user, class: 'w-2/3 mx-auto space-y-4')  do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
             <div>
-                <%= f.label :name, class: "label w-full" %>
-                <%= f.text_field :name, class: "input input-bordered input-primary w-full " %>
+                <%= f.label :name, class: 'label w-full' %>
+                <%= f.text_field :name, class: 'input input-bordered input-primary w-full ' %>
             </div>
             <div>
-                <%= f.label :email, class: "label" %>
-                <%= f.email_field :email, class: "input input-bordered input-primary w-full" %>
+                <%= f.label :email, class: 'label' %>
+                <%= f.email_field :email, class: 'input input-bordered input-primary w-full' %>
             </div>
             <div>
-                <%= f.label :avatar, class: "label" %>
+                <%= f.label :avatar, class: 'label' %>
                 <%= f.file_field :avatar %>
             </div>
             <div>
-                <%= f.label :password, class: "label" %>
-                <%= f.password_field :password, class: "input input-bordered input-primary w-full" %>
+                <%= f.label :password, class: 'label' %>
+                <%= f.password_field :password, class: 'input input-bordered input-primary w-full' %>
             </div>
             <div>
-                <%= f.label :password_confirmation, class: "label" %>
-                <%= f.password_field :password_confirmation, class: "input input-bordered input-primary w-full" %>
+                <%= f.label :password_confirmation, class: 'label' %>
+                <%= f.password_field :password_confirmation, class: 'input input-bordered input-primary w-full' %>
             </div>
             <div class="text-right">
-                <%= f.submit class: "btn btn-primary text-white" %>
+                <%= f.submit class: 'btn btn-primary text-white' %>
             </div>
         <% end %>
     </div>

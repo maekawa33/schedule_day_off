@@ -17,6 +17,14 @@ class Schedule < ApplicationRecord
     %w[schedule_title get_up_time sleep_time assumed_number_people]
   end
 
+  def image_count
+    event_images_count = 0
+    events.each do |event|
+      event_images_count += 1 if event.image.file.present?
+    end
+    event_images_count
+  end
+
   def sort_events
     today = []
     next_day = []
