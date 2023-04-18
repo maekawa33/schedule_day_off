@@ -1,24 +1,42 @@
 name: reviewdog
-on: [pull_request]
-permissions:
-  contents: read
-  pull-requests: write
+on: [push]
 jobs:
   rubocop:
-    name: runner / rubocop
     runs-on: ubuntu-latest
+    container:
+      image: ruby:3.1.0
     steps:
-      - name: Check out code
-        uses: actions/checkout@v1
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v2
+      - name: bundler config
+        run: bundle config set path 'vendor/bundle'
+      - name: cache gems
+        id: cache-gems
+        uses: actions/cache@v2
         with:
-          ruby-version: 3.1.0
-          bundler-cache: true
-      - name: rubocop
-        uses: reviewdog/action-rubocop@v2
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+      - name: setup bundle
+        if: steps.cache-gems.outputs.cache-hit != 'true'
+        run: bundle install --jobs 4 --retry 3
+      - name: run rubocop
+        run: bundle exec rubocop
+
+  erblint:
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:3.1.2
+    steps:
+      - uses: actions/checkout@v2
+      - name: bundler config
+        run: bundle config set path 'vendor/bundle'
+      - name: Cache gems
+        id: cache-gems
+        uses: actions/cache@v2
         with:
-          rubocop_version: gemfile
-          rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
-          reporter: github-pr-review # Default is github-pr-check
-      - name: erb-lint
-        run: bundle exec erblint --lint-all
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+      - name: setup bundle
+        if: steps.cache-gems.outputs.cache-hit != 'true'
+        run: bundle install --jobs 4 --retry 3
+      - name: run erblint
+        run: bundle exec erblint .
