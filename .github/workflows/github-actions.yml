@@ -1,42 +1,17 @@
-name: reviewdog
-on: [push]
-jobs:
-  rubocop:
-    runs-on: ubuntu-latest
-    container:
-      image: ruby:3.1.0
-    steps:
-      - uses: actions/checkout@v2
-      - name: bundler config
-        run: bundle config set path 'vendor/bundle'
-      - name: cache gems
-        id: cache-gems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-      - name: setup bundle
-        if: steps.cache-gems.outputs.cache-hit != 'true'
-        run: bundle install --jobs 4 --retry 3
-      - name: run rubocop
-        run: bundle exec rubocop
+name: Linting
 
-  erblint:
+on: [push]
+
+jobs:
+  test:
     runs-on: ubuntu-latest
-    container:
-      image: ruby:3.1.2
     steps:
-      - uses: actions/checkout@v2
-      - name: bundler config
-        run: bundle config set path 'vendor/bundle'
-      - name: Cache gems
-        id: cache-gems
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-      - name: setup bundle
-        if: steps.cache-gems.outputs.cache-hit != 'true'
-        run: bundle install --jobs 4 --retry 3
-      - name: run erblint
-        run: bundle exec erblint .
+			- name: Checkout code
+	      uses: actions/checkout@v3
+			- name: Set up Ruby
+			  uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+		    with:
+		      bundler-cache: true
+          cache-version: 1
+      - name: Rubocop
+        run: bundle exec rubocop
