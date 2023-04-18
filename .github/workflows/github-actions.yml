@@ -20,6 +20,4 @@ jobs:
           rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
           reporter: github-pr-review # Default is github-pr-check
       - name: erb-lint
-        uses: reviewdog/action-erblint@v1
-        with:
-          use_bundler: true
+        run: bundle exec erblint --lint-all
