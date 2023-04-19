@@ -1,6 +1,6 @@
 <% events.each do |event| %>
     <%= turbo_frame_tag dom_id(event, :show) do %>
-        <%= link_to schedule_event_path(schedule,event) do %>
+        <%= link_to schedule_event_path(schedule, event) do %>
             <div class="flex w-4/5 sm:w-2/3 bg-secondary rounded-lg text-white mx-auto p-2 mt-4 text-center hover:duration-300 hover:scale-105">
                 <div class="flex">
                     <h2><%= l event.start_time %></h2>

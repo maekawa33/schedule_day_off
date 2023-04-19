@@ -3,16 +3,16 @@ name: Linting
 on: [push]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-      - name: Rubocop
-        run: bundle exec rubocop
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+      with:
+        bundler-cache: true
+    - name: Rubocop
+      run: bundle exec rubocop --parallel --config ${{ github.workspace }}/.rubocop.yml
+    - name: erb_lint
+      run: bundle exec erblint --lint-all --config ${{ github.workspace }}/.erb-lint.yml

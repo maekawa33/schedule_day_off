@@ -12,7 +12,7 @@
           <div class="flex flex-col text-center gap-2">
             <h2 class="text-xl">第<%= rank %>位</h2>
             <h2 class="text-xl"><%= schedule.favorites.count %>いいね</h2>
-            <%= render 'schedule', schedule: schedule %>
+            <%= render 'schedule', schedule: %>
           </div>
         <% else %>
           <% rank = i %>
@@ -20,7 +20,7 @@
           <div class="flex flex-col text-center gap-2">
             <h2 class="text-xl">第<%= rank %>位</h2>
             <h2 class="text-xl"><%= schedule.favorites.count %>いいね</h2>
-            <%= render 'schedule', schedule: schedule %>
+            <%= render 'schedule', schedule: %>
           </div>
           <% last_favorite = schedule.favorites.count %>
         <% end %>

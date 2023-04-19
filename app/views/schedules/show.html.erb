@@ -24,12 +24,12 @@
                     <% if current_user&.own?(@schedule) %>
                         <div class="mr-2 ml-1">
                             <%= link_to edit_schedule_path(@schedule) do %>
-                                <%= icon(name: "edit") %>
+                                <%= icon(name: 'edit') %>
                             <% end %>
                         </div>
                         <div class="mr-2 ml-1">
                             <%= link_to schedule_path(@schedule), data: { turbo_method: :delete, turbo_confirm: '削除しますか?' } do %>
-                                <%= icon(name: "destroy") %>
+                                <%= icon(name: 'destroy') %>
                             <% end %>
                         </div>
                     <% end %>
@@ -37,37 +37,37 @@
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-2 p-4 ">
                 <div class="flex gap-4 ">
-                    <%= icon(name: "person") %>
+                    <%= icon(name: 'person') %>
                     <h2 class="text-xl"><%= @schedule.assumed_number_people_i18n %></h2>
                 </div>
                 <div class="flex gap-4">
-                    <%= icon(name: "money") %>
+                    <%= icon(name: 'money') %>
                     <h2 class="text-xl"><%= @schedule.total_price %>円</h2>
                 </div>
                 <div class="flex gap-4">
-                    <%= icon(name: "get_up") %>
+                    <%= icon(name: 'get_up') %>
                     <h2 class="text-xl"><%= l @schedule.get_up_time %></h2>
                 </div>
                 <div class="flex gap-4">
-                    <%= icon(name: "sleep") %>
+                    <%= icon(name: 'sleep') %>
                     <h2 class="text-xl"><%= l @schedule.sleep_time %></h2>
                 </div>
             </div>
         <% end %>
         <% if current_user&.own?(@schedule) %>
             <div class="text-center mt-16">
-                <%= link_to "イベント追加", new_schedule_event_path(schedule_id: @schedule.id), class: "btn btn-wide btn-secondary text-white", data: { turbo_frame: dom_id(Event.new,dom_id(@schedule))} %>
+                <%= link_to 'イベント追加', new_schedule_event_path(schedule_id: @schedule.id), class: 'btn btn-wide btn-secondary text-white', data: { turbo_frame: dom_id(Event.new, dom_id(@schedule)) } %>
             </div>
         <% end %>
-        <%= turbo_frame_tag dom_id(Event.new,dom_id(@schedule)) %>
+        <%= turbo_frame_tag dom_id(Event.new, dom_id(@schedule)) %>
         <div class="divider my-8">起床時間  <%= l @schedule.get_up_time %></div>
         <%= turbo_frame_tag dom_id(@schedule) do %>
             <%= render 'schedule_events', schedule: @schedule, events: @events %>
         <% end %>
         <div class="divider mt-8">就寝時間  <%= l @schedule.sleep_time %></div>
         <div class="flex justify-end gap-4 p-2">
-            <%= link_to "https://twitter.com/share?url=https://www.schedule-day-off.com/schedules/#{@schedule.id}&text=#{@schedule.user.name}さんが休日スケジュールを作成しました。%0a%0a「#{@schedule.schedule_title}」%0a%0a", target: '_blank' do %>
-                <%= icon(name: "twitter") %>
+            <%= link_to "https://twitter.com/share?url=https://www.schedule-day-off.com/schedules/#{@schedule.id}&text=#{@schedule.user.name}さんが休日スケジュールを作成しました。%0a%0a「#{@schedule.schedule_title}」%0a%0a", target: '_blank', rel: 'noopener' do %>
+                <%= icon(name: 'twitter') %>
             <% end %>
             <%= render 'favorites/favorite_btn', schedule: @schedule %>
         </div>

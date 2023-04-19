@@ -12,7 +12,7 @@ AllCops:
     - 'db/schema.rb'
     - 'db/seeds.rb'
     - 'Gemfile'
-    - 'vender/**/*'
+    - 'vendor/**/*'
     - 'db/**/*'
     - 'app/channels/**/*'
     - 'bin/**/*'
@@ -20,6 +20,7 @@ AllCops:
     - 'tmp/**/*'
     - 'log/**/*'
     - 'app/helpers/**/*'
+    - 'test/rdjson_formatter/**/*'
 Style/Documentation: # classの説明を1行目に記述 
   Enabled: false
 Style/FrozenStringLiteralComment: # 文字列リテラルについての警告
@@ -32,3 +33,7 @@ Metrics/AbcSize: #abcサイズ
   Max: 25
 Layout/LineLength: #一行あたりの文字数
   Max: 125
+Naming/PredicateName: #メソッド名設定
+  Enabled: false
+Lint/UnusedMethodArgument: 
+  Enabled: false

@@ -2,7 +2,7 @@
     <% if current_user&.role == "general" %>
         <% if current_user&.mine?(@user) %>
             <div class=" flex justify-center p-2 ml-40">
-                <%= link_to "ユーザーの編集", edit_user_path(@user), class:"btn btn-primary mr-2 text-white" %>
+                <%= link_to 'ユーザーの編集', edit_user_path(@user), class: 'btn btn-primary mr-2 text-white' %>
             </div>
         <% end %>
     <% end %>
@@ -29,11 +29,11 @@
             <% else %>
                 <div class="flex flex-wrap gap-4 justify-center">
                     <% @schedules.each do |schedule| %>
-                        <%= render 'schedules/schedule', schedule: schedule %>
+                        <%= render 'schedules/schedule', schedule: %>
                     <% end %>
                 </div>
                 <div class="text-center py-8">
-                    <%= paginate @schedules, param_name: "user_page" %>
+                    <%= paginate @schedules, param_name: 'user_page' %>
                 </div>
             <% end %>
         </div>
@@ -47,11 +47,11 @@
             <% else %>
                 <div class="flex flex-wrap gap-4  justify-center">
                     <% @favorite_schedules.each do |schedule| %>
-                        <%= render 'schedules/schedule', schedule: schedule %>
+                        <%= render 'schedules/schedule', schedule: %>
                     <% end %>
                 </div>
                 <div class="text-center py-8">
-                    <%= paginate @favorite_schedules, param_name: "favorite_name" %>
+                    <%= paginate @favorite_schedules, param_name: 'favorite_name' %>
                 </div>
             <% end %>
         </div>

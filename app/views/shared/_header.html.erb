@@ -7,21 +7,21 @@
         </div>
         <div class="hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
-            <li><%= link_to t('defaults.schedules'), schedules_path, {class: "btn btn-secondary mr-2"} %></li>
-            <li><%= link_to t('defaults.month_rank'), rank_schedules_path, {class: "btn btn-secondary mr-2"} %></li>
-            <li><%= link_to t('defaults.my_page'), user_path(current_user), {class: "btn btn-secondary mr-2"} %></li>
-            <li><%= link_to t('defaults.logout'), logout_path, {class: "btn btn-secondary mr-2", method: :delete} %></li>
-            <li><%= link_to t('defaults.create'), new_schedule_path, {class: "btn btn-accent"} %></li>
+            <li><%= link_to t('defaults.schedules'), schedules_path, { class: 'btn btn-secondary mr-2' } %></li>
+            <li><%= link_to t('defaults.month_rank'), rank_schedules_path, { class: 'btn btn-secondary mr-2' } %></li>
+            <li><%= link_to t('defaults.my_page'), user_path(current_user), { class: 'btn btn-secondary mr-2' } %></li>
+            <li><%= link_to t('defaults.logout'), logout_path, { class: 'btn btn-secondary mr-2', method: :delete } %></li>
+            <li><%= link_to t('defaults.create'), new_schedule_path, { class: 'btn btn-accent' } %></li>
             </ul>
         </div>
         <div class="dropdown dropdown-end">
-            <label tabindex="0" class="btn-secondary m-1 lg:hidden"><%= icon(name: "bars") %></label>
+            <label tabindex="0" class="btn-secondary m-1 lg:hidden"><%= icon(name: 'bars') %></label>
             <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-64 gap-2">
-                <li><%= link_to t('defaults.schedules'), schedules_path, {class: "btn btn-secondary w-4/5 mx-auto"} %></li>
-                <li><%= link_to t('defaults.month_rank'), rank_schedules_path, {class: "btn btn-secondary w-4/5 mx-auto"} %></li>
-            <li><%= link_to t('defaults.my_page'), user_path(current_user), {class: "btn btn-secondary w-4/5 mx-auto"} %></li>
-            <li><%= link_to t('defaults.logout'), logout_path, {class: "btn btn-secondary w-4/5 mx-auto", method: :delete} %></li>
-            <li><%= link_to t('defaults.create'), new_schedule_path, {class: "btn btn-accent w-4/5 mx-auto"} %></li>
+                <li><%= link_to t('defaults.schedules'), schedules_path, { class: 'btn btn-secondary w-4/5 mx-auto' } %></li>
+                <li><%= link_to t('defaults.month_rank'), rank_schedules_path, { class: 'btn btn-secondary w-4/5 mx-auto' } %></li>
+            <li><%= link_to t('defaults.my_page'), user_path(current_user), { class: 'btn btn-secondary w-4/5 mx-auto' } %></li>
+            <li><%= link_to t('defaults.logout'), logout_path, { class: 'btn btn-secondary w-4/5 mx-auto', method: :delete } %></li>
+            <li><%= link_to t('defaults.create'), new_schedule_path, { class: 'btn btn-accent w-4/5 mx-auto' } %></li>
             </ul>
         </div>
     </div>

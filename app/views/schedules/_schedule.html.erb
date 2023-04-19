@@ -14,7 +14,7 @@
                 <div class="my-2 text-center">
                     <h1 class=" text-2xl font-bold text-center"><%= schedule.schedule_title %></h1>
                 </div>
-                <%= render 'schedules/swiper_index', schedule: schedule %>
+                <%= render 'schedules/swiper_index', schedule: %>
                 </div>
 
             <div class="flex flex-col gap-2 text-base md:text-lg my-4">
@@ -34,9 +34,9 @@
 
     <% end %>
     <div class="flex justify-end gap-4 p-2">
-        <%= link_to "https://twitter.com/share?url=https://www.schedule-day-off.com/schedules/#{schedule.id}&text=#{schedule.user.name}さんが休日スケジュールを作成しました。%0a%0a「#{schedule.schedule_title}」%0a%0a", target: '_blank' do %>
-            <%= icon(name: "twitter") %>
+        <%= link_to "https://twitter.com/share?url=https://www.schedule-day-off.com/schedules/#{schedule.id}&text=#{schedule.user.name}さんが休日スケジュールを作成しました。%0a%0a「#{schedule.schedule_title}」%0a%0a", target: '_blank', rel: 'noopener' do %>
+            <%= icon(name: 'twitter') %>
         <% end %>
-        <%= render 'favorites/favorite_btn', schedule: schedule %>
+        <%= render 'favorites/favorite_btn', schedule: %>
     </div>
 </div>

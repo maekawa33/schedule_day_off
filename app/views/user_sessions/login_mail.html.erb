@@ -1,17 +1,17 @@
 <div class="bg-primary-content min-h-screen">
     <div class="container mx-auto py-40">
         <h1 class="text-xl sm:text-2xl md:text-3xl text-center font-bold"><%= t('.title') %></h1>
-        <%= form_with url: login_path,class: "w-2/3 mx-auto space-y-4", method: :post do |f| %>
+        <%= form_with url: login_path, class: 'w-2/3 mx-auto space-y-4', method: :post do |f| %>
             <div>
-                <%= f.label :email, class: "label" %>
-                <%= f.email_field :email, class: "input input-bordered input-primary w-full" %>
+                <%= f.label :email, class: 'label' %>
+                <%= f.email_field :email, class: 'input input-bordered input-primary w-full' %>
             </div>
             <div>
-                <%= f.label :password, class: "label" %>
-                <%= f.password_field :password, class: "input input-bordered input-primary w-full" %>
+                <%= f.label :password, class: 'label' %>
+                <%= f.password_field :password, class: 'input input-bordered input-primary w-full' %>
             </div>
             <div class="text-right">
-                <%= f.submit class: "btn btn-primary text-white" %>
+                <%= f.submit class: 'btn btn-primary text-white' %>
             </div>
         <% end %>
         <div class='text-center my-4'>

@@ -1,7 +1,7 @@
 <% if current_user %>
     <% if current_user.already_favorited?(schedule) %>
-       <%= render 'favorites/unfavorite', schedule: schedule %>
+       <%= render 'favorites/unfavorite', schedule: %>
     <% else %>
-     <%= render 'favorites/favorite', schedule: schedule %>
+     <%= render 'favorites/favorite', schedule: %>
     <% end %>
 <% end %>
