@@ -18,6 +18,7 @@
         <div class="tabs  justify-center">
             <a class="tab tab-bordered tab-active w-1/4" data-user-show-tab-target="menu" data-action="user-show-tab#menuClick">スケジュール</a>
             <a class="tab tab-bordered not-tab-active w-1/4" data-user-show-tab-target="menu" data-action="user-show-tab#menuClick">お気に入り</a>
+            <a class="tab tab-bordered not-tab-active w-1/4" data-user-show-tab-target="menu" data-action="user-show-tab#menuClick">やってみた</a>
         </div>
     </div>
     <div data-user-show-tab-target="content">
@@ -52,6 +53,24 @@
                 </div>
                 <div class="text-center py-8">
                     <%= paginate @favorite_schedules, param_name: 'favorite_name' %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+     <div class="hidden" data-user-show-tab-target="content">
+        <div class="container mx-auto py-10">
+            <% if @try_schedules.empty? %>
+                <div class="flex flex-wrap gap-4 justify-center ">
+                    <h1 class="text-2xl font-bold my-20"><%= @user.name %>はやってみたをしていません</h1>
+                </div>
+            <% else %>
+                <div class="flex flex-wrap gap-4  justify-center">
+                    <% @try_schedules.each do |schedule| %>
+                        <%= render 'schedules/schedule', schedule: %>
+                    <% end %>
+                </div>
+                <div class="text-center py-8">
+                    <%= paginate @try_schedules, param_name: 'try_name' %>
                 </div>
             <% end %>
         </div>
