@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :schedules, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :tries, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
   validates :password, length: { minimum: 3 }, if: -> { default? && (new_record? || changes[:crypted_password]) }

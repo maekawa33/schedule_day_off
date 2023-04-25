@@ -1,6 +1,7 @@
 class Schedule < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
+  has_many :tries, dependent: :destroy
   has_many :events, dependent: :destroy
 
   validates :schedule_title, presence: true, length: { maximum: 13 }
