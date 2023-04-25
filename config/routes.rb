@@ -24,7 +24,8 @@ Rails.application.routes.draw do
     collection do
       get 'rank'
     end
-    resource :favorites
+    resource :favorites, only: [:create, :destroy]
+    resource :tries, only: [:create, :destroy]
     resources :events
   end
   resources :password_resets, only: %i[new create edit update]

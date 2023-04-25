@@ -1,0 +1,8 @@
+<div class="<%= dom_id(schedule, :try) %>">
+    <div class="flex gap-2">
+      <%= link_to schedule_tries_path(schedule), class: "border-2 border-secondary bg-white rounded-lg", data: { turbo_method: :post } do %>
+        <span class="font-sans">やってみた</span>
+      <% end %>
+      <%= schedule.tries.count %>
+    </div>
+</div>

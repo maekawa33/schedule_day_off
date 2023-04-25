@@ -9,6 +9,9 @@ class UsersController < ApplicationController
     @favorite_schedules = Schedule.joins(:favorites).includes(%i[user events])
                                   .where(favorites: { user_id: params[:id] })
                                   .page(params[:favorite_page]).per(9)
+    @try_schedules = Schedule.joins(:tries).includes(%i[user events])
+                             .where(tries: { user_id: params[:id] })
+                             .page(params[:try_page]).per(9)
   end
 
   def new

@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :schedules, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :tries, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
   validates :password, length: { minimum: 3 }, if: -> { default? && (new_record? || changes[:crypted_password]) }
@@ -26,6 +27,10 @@ class User < ApplicationRecord
 
   def already_favorited?(schedule)
     favorites.exists?(schedule_id: schedule.id)
+  end
+
+  def already_tried?(schedule)
+    tries.exists?(schedule_id: schedule.id)
   end
 
   def own?(object)
