@@ -1,0 +1,4 @@
+<%= turbo_stream.update_all ".#{dom_id(@schedule, :try)}" do %>
+  <%= render partial: "tries/untry",
+             locals: { schedule: @schedule } %>
+<% end %>

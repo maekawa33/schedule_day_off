@@ -1,0 +1,7 @@
+<% if current_user %>
+    <% if current_user.already_tried?(schedule) %>
+       <%= render 'tries/untry', schedule: %>
+    <% else %>
+     <%= render 'tries/try', schedule: %>
+    <% end %>
+<% end %>
