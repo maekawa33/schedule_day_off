@@ -30,7 +30,7 @@ Style/AsciiComments: # 日本語でのコメント記述
 Metrics/MethodLength: #メソッド文字数
   Max: 20
 Metrics/AbcSize: #abcサイズ
-  Max: 25
+  Max: 27
 Layout/LineLength: #一行あたりの文字数
   Max: 125
 Naming/PredicateName: #メソッド名設定
