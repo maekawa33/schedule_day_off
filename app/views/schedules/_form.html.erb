@@ -1,33 +1,35 @@
-    <%= render 'shared/error_messages', object: f.object %>
+<%= render 'shared/error_messages', object: f.object %>
 <div class="flex flex-col gap-4 text-black items-center">
-    <div>
+    <div class="form-control">
         <%= f.label :schedule_title %>
-        <div>
-            <%= f.text_field :schedule_title, class: 'input input-bordered border-primary w-64 md:w-96' %>
+        <%= f.text_field :schedule_title, class: 'input input-bordered border-primary w-64 md:w-96' %>
     </div>
 
-    </div>
-
-    <div>
+    <div class="form-control">
         <%= f.label :assumed_number_people %>
         <div class="w-64 md:w-96 bg-white rounded-lg text-center border border-primary">
-                <%= f.select :assumed_number_people, Schedule.assumed_number_people.keys.map { |k| [t("enums.schedule.assumed_number_people.#{k}"), k] }, { include_blank: '指定なし' }, { class: 'bg-transparent text-lg appearance-none outline-none pt-2' } %>
-            </div>
+            <%= f.select :assumed_number_people, Schedule.assumed_number_people.keys.map { |k| [t("enums.schedule.assumed_number_people.#{k}"), k] }, { include_blank: '指定なし' }, { class: 'bg-transparent text-lg appearance-none outline-none pt-2' } %>
         </div>
+    </div>
 
     <div>
         <%= f.label :get_up_time %>
         <div class="w-64 md:w-96 bg-white rounded-lg text-center border border-primary">
             <%= f.time_field :get_up_time, class: 'text-lg' %>
-            </div>
         </div>
+    </div>
 
     <div>
         <%= f.label :sleep_time %>
         <div class="w-64 md:w-96 bg-white rounded-lg text-center border border-primary">
             <%= f.time_field :sleep_time, class: 'text-lg' %>
-            </div>
         </div>
+    </div>
+
+    <div class="form-control">
+        <%= f.label :tag_names%>
+        <%= f.text_field :tag_names, placeholder: '空白スペースで区切って入力してください', class: 'input input-bordered border-primary w-64 md:w-96' %>
+    </div>
 
     <div class="mt-4">
         <%= f.submit '作成', class: 'btn btn-primary w-32 ml-32 md:w-48 md:ml-48 text-white' %>
