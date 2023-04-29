@@ -15,7 +15,13 @@
                     <h1 class=" text-2xl font-bold text-center"><%= schedule.schedule_title %></h1>
                 </div>
                 <%= render 'schedules/swiper_index', schedule: %>
-                </div>
+            </div>
+
+            <div>
+                <% schedule.schedule_tags.each do |tag| %>
+                    <span class='badge badge-primary'><%= tag.name %></span>
+                <% end %>
+            </div>
 
             <div class="flex flex-col gap-2 text-base md:text-lg my-4">
                 <div class="flex">
