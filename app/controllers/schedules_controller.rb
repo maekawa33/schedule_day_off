@@ -3,7 +3,7 @@ class SchedulesController < ApplicationController
   before_action :set_schedule, only: %i[show edit update destroy]
   def index
     @q = Schedule.ransack(params[:q])
-    @schedules = @q.result(distinct: true).includes(%i[user
+    @schedules = @q.result(distinct: true).includes(%i[user schedule_tags
                                                        events]).order('created_at desc').page(params[:page]).per(20)
   end
 
