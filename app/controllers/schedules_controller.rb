@@ -2,9 +2,13 @@ class SchedulesController < ApplicationController
   authorize_resource
   before_action :set_schedule, only: %i[show edit update destroy]
   def index
-    @q = Schedule.ransack(params[:q])
-    @schedules = @q.result(distinct: true).includes(%i[user tags
-                                                       events]).order('created_at desc').page(params[:page]).per(20)
+    @q = if (tag_name = params[:tag_name])
+           Schedule.with_tag(tag_name).ransack(params[:q])
+         else
+           Schedule.ransack(params[:q])
+         end
+    @schedules = @q.result(distinct: true).preload(%i[user tags
+                                                      events]).order('schedules.created_at desc').page(params[:page]).per(20)
   end
 
   def show
