@@ -3,7 +3,7 @@ class Schedule < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :tries, dependent: :destroy
   has_many :taggings, dependent: :destroy
-  has_many :schedule_tags, through: :taggings, source: :tag
+  has_many :tags, through: :taggings
   has_many :events, dependent: :destroy
 
   validates :schedule_title, presence: true, length: { maximum: 13 }
@@ -12,9 +12,12 @@ class Schedule < ApplicationRecord
   validates :sleep_time, presence: true
 
   enum assumed_number_people: { one_person: 0, two_people: 1, three_people: 2, four_or_more_people: 3 }
+
+  scope :with_tag, ->(tag_name) { joins(:tags).where(tags: { name: tag_name }) }
+
   def save_with_tags(tag_names)
     ActiveRecord::Base.transaction do
-      self.schedule_tags = tag_names.map { |name| Tag.find_or_initialize_by(name: name.strip) }
+      self.tags = tag_names.map { |name| Tag.find_or_initialize_by(name: name.strip) }
       save!
     end
     true
@@ -23,11 +26,11 @@ class Schedule < ApplicationRecord
   end
 
   def tag_names
-    schedule_tags.map(&:name).join(' ')
+    tags.map(&:name).join(' ')
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ['events']
+    %w[events]
   end
 
   def self.ransackable_attributes(auth_object = nil)
@@ -64,14 +67,14 @@ class Schedule < ApplicationRecord
     end
     total_price
   end
-end
 
-private
+  private
 
-def after_get_up_hour?(event)
-  event.start_time.hour > get_up_time.hour
-end
+  def after_get_up_hour?(event)
+    event.start_time.hour > get_up_time.hour
+  end
 
-def after_get_up_minute?(event)
-  event.start_time.hour == get_up_time.hour && event.start_time.min >= get_up_time.min
+  def after_get_up_minute?(event)
+    event.start_time.hour == get_up_time.hour && event.start_time.min >= get_up_time.min
+  end
 end
