@@ -20,7 +20,7 @@ class SchedulesController < ApplicationController
 
   def create
     @schedule = current_user.schedules.new(schedule_params)
-    if @schedule.save_with_tags(tag_names)
+    if @schedule.save_with_tags(params[:schedule][:tag_names].split(/[[:blank:]]+/).uniq)
       redirect_to schedule_path(@schedule), success: t('.success', title: @schedule.schedule_title)
     else
       flash.now[:error] = t('.fail')
@@ -30,7 +30,7 @@ class SchedulesController < ApplicationController
 
   def update
     @schedule.assign_attributes(schedule_params)
-    if @schedule.save_with_tags(tag_names)
+    if @schedule.save_with_tags(params[:schedule][:tag_names].split(/[[:blank:]]+/).uniq)
       redirect_to schedule_path(@schedule), success: t('.success', title: @schedule.schedule_title)
     else
       flash.now[:error] = t('.fail', title: @schedule.schedule_title)
@@ -52,10 +52,6 @@ class SchedulesController < ApplicationController
 
   def schedule_params
     params.require(:schedule).permit(:schedule_title, :assumed_number_people, :get_up_time, :sleep_time)
-  end
-
-  def tag_names
-    params[:schedule][:tag_names].split(/[[:blank:]]+/).uniq
   end
 
   def set_schedule
