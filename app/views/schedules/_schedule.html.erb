@@ -17,12 +17,6 @@
                 <%= render 'schedules/swiper_index', schedule: %>
             </div>
 
-            <div>
-                <% schedule.schedule_tags.each do |tag| %>
-                    <span class='badge badge-primary'><%= tag.name %></span>
-                <% end %>
-            </div>
-
             <div class="flex flex-col gap-2 text-base md:text-lg my-4">
                 <div class="flex">
                     <h2 class="font-serif text-black">起床時間</h2>
@@ -39,6 +33,9 @@
         </div>
 
     <% end %>
+    <div class>
+        <%= render schedule.tags %>
+    </div>
     <div class="flex justify-end gap-4 p-2">
         <%= link_to "https://twitter.com/share?url=https://www.schedule-day-off.com/schedules/#{schedule.id}&text=#{schedule.user.name}さんが休日スケジュールを作成しました。%0a%0a「#{schedule.schedule_title}」%0a%0a", target: '_blank', rel: 'noopener' do %>
             <%= icon(name: 'twitter') %>

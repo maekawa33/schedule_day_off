@@ -54,9 +54,7 @@
                 </div>
             </div>
             <div>
-                <% @schedule.schedule_tags.each do |tag| %>
-                    <span class='badge badge-primary'><%= tag.name %></span>
-                <% end %>
+                <%= render @schedule.tags %>
             </div>
         <% end %>
         <% if current_user&.own?(@schedule) %>
