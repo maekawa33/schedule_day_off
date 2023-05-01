@@ -2,9 +2,13 @@ class SchedulesController < ApplicationController
   authorize_resource
   before_action :set_schedule, only: %i[show edit update destroy]
   def index
-    @q = Schedule.ransack(params[:q])
-    @schedules = @q.result(distinct: true).includes(%i[user
-                                                       events]).order('created_at desc').page(params[:page]).per(20)
+    @q = if (tag_name = params[:tag_name])
+           Schedule.with_tag(tag_name).ransack(params[:q])
+         else
+           Schedule.ransack(params[:q])
+         end
+    @schedules = @q.result(distinct: true).preload(%i[user tags
+                                                      events]).order('schedules.created_at desc').page(params[:page]).per(20)
   end
 
   def show
@@ -20,7 +24,7 @@ class SchedulesController < ApplicationController
 
   def create
     @schedule = current_user.schedules.new(schedule_params)
-    if @schedule.save
+    if @schedule.save_with_tags(params[:schedule][:tag_names].split(/[[:blank:]]+/).uniq)
       redirect_to schedule_path(@schedule), success: t('.success', title: @schedule.schedule_title)
     else
       flash.now[:error] = t('.fail')
@@ -29,7 +33,8 @@ class SchedulesController < ApplicationController
   end
 
   def update
-    if @schedule.update(schedule_params)
+    @schedule.assign_attributes(schedule_params)
+    if @schedule.save_with_tags(params[:schedule][:tag_names].split(/[[:blank:]]+/).uniq)
       redirect_to schedule_path(@schedule), success: t('.success', title: @schedule.schedule_title)
     else
       flash.now[:error] = t('.fail', title: @schedule.schedule_title)

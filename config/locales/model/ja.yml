@@ -12,6 +12,7 @@ ja:
         assumed_number_people: '人数'
         get_up_time: '起床時間'
         sleep_time: '就寝時間'
+        tag_names: 'タグ'
       schedule/events:
         id: 'ID'
         start_time: '開始時間'

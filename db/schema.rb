@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_25_022104) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_26_045042) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,6 +49,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_022104) do
     t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "schedule_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["schedule_id"], name: "index_taggings_on_schedule_id"
+    t.index ["tag_id", "schedule_id"], name: "index_taggings_on_tag_id_and_schedule_id", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
   create_table "tries", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "schedule_id", null: false
@@ -80,6 +97,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_022104) do
   add_foreign_key "favorites", "schedules"
   add_foreign_key "favorites", "users"
   add_foreign_key "schedules", "users"
+  add_foreign_key "taggings", "schedules"
+  add_foreign_key "taggings", "tags"
   add_foreign_key "tries", "schedules"
   add_foreign_key "tries", "users"
 end

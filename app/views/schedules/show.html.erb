@@ -53,6 +53,9 @@
                     <h2 class="text-xl"><%= l @schedule.sleep_time %></h2>
                 </div>
             </div>
+            <div>
+                <%= render @schedule.tags %>
+            </div>
         <% end %>
         <% if current_user&.own?(@schedule) %>
             <div class="text-center mt-16">
