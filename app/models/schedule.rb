@@ -14,6 +14,7 @@ class Schedule < ApplicationRecord
   enum assumed_number_people: { one_person: 0, two_people: 1, three_people: 2, four_or_more_people: 3 }
 
   scope :with_tag, ->(tag_name) { joins(:tags).where(tags: { name: tag_name }) }
+  scope :created_desc_page, ->(page_name) { order('created_at desc').page(page_name).per(9) }
 
   def save_with_tags(tag_names)
     ActiveRecord::Base.transaction do
