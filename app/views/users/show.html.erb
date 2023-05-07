@@ -1,12 +1,12 @@
-<div class="bg-base-200 min-h-screen" data-controller="user-show-tab">
-    <% if current_user&.role == "general" %>
-        <% if current_user&.mine?(@user) %>
-            <div class=" flex justify-center p-2 ml-40">
-                <%= link_to 'ユーザーの編集', edit_user_path(@user), class: 'btn btn-primary mr-2 text-white' %>
-            </div>
+<div class="bg-primary-content min-h-screen" data-controller="user-show-tab">
+    <%= turbo_frame_tag dom_id(@user, :edit) do %>
+        <% if current_user&.role == "general" %>
+            <% if current_user&.mine?(@user) %>
+                <div class=" flex justify-center p-2 ml-40">
+                    <%= link_to t('.edit_user'), edit_user_path(@user), class: 'btn btn-primary mr-2 text-white' %>
+                </div>
+            <% end %>
         <% end %>
-    <% end %>
-    <div class="container mx-auto">
         <div class="flex py-10 justify-center">
             <div class="avatar">
                 <div class="w-20 rounded-full border-2 border-primary shadow-xl ">
@@ -15,17 +15,26 @@
             </div>
             <h3 class="pt-6 pl-8 text-3xl"><%= @user.name %></h3>
         </div>
+    <% end %>
+
+    <div class="container mx-auto">
         <div class="tabs  justify-center">
-            <a class="tab tab-bordered tab-active w-1/4" data-user-show-tab-target="menu" data-action="user-show-tab#menuClick">スケジュール</a>
-            <a class="tab tab-bordered not-tab-active w-1/4" data-user-show-tab-target="menu" data-action="user-show-tab#menuClick">お気に入り</a>
-            <a class="tab tab-bordered not-tab-active w-1/4" data-user-show-tab-target="menu" data-action="user-show-tab#menuClick">やってみた</a>
+            <a class="tab tab-bordered tab-active w-1/3" data-user-show-tab-target="menu" data-action="user-show-tab#menuClick">
+            <span class='text-sm md:text-base'><%= t('defaults.schedule') %><span>
+            </a>
+            <a class="tab tab-bordered not-tab-active w-1/3" data-user-show-tab-target="menu" data-action="user-show-tab#menuClick">
+            <span class='text-sm md:text-base'><%= t('defaults.favorite') %><span>
+            </a>
+            <a class="tab tab-bordered not-tab-active w-1/3" data-user-show-tab-target="menu" data-action="user-show-tab#menuClick">
+            <span class='text-sm md:text-base'><%= t('defaults.try') %><span>
+            </a>
         </div>
-    </div>
+     </div>
     <div data-user-show-tab-target="content">
         <div class="container mx-auto py-10">
             <% if @schedules.empty? %>
                 <div class="flex flex-wrap gap-4 justify-center ">
-                    <h1 class="text-2xl font-bold my-20"><%= @user.name %>はスケジュールを作成していません</h1>
+                    <h1 class="text-2xl font-bold my-20"><%= t('.no_schedule', name: @user.name) %></h1>
                 </div>
             <% else %>
                 <div class="flex flex-wrap gap-4 justify-center">
@@ -43,7 +52,7 @@
         <div class="container mx-auto py-10">
             <% if @favorite_schedules.empty? %>
                 <div class="flex flex-wrap gap-4 justify-center ">
-                    <h1 class="text-2xl font-bold my-20"><%= @user.name %>はいいねをしていません</h1>
+                    <h1 class="text-2xl font-bold my-20"><%= t('.no_favorite_schedule', name: @user.name) %></h1>
                 </div>
             <% else %>
                 <div class="flex flex-wrap gap-4  justify-center">
@@ -61,7 +70,7 @@
         <div class="container mx-auto py-10">
             <% if @try_schedules.empty? %>
                 <div class="flex flex-wrap gap-4 justify-center ">
-                    <h1 class="text-2xl font-bold my-20"><%= @user.name %>はやってみたをしていません</h1>
+                    <h1 class="text-2xl font-bold my-20"><%= t('.no_try_schedule', name: @user.name) %></h1>
                 </div>
             <% else %>
                 <div class="flex flex-wrap gap-4  justify-center">
