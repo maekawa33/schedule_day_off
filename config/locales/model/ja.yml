@@ -20,7 +20,6 @@ ja:
         event_title: 'タイトル'
         image: '画像'
         price: '価格'
-        store: '店舗'
         comment: 'コメント'
       user:
         id: 'ID'

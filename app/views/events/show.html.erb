@@ -41,12 +41,6 @@
                         <h2 class="text-base sm:text-xl font-sans"><%= @event.price %>円</h2>
                 </div>
                 <% end %>
-                <% if @event.store.present? %>
-                    <div class="border-b border-secondary p-2">
-                        <h1 class="text-base sm:text-xl"><%= t('.store') %></h1>
-                        <h2 class="text-base sm:text-xl font-sans"><%= @event.store %></h2>
-                    </div>
-                <% end %>
                 <% if @event.comment.present? %>
                     <div class="border-b border-secondary p-2">
                         <h1 class="text-base sm:text-xl"><%= t('.comment') %></h1>
