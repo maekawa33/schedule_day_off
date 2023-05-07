@@ -23,11 +23,8 @@
             </label>
         </div>
 
-        <div class="form-control">
-            <label class="input-group input-group-sm input-group-vertical">
-                <span class="text-sm"><%= Event.human_attribute_name(:store) %></span>
-                <%= f.text_field :store, placeholder: t('defaults.placeholder.store'), class: 'input input-bordered input-sm' %>
-            </label>
+        <div>
+            <%= f.file_field :image, class: 'file-input file-input-bordered file-input-md w-full file:text-sm file:text-white file:bg-secondary' %>
         </div>
 
         <div class="form-control">
@@ -44,11 +41,7 @@
             </label>
         </div>
 
-        <div>
-            <%= f.file_field :image, class: 'file-input file-input-bordered file-input-md w-full file:text-sm file:text-white file:bg-secondary' %>
-        </div>
-
-        <div class="flex justify-end">
+        <div class="flex justify-end sm:col-span-2">
             <%= link_to t('defaults.cansel'), schedule_path(@event.schedule), class: 'btn text-white', data: { turbo_frame: dom_id(@event, :show) } %>
             <%= f.submit class: 'btn btn-primary text-white' %>
         </div>
