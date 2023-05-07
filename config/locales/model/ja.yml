@@ -13,16 +13,6 @@ ja:
         get_up_time: '起床時間'
         sleep_time: '就寝時間'
         tag_names: 'タグ'
-      schedule/events:
-        id: 'ID'
-        start_time: '開始時間'
-        end_time: '終了時間（任意）'
-        event_title: 'タイトル'
-        image: '画像'
-        price: '価格'
-        store: '店舗'
-        comment: 'コメント'
-        events: 'メインイベント'
       event:
         id: 'ID'
         start_time: '開始時間'
@@ -36,7 +26,7 @@ ja:
         id: 'ID'
         email: 'メールアドレス'
         name: 'ユーザー名'
-        avatar: 'ユーザー画像'
+        avatar: 'ユーザー画像（任意）'
         password: 'パスワード'
         password_confirmation: 'パスワード（確認）'
   enums:
@@ -54,4 +44,3 @@ ja:
     label:
       email: 'メールアドレス'
       password: 'パスワード'
-
