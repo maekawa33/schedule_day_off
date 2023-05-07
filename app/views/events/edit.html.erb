@@ -1,5 +1,3 @@
 <%= turbo_frame_tag dom_id(@event, :edit) do %>
-    <%= form_with model: [@event.schedule, @event], local: true do |f| %>
-        <% render 'form', f: %>
-    <% end %>
+    <% render 'form', schedule: @event.schedule, event: @event %>
 <% end %>
