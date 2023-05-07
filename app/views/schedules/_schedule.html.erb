@@ -1,46 +1,51 @@
-<div class="container p-2 border-2 border-primary rounded-lg w-64 bg-primary-content shadow-xl hover:duration-300 hover:scale-105">
-    <%= link_to schedule_path(schedule) do %>
+<div class='container relative p-2 bg-white drop-shadow-xl hover:border-4'>
+    <%= link_to schedule_path(schedule), class: 'absolute top-0 left-0 right-0 bottom-0' do %>
+    <% end %>
 
+    <div class='flex'>
+        <div class='avatar'>
+            <div class='w-10 rounded-full border-2 border-primary bg-white'>
+                <%= link_to user_path(schedule.user), class: 'z-10' do %>
+                    <%= image_tag schedule.user.avatar.url(:user_index) %>
+                <% end %>
+            </div>
+        </div>
+        <%= link_to user_path(schedule.user), class: 'z-10' do %>
+            <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>
+        <% end %>
+    </div>
+
+    <div class='ml-8'>
+        <h1 class=" text-2xl font-bold"><%= schedule.schedule_title %></h1>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 md:gap-2">
             <div class="flex">
-                <div class="avatar">
-                    <div class="w-10 rounded-full border-2 border-primary shadow-xl bg-white">
-                        <%= image_tag schedule.user.avatar.url(:user_index) %>
-                    </div>
-                </div>
-                <h3 class="pt-2 pl-2"><%= schedule.user.name %></h3>
+                <h2 class="text-sm md:text-base"><%= t('defaults.people') %></h2>
+                <h2 class="text-sm md:text-base"><%= schedule.assumed_number_people_i18n %></h2>
             </div>
-
-            <div class="mx-auto">
-                <div class="my-2 text-center">
-                    <h1 class=" text-2xl font-bold text-center"><%= schedule.schedule_title %></h1>
-                </div>
-                <%= render 'schedules/swiper_index', schedule: %>
+            <div class="flex">
+                <h2 class="text-sm md:text-base"><%= t('defaults.money') %></h2>
+                <h2 class="text-sm md:text-base"><%= schedule.total_price %>円</h2>
             </div>
-
-            <div class="flex flex-col gap-2 text-base md:text-lg my-4">
-                <div class="flex">
-                    <h2 class="font-serif text-black">起床時間</h2>
-                    <p class="ml-4 text-secondary"><%= l schedule.get_up_time %></p>
-                </div>
-                <div class="flex">
-                    <h2 class="font-serif text-black">就寝時間</h2>
-                    <p class="ml-4 text-secondary"><%= l schedule.sleep_time %></p>
-                </div>
-                <div class="flex">
-                    <h2 class="font-serif text-black">人数</h2>
-                    <p class="ml-14 text-secondary"><%= schedule.assumed_number_people_i18n %></p>
+            <div class="flex">
+                <h2 class="text-sm md:text-base"><%= t('defaults.get_up') %></h2>
+                <h2 class="text-sm md:text-base"><%= l schedule.get_up_time %></h2>
+            </div>
+            <div class="flex">
+                <h2 class="text-sm md:text-base"><%= t('defaults.sleep') %></h2>
+                <h2 class="text-sm md:text-base"><%= l schedule.sleep_time %></h2>
             </div>
         </div>
 
-    <% end %>
-    <div class>
         <%= render schedule.tags %>
+
+        <div class="flex gap-4 p-2 justify-end">
+            <%= link_to "https://twitter.com/share?url=https://www.schedule-day-off.com/schedules/#{schedule.id}&text=#{schedule.user.name}さんが休日スケジュールを作成しました。%0a%0a「#{schedule.schedule_title}」%0a%0a", target: '_blank', rel: 'noopener', class: 'z-10' do %>
+                <%= icon(name: 'twitter') %>
+            <% end %>
+            <%= render 'favorites/favorite_btn', schedule: %>
+            <%= render 'tries/try_btn', schedule: %>
+        </div>
     </div>
-    <div class="flex justify-end gap-4 p-2">
-        <%= link_to "https://twitter.com/share?url=https://www.schedule-day-off.com/schedules/#{schedule.id}&text=#{schedule.user.name}さんが休日スケジュールを作成しました。%0a%0a「#{schedule.schedule_title}」%0a%0a", target: '_blank', rel: 'noopener' do %>
-            <%= icon(name: 'twitter') %>
-        <% end %>
-        <%= render 'favorites/favorite_btn', schedule: %>
-        <%= render 'tries/try_btn', schedule: %>
-    </div>
+
 </div>

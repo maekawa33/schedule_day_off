@@ -1,18 +1,8 @@
 <%= turbo_frame_tag dom_id(@schedule, :edit) do %>
-    <%= form_with model: @schedule, local: true do |f| %>
-        <div data-controller="form">
-            <div class="bg-primary-content">
-            <div class="flex justify-end">
-                <%= link_to schedule_path(@schedule), data: { turbo_frame: dom_id(@schedule, :edit) } do %>
-                    <span class="btn btn-error">キャンセル</span>
-                <% end %>
-            </div>
-
-                <%= form_with model: @schedule do |f| %>
-                    <% render 'form', f: %>
-                <% end %>
-
-            </div>
+    <div class="container bg-primary-content">
+        <div class="flex flex-col gap-4 text-black items-center my-8">
+            <%= render 'form', schedule: @schedule %>
+            <%= link_to t('defaults.cansel'), schedule_path(@schedule), class: 'btn w-32 ml-32 md:w-48 md:ml-48 text-white', data: { turbo_frame: dom_id(@schedule, :edit) } %>
         </div>
-    <% end %>
+    </div>
 <% end %>

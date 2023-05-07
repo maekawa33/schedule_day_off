@@ -1,57 +1,56 @@
-<div data-controller="form">
+<%= form_with model: [schedule, event] do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="bg-secondary-content border-2 border-secondary shadow-xl rounded-lg m-2 p-5 grid grid-cols-1 sm:grid-cols-2 gap-2">
+    <div class="bg-secondary-content drop-shadow-xl rounded-lg m-2 p-5 grid grid-cols-1 sm:grid-cols-2 gap-2">
 
         <div class="form-control">
             <label class="input-group input-group-sm input-group-vertical">
                 <span class="text-sm"><%= Event.human_attribute_name(:start_time) %></span>
                 <%= f.time_field :start_time, class: 'input input-bordered input-sm' %>
             </label>
-            </div>
+        </div>
 
         <div class="form-control">
             <label class="input-group input-group-sm input-group-vertical">
                 <span class="text-sm"><%= Event.human_attribute_name(:end_time) %></span>
                 <%= f.time_field :end_time, class: 'input input-bordered input-sm' %>
-                </label>
-            </div>
+            </label>
+        </div>
 
         <div class="form-control sm:col-span-2">
             <label class="input-group input-group-sm input-group-vertical">
                 <span class="text-sm"><%= Event.human_attribute_name(:event_title) %></span>
-                <%= f.text_field :event_title, placeholder: '〜をする', class: 'input input-bordered input-sm' %>
-                </label>
-            </div>
+                <%= f.text_field :event_title, placeholder: t('defaults.placeholder.event_title'), class: 'input input-bordered input-sm' %>
+            </label>
+        </div>
 
         <div class="form-control">
             <label class="input-group input-group-sm input-group-vertical">
                 <span class="text-sm"><%= Event.human_attribute_name(:store) %></span>
-                <%= f.text_field :store, placeholder: 'URL', class: 'input input-bordered input-sm' %>
-                </label>
-            </div>
+                <%= f.text_field :store, placeholder: t('defaults.placeholder.store'), class: 'input input-bordered input-sm' %>
+            </label>
+        </div>
 
         <div class="form-control">
             <label class="input-group input-group-sm input-group-vertical">
                 <span class="text-sm"><%= Event.human_attribute_name(:price) %></span>
-                <%= f.number_field :price, placeholder: '000円', class: 'input input-bordered input-sm' %>
+                <%= f.number_field :price, placeholder: t('defaults.placeholder.price'), class: 'input input-bordered input-sm' %>
             </label>
         </div>
 
         <div class="form-control sm:col-span-2">
             <label class="input-group input-group-sm input-group-vertical">
                 <span class="text-sm"><%= Event.human_attribute_name(:comment) %></span>
-                <%= f.text_area :comment, placeholder: '〜おすすめです。', class: 'textarea' %>
+                <%= f.text_area :comment, placeholder: t('defaults.placeholder.comment'), class: 'textarea' %>
             </label>
-            </div>
+        </div>
 
         <div>
             <%= f.file_field :image, class: 'file-input file-input-bordered file-input-md w-full file:text-sm file:text-white file:bg-secondary' %>
         </div>
 
         <div class="flex justify-end">
-            <%= link_to 'キャンセル', schedule_path(@event.schedule), class: 'btn text-white', data: { turbo_frame: dom_id(@event, :show) } %>
-            <%= f.submit '作成', class: 'btn btn-primary text-white' %>
+            <%= link_to t('defaults.cansel'), schedule_path(@event.schedule), class: 'btn text-white', data: { turbo_frame: dom_id(@event, :show) } %>
+            <%= f.submit class: 'btn btn-primary text-white' %>
         </div>
-
     </div>
-</div>
+<% end %>

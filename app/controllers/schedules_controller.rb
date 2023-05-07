@@ -8,7 +8,7 @@ class SchedulesController < ApplicationController
            Schedule.ransack(params[:q])
          end
     @schedules = @q.result(distinct: true).preload(%i[user tags
-                                                      events]).order('schedules.created_at desc').page(params[:page]).per(20)
+                                                      events]).order('created_at desc').page(params[:page]).per(20)
   end
 
   def show
@@ -49,7 +49,7 @@ class SchedulesController < ApplicationController
 
   def rank
     favorite_schedule_ids = Favorite.month_schedules.count_desc.pluck(:schedule_id)
-    @month_schedule_favorite_ranks = Schedule.includes(%i[user events]).find(favorite_schedule_ids)
+    @month_schedule_favorite_ranks = Schedule.preload(%i[user tags events]).find(favorite_schedule_ids)
   end
 
   private

@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(@event, :show) do %>
     <%= turbo_frame_tag dom_id(@event, :edit) do %>
-        <div class="container mx-auto my-8 text-black border-2 border-secondary shadow-xl  bg-secondary-content rounded-lg">
+        <div class="container mx-auto my-8 text-black drop-shadow-xl  bg-secondary-content rounded-lg">
             <div>
                 <div class="flex justify-between p-2">
                     <div>
@@ -23,7 +23,7 @@
 
                 <div class="flex border-y border-secondary p-2">
                     <div>
-                        <h1 class="text-base sm:text-xl">イベント</h1>
+                        <h1 class="text-base sm:text-xl"><%= t('.event_title') %></h1>
                         <div class="sm:flex">
                             <h2><%= l @event.start_time %></h2>
                             <% if @event.end_time %>
@@ -37,19 +37,19 @@
                     </div>
                 <% if @event.price.present? %>
                     <div class="border-b border-secondary p-2">
-                        <h1 class="text-base sm:text-xl">金額</h1>
+                        <h1 class="text-base sm:text-xl"><%= t('.price') %></h1>
                         <h2 class="text-base sm:text-xl font-sans"><%= @event.price %>円</h2>
                 </div>
                 <% end %>
                 <% if @event.store.present? %>
                     <div class="border-b border-secondary p-2">
-                        <h1 class="text-base sm:text-xl">店舗</h1>
+                        <h1 class="text-base sm:text-xl"><%= t('.store') %></h1>
                         <h2 class="text-base sm:text-xl font-sans"><%= @event.store %></h2>
                     </div>
                 <% end %>
                 <% if @event.comment.present? %>
                     <div class="border-b border-secondary p-2">
-                        <h1 class="text-base sm:text-xl">コメント</h1>
+                        <h1 class="text-base sm:text-xl"><%= t('.comment') %></h1>
                         <h2 class="text-base sm:text-xl font-sans"><%= @event.comment %></h2>
                     </div>
                 <% end %>

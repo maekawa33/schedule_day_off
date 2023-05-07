@@ -2,16 +2,20 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   authorize_resource only: %i[show edit update]
   def show
-    @schedules = Schedule.includes(:user, :events)
+    user_page = params[:user_page]
+    favorite_page = params[:favorite_page]
+    try_page = params[:try_page]
+    @schedules = Schedule.preload(%i[user tags events])
                          .where(user_id: params[:id])
-                         .page(params[:user_page])
-                         .per(9)
-    @favorite_schedules = Schedule.joins(:favorites).includes(%i[user events])
+                         .created_desc_page(user_page)
+    @favorite_schedules = Schedule.joins(:favorites)
+                                  .preload(%i[user tags events])
                                   .where(favorites: { user_id: params[:id] })
-                                  .page(params[:favorite_page]).per(9)
-    @try_schedules = Schedule.joins(:tries).includes(%i[user events])
+                                  .created_desc_page(favorite_page)
+    @try_schedules = Schedule.joins(:tries)
+                             .preload(%i[user tags events])
                              .where(tries: { user_id: params[:id] })
-                             .page(params[:try_page]).per(9)
+                             .created_desc_page(try_page)
   end
 
   def new

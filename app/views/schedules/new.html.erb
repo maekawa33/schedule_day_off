@@ -1,6 +1,6 @@
 <div class="bg-base-200 min-h-screen">
-        <h1 class="text-xl md:text-3xl text-black text-bold p-8">スケジュール作成</h1>
-    <%= form_with model: @schedule do |f| %>
-        <% render 'form', f: %>
-    <% end %>
+    <div class="flex flex-col gap-4 text-black items-center">
+    <h1 class="text-xl md:text-3xl text-black text-bold p-8"><%= t('.title') %></h1>
+    <%= render 'form', schedule: @schedule %>
+    </div>
 </div>

@@ -1,6 +1,6 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <div class="bg-primary-content min-h-screen pt-40 ">
-  <div class="bg-white rounded-lg shadow-xl w-5/6 p-2 mx-auto ">
+  <div class="bg-white rounded-lg shadow-xl w-5/6 sm:w-96 p-2 mx-auto ">
     <h2 class="text-lg font-bold text-center my-4"><%= t('.title') %></h2>
     <ul class="mx-auto text-center space-y-4">
       <li><%= link_to t('.email'), login_mail_path, { class: 'btn btn-primary text-white w-5/6 ' } %></li>
@@ -13,8 +13,8 @@
       </li>
     </ul>
   </div>
-  <div class="divider w-5/6 mx-auto"></div>
-  <div class="bg-white rounded-lg shadow-xl w-5/6 p-2 mx-auto text-center">
+  <div class="divider w-5/6 sm:w-96 mx-auto"></div>
+  <div class="bg-white rounded-lg shadow-xl w-5/6 sm:w-96 p-2 mx-auto text-center">
       <h2 class="text-lg font-bold text-center my-4"><%= t('.do_not_have_account') %></h2>
       <%= link_to t('defaults.signup'), new_user_path, { class: 'btn btn-secondary w-5/6 text-white my-4' } %>
   </div>

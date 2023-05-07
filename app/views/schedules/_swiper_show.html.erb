@@ -2,7 +2,7 @@
     <% if schedule.image_count >= 1 %>
         <% schedule.events.each do |event| %>
             <% if event.image.file.present? %>
-                <div data-slideshow-target="slide" class="border-2 border-primary shadow-xl bg-white mx-auto w-4/5 h-[200px] sm:h-[300px] md:h-[400px]">
+                <div data-slideshow-target="slide" class="drop-shadow-xl bg-white mx-auto w-4/5 h-[200px] sm:h-[300px] md:h-[400px]">
                     <%= image_tag event.image.url(:show), class: 'w-full h-full object-contain' %>
                 </div>
             <% end %>
@@ -14,7 +14,7 @@
             </div>
         <% end %>
     <% else %>
-        <div class="border-2 border-primary shadow-xl bg-white mx-auto w-4/5 h-[200px] sm:h-[300px] md:h-[400px]">
+        <div class="drop-shadow-xl bg-white mx-auto w-4/5 h-[200px] sm:h-[300px] md:h-[400px]">
             <%= image_tag 'logo_show.png', class: 'w-full h-full object-contain' %>
         </div>
     <% end %>
