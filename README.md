@@ -1,58 +1,156 @@
-# day-off-schedule
+![ロゴ](app/assets/images/logo_index.png)  
+サービスURL: https://www.schedule-day-off.com
 
-## サービス概要  
-　休日をもっと充実させたいと悩みを持った人に  
-　おすすめの休日の過ごし方を提供する  
-　休日スケジュールを共有するサービスです  
+## **サービス概要**  
+---    
+休日スケジュールを投稿・共有するサービスです。 様々な価値観を持った人の休日を知ることで、より充実した休日を過ごすためのヒントを得ることができます。
+<br>
+<br>
 
-## メインのターゲット　  
-　休日の過ごし方に満足していない人  
-　Twitterを活用している人  
+## **メインのターゲット**  
+---  
+* 休日の過ごし方をおすすめしたい方  
+* 休日の過ごし方に満足していない方  
 
-## ユーザーが抱える課題  
-　休日をもっと充実させたい  
-　Twitter上での交流を増やしたい  
+<details>
+<summary>ユーザーが抱える課題</summary>
 
-## 解決方法  
-　　様々な価値観を持った人の一番おすすめの休日スケジュールを共有することで、より休日を充実させるヒントを得ることができる。  
-　　Twitterと連携することで、交流のきっかけになる。  
+* 休日をもっと充実させたい  
+* Twitter上での交流を増やしたい 
+</details>  
+<details>
+<summary>解決方法</summary>
 
-## 実装予定の機能  
-　未ログインユーザー  
-　　スケジュール投稿の検索、一覧、詳細  
-　ログインユーザー  
-　　スケジュール投稿の投稿、検索、一覧、詳細、編集  
-　管理ユーザー  
-　　登録ユーザーの検索、一覧、詳細、編集  
+* 様々な価値観を持った人の一番おすすめの休日スケジュールを共有することで、より休日を充実させるヒントを得ることができる。 
+* Twitterと連携することで、交流のきっかけになる。  
+</details>
+<br>
+<br>
 
- 休日スケジュール投稿機能詳細  
-  ・一人で複数の投稿できる
-  ・起床、就寝の時間を必ず入力する  
-  ・想定人数を必ず入力する  
-  ・一つ以上のイベントを入れる  
-  ・任意でイベントのオススメ店舗を入れてもらう  
-  ・任意でイベントの金額を入れてもらう 
-  ・任意でイベントのこだわりを記述してもらう  
+## **主な機能**  
+---  
+### 未ログインユーザー    
+* スケジュールの検索、一覧、詳細  
+* ユーザーの詳細  
+### ログインユーザー  
+* スケジュールの投稿、検索、一覧、詳細、編集  
+* ユーザーの編集、詳細  
+### 管理ユーザー  
+* 全スケジュールの投稿、検索、一覧、詳細、編集、削除  
+* 全ユーザーの編集、詳細、削除
+<br>
+<br>
 
-　ログイン機能  
-　　・メールアドレスorTwitterorゲストでログインができる
+## **なぜこのサービスを作りたいのか？**  
+---  
+休日をダラダラと過ごしていて、もったいないと考えたのがきっかけ。他人の休日の過ごし方を知ることで自分の休日をより充実させるヒントを得ることができると考えました。
+<br>
+<br>
 
-  検索機能詳細  
-  　・フリーワード、起床時間、就寝時間、想定人数、金額で絞り込みができる  
+## **画面遷移図**  
+---  
+figma: (https://www.figma.com/file/cbWV6ra9ZXM4xS8Fsul06u/schedule-day-off?node-id=0%3A1&t=8jeIEBlmQrI2vLO6-1)
+<br>
+<br>
 
-  カレンダー同期機能  
-  　・選択したスケジュールから自分のカレンダーアプリに同期ができる  
+## **ER図**  
+---  
+```mermaid
+erDiagram
+  users ||--o{ schedules : ""
+  users ||--o{ favorites : ""
+  users ||--o{ tries : ""
+  schedules ||--o{ events : ""
+  schedules ||--o{ favorites : ""
+  schedules ||--o{ tries : ""
+  schedules ||--o{ taggings : ""
+  tags ||--o{ taggings : ""
+  events {
+  integer id PK
+  bigint schedule_id FK
+  time start_time
+  time end_time
+  string event_time
+  string image
+  string price
+  string comment
+  datetime created_at
+  datetime update_at
+  }
+  favorites {
+  integer id PK
+  bigint user_id FK
+  bigint schedule_id FK
+  datetime created_at
+  datetime updated_at
+  }
+  schedules {
+  integer id PK
+  bigint user_id FK
+  string schedule_title
+  integer assumed_number_people
+  time get_up_time
+  time sleep_time
+  datetime created_at
+  datetime updated_at
+  }
+  taggings {
+  integer id PK
+  bigint schedule_id FK
+  bigint tag_id FK
+  datetime created_at
+  datetime updated_at
+  }
+  tags {
+  integer id PK
+  string name
+  datetime created_at
+  datetime updated_at
+  }
+  tries {
+  integer id PK
+  bigint user_id FK
+  bigint schedule_id FK
+  datetime created_at
+  datetime updated_at
+  }
+  users {
+  integer id PK
+  string name
+  string email
+  string crypted_password
+  string salt
+  string avatar
+  integer role
+  integer login_type
+  string reset_password_token
+  datetime reset_password_token_expires_at
+  datetime reset_password_email_sent_at
+  integer access_count_to_reset_password_page
+  datetime created_at
+  datetime updated_at
+  }
+```
+<br>
+<br>
 
-## なぜこのサービスを作りたいのか？  
-休日をダラダラと過ごしていて、もったいないと考えたのがきっかけ。スケジュールを作る過程で自分の本当に好きなことに気づけるのではないかと考えた。  
+## **使用技術**  
+---  
+### バックエンド  
+* Ruby 3.1.0  
+* Rails 7.0.4  
+### フロントエンド  
+* hotwire  
+* TailwindCSS-daisyUI  
+### インフラ  
+* Heroku  
+* AmazonS3  
+* PostgreSQL
+<br>
+<br>
 
-## 画面遷移図
-  figma: (https://www.figma.com/file/T2j3sOWYwK3OnzkLfR9b6m/PF_schedule?node-id=0%3A1&t=67g3pDXP0cE2PSWc-1)
-
-## ER図
- [![Image from Gyazo](https://i.gyazo.com/6075985e6be58037508f542fa2ad7c07.png)](https://gyazo.com/6075985e6be58037508f542fa2ad7c07)
-
-## スケジュール  
+## **スケジュール**  
+---  
 企画〜技術調査：12/1〆切  
 README~ER図作成：12/15〆切  
 メイン機能実装：12/15-1/31〆切  
