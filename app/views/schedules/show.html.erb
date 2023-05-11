@@ -63,12 +63,14 @@
         <% end %>
 
         <% if current_user&.own?(@schedule) %>
-            <div class="text-center mt-16">
+            <div class="flex flex-wrap justify-center gap-4 mt-16 ">
                 <%= link_to t('.create_event'), new_schedule_event_path(schedule_id: @schedule.id), class: 'btn btn-wide btn-secondary drop-shadow-xl text-white', data: { turbo_frame: dom_id(Event.new, dom_id(@schedule)) } %>
+                <%= link_to t('.reference_event'), reference_schedule_events_path(schedule_id: @schedule.id), class: 'btn btn-wide btn-secondary drop-shadow-xl text-white', data: { turbo_frame: dom_id(Event.new, :reference) } %>
             </div>
         <% end %>
 
         <%= turbo_frame_tag dom_id(Event.new, dom_id(@schedule)) %>
+        <%= turbo_frame_tag dom_id(Event.new, :reference) %>
 
         <div class="divider my-8"><%= t('defaults.get_up') %>  <%= l @schedule.get_up_time %></div>
 
