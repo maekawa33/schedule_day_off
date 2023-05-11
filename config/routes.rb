@@ -26,7 +26,9 @@ Rails.application.routes.draw do
     end
     resource :favorites, only: [:create, :destroy]
     resource :tries, only: [:create, :destroy]
-    resources :events
+    resources :events do
+      get 'reference', on: :collection
+    end
   end
   resources :password_resets, only: %i[new create edit update]
 end

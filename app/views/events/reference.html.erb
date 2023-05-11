@@ -1,0 +1,19 @@
+<%= turbo_frame_tag dom_id(Event.new, :reference) do %>
+  <div class="bg-secondary-content drop-shadow-xl rounded-lg m-2 p-5">
+      <% @events.each do |event| %>
+        <div class="bg-white drop-shadow-xl flex flex-col p-4 mb-4">
+          <div class="text-center my-auto">
+            <h1 class="text-xl sm:text-2xl font-bold"><%= event.event_title %></h1>
+          </div>
+          <div class="text-right">
+            <%= link_to t('.create_event'), new_schedule_event_path(schedule_id: @schedule.id, title: event.event_title), class: ' btn btn-sm btn-secondary text-white text-xs sm:text-base', data: { turbo_stream: true } %>
+          </div>
+        </div>
+      <% end %>
+      <div class="flex justify-end gap-4">
+        <%= link_to t('defaults.cansel'), schedule_path(@schedule), class: 'btn text-white drop-shadow-xl', data: { turbo_frame: dom_id(Event.new, :reference) } %>
+        <%= link_to_prev_page @events, t('defaults.previous'), class: 'btn btn-primary text-white' %>
+        <%= link_to_next_page @events, t('defaults.next'), class: 'btn btn-primary text-white' %>
+      </div>
+  </div>
+<% end %>
