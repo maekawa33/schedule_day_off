@@ -9,6 +9,8 @@ ja:
     message:
       require_login: 'ログインしてください'
       not_authorized: "権限がありません"
+    next: '次へ'
+    previous: '戻る'
     terms: "利用規約"
     privacy: "プライバシーポリシー"
     contact: "お問い合わせ"
@@ -100,6 +102,7 @@ ja:
     show: 
       delete_confirm: '削除しますか？'
       create_event: 'イベント追加'
+      reference_event: 'イベントを探す'
     rank:
       title: '月間いいねランキング'
       rank: "第%{rank}位"
@@ -117,6 +120,8 @@ ja:
       store: '店舗'
       price: '価格'
       comment: 'コメント'
+    reference:
+      create_event: 'イベント追加'
   views:
     pagination:
       first: '最初'
