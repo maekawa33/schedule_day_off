@@ -1,0 +1,5 @@
+<%= turbo_stream.update dom_id(Event.new, :reference), "" %>
+
+<%= turbo_stream.update dom_id(Event.new, dom_id(@schedule)) do%>
+    <%= render 'form', schedule: @schedule, event: @event, title: @reference_event_title %>
+<% end %>
