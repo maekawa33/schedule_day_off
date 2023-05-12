@@ -15,7 +15,7 @@
         </main>
         <aside class="md:w-1/4">
             <div class="container p-4">
-                <h2 class="font-bold text-xl mb-4">人気タグ</h2>
+                <h2 class="font-bold text-xl mb-4"><%= t('.popular_tags') %></h2>
                 <div class="md:flex md:flex-col gap-2">
                 <% @schedule_tag_ranks.each do |tag| %>
                     <%= render 'tags/tag', tag: %>

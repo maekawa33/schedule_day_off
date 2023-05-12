@@ -97,6 +97,8 @@ ja:
       success: 'パスワードを変更しました'
       fail: 'パスワードの変更に失敗しました'
   schedules:
+    index:
+      popular_tags: '人気タグ'
     new:
       title: 'スケジュール作成'
     show: 
