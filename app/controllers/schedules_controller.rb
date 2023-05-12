@@ -9,6 +9,13 @@ class SchedulesController < ApplicationController
          end
     @schedules = @q.result(distinct: true).preload(%i[user tags
                                                       events]).order('created_at desc').page(params[:page]).per(20)
+
+    schedule_tag_ids = Tagging.group(:tag_id)
+                              .order('count(schedule_id) DESC')
+                              .limit(20)
+                              .pluck(:tag_id)
+
+    @schedule_tag_ranks = Tag.find(schedule_tag_ids)
   end
 
   def show
