@@ -42,7 +42,7 @@
                         <%= render 'schedules/schedule', schedule: %>
                     <% end %>
                 </div>
-                <div class="text-center py-8">
+                <div class="flex justify-center py-8">
                     <%= paginate @schedules, param_name: 'user_page' %>
                 </div>
             <% end %>
@@ -60,7 +60,7 @@
                         <%= render 'schedules/schedule', schedule: %>
                     <% end %>
                 </div>
-                <div class="text-center py-8">
+                <div class="flex justify-center py-8">
                     <%= paginate @favorite_schedules, param_name: 'favorite_name' %>
                 </div>
             <% end %>
@@ -78,7 +78,7 @@
                         <%= render 'schedules/schedule', schedule: %>
                     <% end %>
                 </div>
-                <div class="text-center py-8">
+                <div class="flex justify-center py-8">
                     <%= paginate @try_schedules, param_name: 'try_name' %>
                 </div>
             <% end %>

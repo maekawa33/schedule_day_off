@@ -27,7 +27,6 @@ Schedule.all.each do |schedule|
     event_title: 'カフェでプログラミング',
     image: open("./app/assets/images/programing.png"),
     price: 500,
-    store: '',
     comment: 'RUNTEQでプログラミング学習',
     schedule: schedule,
   )
@@ -37,7 +36,6 @@ Schedule.all.each do |schedule|
     event_title: '行きつけのラーメン屋に行く',
     image: open("./app/assets/images/ramen.png"),
     price: 1000,
-    store: '',
     comment: '',
     schedule: schedule,
   )
@@ -47,7 +45,6 @@ Schedule.all.each do |schedule|
     event_title: 'サウナで整う',
     image: open("./app/assets/images/sauna.png"),
     price: 1000,
-    store: '',
     comment: '',
     schedule: schedule,
   )
