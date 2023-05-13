@@ -1,7 +1,7 @@
 <div class="bg-primary-content min-h-screen">
-      <h1 class="p-20">
-            <span class="text-3xl font-bold bg-primary drop-shadow-xl text-white p-4"><%= t('.title') %></span>
-      </h1>
+  <h1 class="p-20">
+        <span class="text-3xl font-bold bg-primary drop-shadow-xl text-white p-4"><%= t('.title') %></span>
+  </h1>
   <% last_favorite = 0 %>
   <% favorite_rank = 1 %>
   <% last_try = 0 %>
@@ -33,17 +33,17 @@
         <% end %>
       <% end %>
     </div>
-      <h2 class="my-20">
-            <span class="text-2xl font-bold bg-secondary drop-shadow-xl text-white p-4"><%= t('.try_title') %></span>
-      </h2>
-        <div class="flex flex-col gap-4">
+    <h2 class="my-20">
+          <span class="text-2xl font-bold bg-secondary drop-shadow-xl text-white p-4"><%= t('.try_title') %></span>
+    </h2>
+    <div class="flex flex-col gap-4">
       <% @month_schedule_try_ranks.each.with_index(1) do |schedule, i| %>
         <% if i == 1 %>
           <% last_try = schedule.tries.count %>
         <% end %>
         <% if schedule.tries.count == last_try %>
           <div class="flex flex-col gap-2">
-            <h2 class="text-xl text-center text-bold text-primary"><%= t('.rank', rank: try_rank ) %></h2>
+            <h2 class="text-xl text-center text-bold text-primary"><%= t('.rank', rank: try_rank) %></h2>
             <h2 class="text-xl text-center"><%= schedule.tries.count %><%= t('defaults.try') %></h2>
             <%= render 'schedule', schedule: %>
           </div>
