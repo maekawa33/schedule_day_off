@@ -19,7 +19,7 @@
         <div class="form-control sm:col-span-2">
             <label class="input-group input-group-sm input-group-vertical">
                 <span class="text-sm"><%= Event.human_attribute_name(:event_title) %></span>
-                <%= f.text_field :event_title, placeholder: t('defaults.placeholder.event_title'), class: 'input input-bordered input-sm', value: title %>
+                <%= f.text_field :event_title, placeholder: t('defaults.placeholder.event_title'), class: 'input input-bordered input-sm', value: title.present? ? title : event.event_title %>
             </label>
         </div>
 
