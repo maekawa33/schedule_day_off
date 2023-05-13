@@ -1,8 +1,15 @@
 <div class="bg-primary-content min-h-screen">
-  <h1 class="text-3xl p-12"><%= t('.title') %></h1>
+  <h1 class="p-20">
+        <span class="text-3xl font-bold bg-primary drop-shadow-xl text-white p-4"><%= t('.title') %></span>
+  </h1>
   <% last_favorite = 0 %>
-  <% rank = 1 %>
+  <% favorite_rank = 1 %>
+  <% last_try = 0 %>
+  <% try_rank = 1 %>
   <div class="container mx-auto">
+    <h2 class="my-20">
+        <span class="text-2xl font-bold bg-secondary drop-shadow-xl text-white p-4"><%= t('.favorite_title') %></span>
+    </h2>
     <div class="flex flex-col gap-4">
       <% @month_schedule_favorite_ranks.each.with_index(1) do |schedule, i| %>
         <% if i == 1 %>
@@ -10,19 +17,45 @@
         <% end %>
         <% if schedule.favorites.count == last_favorite %>
           <div class="flex flex-col gap-2">
-            <h2 class="text-xl text-center text-bold text-primary"><%= t('.rank', rank:) %></h2>
+            <h2 class="text-xl text-center text-bold text-primary"><%= t('.rank', rank: favorite_rank) %></h2>
             <h2 class="text-xl text-center"><%= schedule.favorites.count %><%= t('defaults.favorite') %></h2>
             <%= render 'schedule', schedule: %>
           </div>
         <% else %>
-          <% rank = i %>
-          <% break if rank == 4 %>
+          <% favorite_rank = i %>
+          <% break if favorite_rank == 4 %>
           <div class="flex flex-col gap-2">
-            <h2 class="text-xl text-center text-bold text-primary"><%= t('.rank', rank:) %></h2>
+            <h2 class="text-xl text-center text-bold text-primary"><%= t('.rank', rank: favorite_rank) %></h2>
             <h2 class="text-xl text-center"><%= schedule.favorites.count %><%= t('defaults.favorite') %></h2>
             <%= render 'schedule', schedule: %>
           </div>
           <% last_favorite = schedule.favorites.count %>
+        <% end %>
+      <% end %>
+    </div>
+    <h2 class="my-20">
+          <span class="text-2xl font-bold bg-secondary drop-shadow-xl text-white p-4"><%= t('.try_title') %></span>
+    </h2>
+    <div class="flex flex-col gap-4">
+      <% @month_schedule_try_ranks.each.with_index(1) do |schedule, i| %>
+        <% if i == 1 %>
+          <% last_try = schedule.tries.count %>
+        <% end %>
+        <% if schedule.tries.count == last_try %>
+          <div class="flex flex-col gap-2">
+            <h2 class="text-xl text-center text-bold text-primary"><%= t('.rank', rank: try_rank) %></h2>
+            <h2 class="text-xl text-center"><%= schedule.tries.count %><%= t('defaults.try') %></h2>
+            <%= render 'schedule', schedule: %>
+          </div>
+        <% else %>
+          <% try_rank = i %>
+          <% break if try_rank == 4 %>
+          <div class="flex flex-col gap-2">
+            <h2 class="text-xl text-center text-bold text-primary"><%= t('.rank', rank: try_rank) %></h2>
+            <h2 class="text-xl text-center"><%= schedule.tries.count %><%= t('defaults.try') %></h2>
+            <%= render 'schedule', schedule: %>
+          </div>
+          <% last_try = schedule.tries.count %>
         <% end %>
       <% end %>
     </div>

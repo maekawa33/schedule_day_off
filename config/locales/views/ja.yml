@@ -106,7 +106,9 @@ ja:
       create_event: 'イベント追加'
       reference_event: 'イベントを探す'
     rank:
-      title: '月間いいねランキング'
+      title: '月間ランキング'
+      favorite_title: 'いいね部門'
+      try_title: 'やってみた部門'
       rank: "第%{rank}位"
     create:
       success: "スケジュール「%{title}」を作成しました"
