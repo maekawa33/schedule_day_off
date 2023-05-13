@@ -57,6 +57,8 @@ class SchedulesController < ApplicationController
   def rank
     favorite_schedule_ids = Favorite.month_schedules.count_desc.pluck(:schedule_id)
     @month_schedule_favorite_ranks = Schedule.preload(%i[user tags events]).find(favorite_schedule_ids)
+    try_schedule_ids = Try.month_schedules.count_desc.pluck(:schedule_id)
+    @month_schedule_try_ranks = Schedule.preload(%i[user tags events]).find(try_schedule_ids)
   end
 
   private
